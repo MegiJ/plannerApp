@@ -3,12 +3,12 @@ package pl.project.plannerapp.model;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 
+import javax.annotation.Nullable;
+import java.util.List;
 import java.util.UUID;
 
-@Entity
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorValue("employee")
-public class Employee {
+public class User {
+
     @Id
     @GeneratedValue
     private Long id;
@@ -29,7 +29,7 @@ public class Employee {
         return id;
     }
 
-    public Employee setId(Long id) {
+    public User setId(Long id) {
         this.id = id;
         return this;
     }
@@ -38,7 +38,7 @@ public class Employee {
         return uuid;
     }
 
-    public Employee setUuid(UUID uuid) {
+    public User setUuid(UUID uuid) {
         this.uuid = uuid;
         return this;
     }
@@ -47,7 +47,7 @@ public class Employee {
         return personalData;
     }
 
-    public Employee setPersonalData(PersonalData personalData) {
+    public User setPersonalData(PersonalData personalData) {
         this.personalData = personalData;
         return this;
     }
@@ -56,7 +56,7 @@ public class Employee {
         return logginData;
     }
 
-    public Employee setLogginData(LogginData logginData) {
+    public User setLogginData(LogginData logginData) {
         this.logginData = logginData;
         return this;
     }
