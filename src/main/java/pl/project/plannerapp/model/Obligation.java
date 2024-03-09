@@ -1,22 +1,25 @@
 package pl.project.plannerapp.model;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotNull;
 
-import java.util.UUID;
+import java.util.Date;
 
-public class Dashboards {
+public class Obligation {
+
     @Id
     @GeneratedValue
     private int id;
 
-    @Column(unique = true)
     @NotNull
-    private UUID uuid;
+    private String note;
 
     @NotNull
-    private String nameDashboard;
+    @Embedded
+    private User user;
+
+    @NotNull
+    private boolean accountStatus;
 }
