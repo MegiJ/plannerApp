@@ -3,8 +3,6 @@ package pl.project.plannerapp.model;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 
-import javax.annotation.Nullable;
-import java.util.List;
 import java.util.UUID;
 
 public class User {
