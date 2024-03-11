@@ -11,10 +11,6 @@ public class User {
     @GeneratedValue
     private Long id;
 
-    @Column(unique = true)
-    @NotNull
-    private UUID uuid;
-
     @NotNull
     @Embedded
     private PersonalData personalData;
@@ -29,15 +25,6 @@ public class User {
 
     public User setId(Long id) {
         this.id = id;
-        return this;
-    }
-
-    public UUID getUuid() {
-        return uuid;
-    }
-
-    public User setUuid(UUID uuid) {
-        this.uuid = uuid;
         return this;
     }
 

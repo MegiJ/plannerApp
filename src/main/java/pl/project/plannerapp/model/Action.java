@@ -1,22 +1,31 @@
 package pl.project.plannerapp.model;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
 
-import java.util.UUID;
+import java.time.Instant;
+@AllArgsConstructor
+public class Action {
 
-public class Dashboards {
     @Id
     @GeneratedValue
     private int id;
 
-    @Column(unique = true)
     @NotNull
-    private UUID uuid;
+    private Instant date;
 
     @NotNull
-    private String nameDashboard;
+    private String note;
+
+    @NotNull
+    @Embedded
+    private User user;
+
+
+    private ActionType actionType;
+
+
 }

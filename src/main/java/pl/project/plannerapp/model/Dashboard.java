@@ -1,23 +1,20 @@
 package pl.project.plannerapp.model;
 
-import jakarta.persistence.Embedded;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
 
-public class Obligation {
+import java.util.List;
 
+@AllArgsConstructor
+public class Dashboard {
     @Id
     @GeneratedValue
     private int id;
 
     @NotNull
-    private String note;
+    private List<Action> actions;
 
-    @NotNull
-    @Embedded
     private User user;
-
-    @NotNull
-    private boolean accountStatus;
 }
