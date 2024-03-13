@@ -26,7 +26,7 @@ public class ActionDTO {
     private User user;
 
 
-    private ActionTypeDTO actionType;
+    private ActionTypeDTO actionTypeDTO;
 
 
 }
