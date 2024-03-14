@@ -1,25 +1,26 @@
 package pl.project.plannerapp.DTO;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
+import lombok.AllArgsConstructor;
+
 
 @Embeddable
 public class LogginDataDTO {
 
     @Size(min = 3)
-    private String string;
+    private String login;
 
     @Pattern(regexp = "(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).{6,}$")
     private String password;
 
-    public String getString() {
-        return string;
+    public String getLogin() {
+        return login;
     }
 
-    public LogginDataDTO setString(String string) {
-        this.string = string;
+    public LogginDataDTO setLogin(String login) {
+        this.login = login;
         return this;
     }
 

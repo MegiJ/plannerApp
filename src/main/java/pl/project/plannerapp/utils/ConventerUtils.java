@@ -1,14 +1,16 @@
 package pl.project.plannerapp.utils;
 
-import pl.project.plannerapp.DTO.PersonalDataDTO;
-import pl.project.plannerapp.model.PersonalData;
+import pl.project.plannerapp.DTO.*;
+import pl.project.plannerapp.model.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ConventerUtils {
     public static PersonalData convert(PersonalDataDTO personalDataDTO) {
         return new PersonalDataBuilder()
                 .withName(personalDataDTO.getName())
                 .withSurname(personalDataDTO.getSurname())
-                .withSex(personalDataDTO.getSex())
                 .withPhone(personalDataDTO.getPhone())
                 .withEmail(personalDataDTO.getEmail())
                 .build();
@@ -18,7 +20,6 @@ public class ConventerUtils {
         return new PersonalDataDTOBuilder()
                 .withName(personalData.getName())
                 .withSurname(personalData.getSurname())
-                .withSex(personalData.getSex())
                 .withPhone(personalData.getPhone())
                 .withEmail(personalData.getEmail())
                 .build();

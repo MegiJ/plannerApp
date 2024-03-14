@@ -9,17 +9,17 @@ import jakarta.validation.constraints.Size;
 public class LogginData {
     @Column(unique = true)
     @Size(min = 3)
-    private String string;
+    private String login;
 
     @Pattern(regexp = "(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).{6,}$")
     private String password;
 
-    public String getString() {
-        return string;
+    public String getLogin() {
+        return login;
     }
 
-    public LogginData setString(String string) {
-        this.string = string;
+    public LogginData setLogin(String login) {
+        this.login = login;
         return this;
     }
 
