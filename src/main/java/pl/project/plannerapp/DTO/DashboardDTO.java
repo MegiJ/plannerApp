@@ -10,9 +10,6 @@ import java.util.List;
 
 @AllArgsConstructor
 public class DashboardDTO {
-    @Id
-    @GeneratedValue
-    private int id;
 
     @NotNull
     private List<ActionDTO> actions;

@@ -10,11 +10,9 @@ import pl.project.plannerapp.model.PersonalData;
 public class UserDTO {
 
     @NotNull
-    @Embedded
     private PersonalDataDTO personalDataDTO;
 
     @NotNull
-    @Embedded
     private LogginDataDTO logginDataDTO;
 
     public PersonalDataDTO getPersonalDataDTO() {

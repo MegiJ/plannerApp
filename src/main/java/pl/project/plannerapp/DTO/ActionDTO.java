@@ -11,10 +11,6 @@ import java.time.Instant;
 @AllArgsConstructor
 public class ActionDTO {
 
-    @Id
-    @GeneratedValue
-    private int id;
-
     @NotNull
     private Instant date;
 

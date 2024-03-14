@@ -7,7 +7,7 @@ import jakarta.validation.constraints.Size;
 
 @Embeddable
 public class LogginDataDTO {
-    @Column(unique = true)
+
     @Size(min = 3)
     private String string;
 
