@@ -2,7 +2,9 @@ package pl.project.plannerapp.DTO;
 
 import jakarta.persistence.Embeddable;
 import jakarta.validation.constraints.NotNull;
+import net.karneim.pojobuilder.GeneratePojoBuilder;
 
+@GeneratePojoBuilder
 @Embeddable
 public class PersonalDataDTO {
 

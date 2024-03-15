@@ -4,7 +4,9 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
+import net.karneim.pojobuilder.GeneratePojoBuilder;
 
+@GeneratePojoBuilder
 @Embeddable
 public class LogginData {
     @Column(unique = true)

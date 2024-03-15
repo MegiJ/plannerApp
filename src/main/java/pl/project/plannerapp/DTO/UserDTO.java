@@ -4,9 +4,10 @@ import jakarta.persistence.Embedded;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotNull;
+import net.karneim.pojobuilder.GeneratePojoBuilder;
 import pl.project.plannerapp.model.LogginData;
 import pl.project.plannerapp.model.PersonalData;
-
+@GeneratePojoBuilder
 public class UserDTO {
 
     @NotNull

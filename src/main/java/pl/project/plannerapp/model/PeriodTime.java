@@ -1,8 +1,11 @@
 package pl.project.plannerapp.model;
 
+import net.karneim.pojobuilder.GeneratePojoBuilder;
+
 import javax.annotation.Nullable;
 import java.time.LocalTime;
 
+@GeneratePojoBuilder
 public class PeriodTime {
 
     @Nullable

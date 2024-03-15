@@ -5,9 +5,12 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
+import net.karneim.pojobuilder.GeneratePojoBuilder;
 import pl.project.plannerapp.model.User;
 
 import java.time.Instant;
+
+@GeneratePojoBuilder
 @AllArgsConstructor
 public class ActionDTO {
 

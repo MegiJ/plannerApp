@@ -3,7 +3,6 @@ package pl.project.plannerapp.config;
 import com.google.common.collect.ImmutableMap;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
-import org.hibernate.HibernateException;
 import org.hibernate.cfg.AvailableSettings;
 import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;

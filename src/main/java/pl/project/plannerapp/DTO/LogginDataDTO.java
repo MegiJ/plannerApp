@@ -4,8 +4,9 @@ import jakarta.persistence.Embeddable;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
+import net.karneim.pojobuilder.GeneratePojoBuilder;
 
-
+@GeneratePojoBuilder
 @Embeddable
 public class LogginDataDTO {
 

@@ -2,9 +2,9 @@ package pl.project.plannerapp.model;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
+import net.karneim.pojobuilder.GeneratePojoBuilder;
 
-import java.util.UUID;
-
+@GeneratePojoBuilder
 public class User {
 
     @Id
