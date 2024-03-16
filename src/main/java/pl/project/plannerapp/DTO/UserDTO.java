@@ -7,8 +7,14 @@ import jakarta.validation.constraints.NotNull;
 import net.karneim.pojobuilder.GeneratePojoBuilder;
 import pl.project.plannerapp.model.LogginData;
 import pl.project.plannerapp.model.PersonalData;
+
+import java.util.UUID;
+
 @GeneratePojoBuilder
 public class UserDTO {
+
+    @NotNull
+    private UUID uuid;
 
     @NotNull
     private PersonalDataDTO personalDataDTO;

@@ -4,12 +4,18 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import net.karneim.pojobuilder.GeneratePojoBuilder;
 
+import java.util.UUID;
+
 @GeneratePojoBuilder
 public class User {
 
     @Id
     @GeneratedValue
     private Long id;
+
+    @Column(unique = true)
+    @NotNull
+    private UUID uuid;
 
     @NotNull
     @Embedded
