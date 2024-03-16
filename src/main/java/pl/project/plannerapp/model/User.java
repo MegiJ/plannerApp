@@ -18,6 +18,9 @@ public class User {
     private UUID uuid;
 
     @NotNull
+    private String accountType;
+
+    @NotNull
     @Embedded
     private PersonalData personalData;
 
@@ -49,6 +52,24 @@ public class User {
 
     public User setLogginData(LogginData logginData) {
         this.logginData = logginData;
+        return this;
+    }
+
+    public UUID getUuid() {
+        return uuid;
+    }
+
+    public User setUuid(UUID uuid) {
+        this.uuid = uuid;
+        return this;
+    }
+
+    public String getAccountType() {
+        return accountType;
+    }
+
+    public User setAccountType(String accountType) {
+        this.accountType = accountType;
         return this;
     }
 }

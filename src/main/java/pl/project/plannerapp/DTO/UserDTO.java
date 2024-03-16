@@ -17,6 +17,9 @@ public class UserDTO {
     private UUID uuid;
 
     @NotNull
+    private String accountType;
+
+    @NotNull
     private PersonalDataDTO personalDataDTO;
 
     @NotNull
@@ -37,6 +40,24 @@ public class UserDTO {
 
     public UserDTO setLogginDataDTO(LogginDataDTO logginDataDTO) {
         this.logginDataDTO = logginDataDTO;
+        return this;
+    }
+
+    public UUID getUuid() {
+        return uuid;
+    }
+
+    public UserDTO setUuid(UUID uuid) {
+        this.uuid = uuid;
+        return this;
+    }
+
+    public String getAccountType() {
+        return accountType;
+    }
+
+    public UserDTO setAccountType(String accountType) {
+        this.accountType = accountType;
         return this;
     }
 }

@@ -45,7 +45,10 @@ public class JPAConfiguration {
         LocalContainerEntityManagerFactoryBean entityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
         entityManagerFactoryBean.setDataSource(dataSourceBuilder.build());
         entityManagerFactoryBean.setJpaVendorAdapter(jpaVendorAdapter);
-        entityManagerFactoryBean.setPackagesToScan("pl.project.plannerapp.model");
+        entityManagerFactoryBean.setPackagesToScan(
+                "pl.project.plannerapp.model",
+                "pl.project.plannerapp.conventer"
+        );
         entityManagerFactoryBean.setJpaPropertyMap(ImmutableMap.of(
                 AvailableSettings.DIALECT, "org.hibernate.dialect.MySQL8Dialect",
 //                AvailableSettings.SHOW_SQL, "true",
