@@ -1,9 +1,12 @@
 package pl.project.plannerapp.model;
 
 import net.karneim.pojobuilder.GeneratePojoBuilder;
+import pl.project.plannerapp.validator.PerionConstraint;
+
 import javax.annotation.Nullable;
 import java.time.LocalDateTime;
 
+@PerionConstraint
 @GeneratePojoBuilder
 public class Period {
 
