@@ -7,10 +7,10 @@ import java.lang.annotation.*;
 
 @Target({ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
-@Constraint(validatedBy = PeriodConstraintValidator.class)
+@Constraint(validatedBy = PeriodTimeConstraintValidator.class)
 @Documented
-public @interface PerionConstraint {
-    String message() default "{pl.project.plannerapp.validator.PerionConstraint}";
+public @interface PeriodTimeConstraint {
+    String message() default "{pl.project.plannerApp.validator.PeriodTimeConstraint}";
     Class<?>[] groups() default {};
     Class<? extends Payload>[] payload() default {};
 }

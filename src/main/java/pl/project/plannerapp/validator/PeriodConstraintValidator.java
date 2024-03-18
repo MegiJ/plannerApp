@@ -4,9 +4,9 @@ import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 import pl.project.plannerapp.model.Period;
 
-public class PeriodConstraintValidator implements ConstraintValidator<PerionConstraint, Period> {
+public class PeriodConstraintValidator implements ConstraintValidator<PeriodConstraint, Period> {
     @Override
-    public void initialize(PerionConstraint constraintAnnotation) {
+    public void initialize(PeriodConstraint constraintAnnotation) {
         ConstraintValidator.super.initialize(constraintAnnotation);
     }
 
