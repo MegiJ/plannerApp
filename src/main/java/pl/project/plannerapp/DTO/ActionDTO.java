@@ -11,7 +11,6 @@ import pl.project.plannerapp.model.User;
 import java.time.Instant;
 
 @GeneratePojoBuilder
-@AllArgsConstructor
 public class ActionDTO {
 
     @NotNull
@@ -27,5 +26,6 @@ public class ActionDTO {
 
     private ActionTypeDTO actionTypeDTO;
 
-
+    public ActionDTO() {
+    }
 }

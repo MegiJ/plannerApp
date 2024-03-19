@@ -10,7 +10,7 @@ import net.karneim.pojobuilder.GeneratePojoBuilder;
 import java.time.Instant;
 
 @GeneratePojoBuilder
-@AllArgsConstructor
+
 public class Action {
 
     @Id
@@ -27,8 +27,8 @@ public class Action {
     @Embedded
     private User user;
 
-
     private ActionType actionType;
 
-
+    public Action() {
+    }
 }

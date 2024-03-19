@@ -9,7 +9,7 @@ import pl.project.plannerapp.model.User;
 
 import java.util.List;
 @GeneratePojoBuilder
-@AllArgsConstructor
+
 public class DashboardDTO {
 
     @NotNull

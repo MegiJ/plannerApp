@@ -8,7 +8,6 @@ import net.karneim.pojobuilder.GeneratePojoBuilder;
 
 import java.util.List;
 @GeneratePojoBuilder
-@AllArgsConstructor
 public class Dashboard {
     @Id
     @GeneratedValue
