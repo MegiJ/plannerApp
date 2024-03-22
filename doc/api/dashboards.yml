@@ -1,0 +1,51 @@
+openapi: 3.0.1
+info:
+  title: API / Dashboards
+  version: 1.0.0-oas3
+servers:
+  - url: http://localhost/api
+tags:
+  - name: dashboards
+    description: ''
+paths:
+  /dashboards:
+    get:
+      tags:
+        - dashboards
+      summary: Pobiera listę wpisów
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/cimponents/schemas/Dashboard'
+/dashboards/{dashboard-uuid}:
+  get:
+    tags:
+      - dashboards
+    summary: Pobiera wpis
+    parameters:
+      - name: dashboard-uuid
+        in: path
+        description: UUID pobierania wpisu
+        required: true
+        schema:
+          type: string
+          format: UUID
+    responses:
+      '200':
+        description: OK
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Dashboard'
+      '404':
+        description: Not found
+        content: {}
+    put:
+
+
+    delete:
