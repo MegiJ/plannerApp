@@ -46,6 +46,33 @@ paths:
         description: Not found
         content: {}
     put:
+      tags:
+        - dashboards
+      summary: Dodawanie lub nadpisywanie wpisu
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Dashboard'
+      parameters:
+        - name: dashboard-uuid
+          in: path
+          description: UUID pobierania wpisu
+          required: true
+          schema:
+            type: string
+            format: UUID
+      requestBody:
+        description: Uaktualniony lub wstawiony wpis
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dashboard'
+        '400':
+          description: Validation error
+          content: {}
 
 
     delete:
