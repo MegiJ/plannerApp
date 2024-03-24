@@ -25,11 +25,11 @@ public class LogginData {
         return this;
     }
 
-    public String getPassword() {
+    private String getPassword() {
         return password;
     }
 
-    public LogginData setPassword(String password) {
+    private LogginData setPassword(String password) {
         this.password = password;
         return this;
     }
