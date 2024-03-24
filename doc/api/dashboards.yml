@@ -95,3 +95,13 @@ paths:
         '404':
           description: Not found
           content: {}
+components:
+  schema:
+    Dashboard:
+      type: obbject
+      propertis:
+        uuid:
+          type: string
+          format: UUID
+        quantity:
+          type: integer
