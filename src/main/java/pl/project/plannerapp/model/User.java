@@ -26,7 +26,7 @@ public class User {
 
     @NotNull
     @Embedded
-    private LogginData logginData;
+    private LoggingData loggingData;
 
     public Long getId() {
         return id;
@@ -46,12 +46,12 @@ public class User {
         return this;
     }
 
-    public LogginData getLogginData() {
-        return logginData;
+    public LoggingData getLoggingData() {
+        return loggingData;
     }
 
-    public User setLogginData(LogginData logginData) {
-        this.logginData = logginData;
+    public User setLoggingData(LoggingData loggingData) {
+        this.loggingData = loggingData;
         return this;
     }
 

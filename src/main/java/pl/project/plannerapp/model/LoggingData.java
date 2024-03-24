@@ -8,7 +8,7 @@ import net.karneim.pojobuilder.GeneratePojoBuilder;
 
 @GeneratePojoBuilder
 @Embeddable
-public class LogginData {
+public class LoggingData {
     @Column(unique = true)
     @Size(min = 3)
     private String login;
@@ -20,7 +20,7 @@ public class LogginData {
         return login;
     }
 
-    public LogginData setLogin(String login) {
+    public LoggingData setLogin(String login) {
         this.login = login;
         return this;
     }
@@ -29,7 +29,7 @@ public class LogginData {
         return password;
     }
 
-    private LogginData setPassword(String password) {
+    private LoggingData setPassword(String password) {
         this.password = password;
         return this;
     }
