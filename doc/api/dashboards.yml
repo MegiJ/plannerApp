@@ -73,6 +73,25 @@ paths:
         '400':
           description: Validation error
           content: {}
-
-
     delete:
+      tags:
+        - dashes
+      summary: Usuwa wpis
+      parameters:
+        - name: dashboard-uuid
+          in: path
+          description: UUID pobierania wpisu
+          required: true
+          schema:
+            type: string
+            format: UUID
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dashboard'
+        '404':
+          description: Not found
+          content: {}
