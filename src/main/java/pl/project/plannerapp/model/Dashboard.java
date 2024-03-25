@@ -3,7 +3,6 @@ package pl.project.plannerapp.model;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotNull;
-import lombok.AllArgsConstructor;
 import net.karneim.pojobuilder.GeneratePojoBuilder;
 
 import java.util.List;
@@ -16,5 +15,5 @@ public class Dashboard {
     @NotNull
     private List<Action> actions;
 
-    private User user;
+    private AccountDetails accountDetails;
 }

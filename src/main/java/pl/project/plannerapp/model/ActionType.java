@@ -4,5 +4,5 @@ import net.karneim.pojobuilder.GeneratePojoBuilder;
 
 @GeneratePojoBuilder
 public enum ActionType {
-    CALENDAR, OBLIGATION, DIET, TRAINING, SHOPPING_LIST;
+    CALENDAR, TODO, DIET, TRAINING, SHOPPING_LIST;
 }
