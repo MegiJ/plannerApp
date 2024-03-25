@@ -16,6 +16,10 @@ public class LoggingData {
     @Pattern(regexp = "(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).{6,}$")
     private String password;
 
+    private PersonalData personalData;
+
+    private AccountDetails accountDetails;
+
     public String getLogin() {
         return login;
     }
@@ -25,12 +29,30 @@ public class LoggingData {
         return this;
     }
 
-    private String getPassword() {
+    public String getPassword() {
         return password;
     }
 
-    private LoggingData setPassword(String password) {
+    public LoggingData setPassword(String password) {
         this.password = password;
+        return this;
+    }
+
+    public PersonalData getPersonalData() {
+        return personalData;
+    }
+
+    public LoggingData setPersonalData(PersonalData personalData) {
+        this.personalData = personalData;
+        return this;
+    }
+
+    public AccountDetails getAccountDetails() {
+        return accountDetails;
+    }
+
+    public LoggingData setAccountDetails(AccountDetails accountDetails) {
+        this.accountDetails = accountDetails;
         return this;
     }
 }
