@@ -7,6 +7,6 @@ import pl.project.plannerapp.model.AccountDetails;
 import java.util.Optional;
 
 @Repository
-public interface UserRepo extends JpaRepository<AccountDetails, Long> {
+public interface AccountDetailsRepo extends JpaRepository<AccountDetails, Long> {
     Optional<AccountDetails> findById(Long id);
 }
