@@ -9,7 +9,7 @@ import java.time.Instant;
 public class ToDo {
     @Id
     @GeneratedValue
-    private int id;
+    private int td_id;
 
     @NotNull
     private String note;
@@ -19,12 +19,12 @@ public class ToDo {
 
     private PersonalData personalData;
 
-    public int getId() {
-        return id;
+    public int getTd_id() {
+        return td_id;
     }
 
-    public ToDo setId(int id) {
-        this.id = id;
+    public ToDo setTd_id(int td_id) {
+        this.td_id = td_id;
         return this;
     }
 
