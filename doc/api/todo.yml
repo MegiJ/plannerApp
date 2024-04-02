@@ -12,7 +12,7 @@ paths:
     get:
       tags:
         - todo
-      summary: Pobiera listę wpisów
+      summary: Pobiera wpisy
       responses:
         '200':
           description: OK
@@ -30,11 +30,11 @@ paths:
     parameters:
       - name: todo-uuid
         in: path
-        description: UUID pobierania wpisu
+        description: Id pobieranego wpisu
         required: true
         schema:
-          type: string
-          format: UUID
+          type: integer
+          format: id
     responses:
       '200':
         description: OK
@@ -56,11 +56,11 @@ paths:
       parameters:
         - name: todo-uuid
           in: path
-          description: UUID pobierania wpisu
+          description: Id pobieranego wpisu
           required: true
           schema:
             type: string
-            format: UUID
+            format: id
       requestBody:
         description: Uaktualniony lub wstawiony wpis
       responses:
@@ -78,13 +78,13 @@ paths:
         - todo
       summary: Usuwa wpis
       parameters:
-        - name: todo-uuid
+        - name: todo-id
           in: path
-          description: UUID pobierania wpisu
+          description: Id pobierania wpisu
           required: true
           schema:
             type: string
-            format: UUID
+            format: id
       responses:
         '200':
           description: OK
@@ -102,6 +102,6 @@ components:
       properties:
         uuid:
           type: string
-          format: UUID
+          format: id
         quantity:
           type: integer
