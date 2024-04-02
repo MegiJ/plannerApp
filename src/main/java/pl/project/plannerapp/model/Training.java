@@ -20,4 +20,6 @@ public class Training {
 
     private PersonalData personalData;
 
+
+
 }

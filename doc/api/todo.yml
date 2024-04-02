@@ -1,17 +1,17 @@
 openapi: 3.0.1
 info:
-  title: API / Dashboards
+  title: API / ToDo
   version: 1.0.0-oas3
 servers:
   - url: http://localhost/api
 tags:
-  - name: dashboards
+  - name: todo
     description: ''
 paths:
-  /dashboards:
+  /todo:
     get:
       tags:
-        - dashboards
+        - todo
       summary: Pobiera listę wpisów
       responses:
         '200':
@@ -19,16 +19,16 @@ paths:
           content:
             application/json:
               schema:
-                type: array
+                type: string
                 items:
-                  $ref: '#/cimponents/schemas/Dashboard'
-/dashboards/{dashboard-uuid}:
+                  $ref: '#/components/schemas/ToDo'
+/todo/{todo-uuid}:
   get:
     tags:
-      - dashboards
+      - todo
     summary: Pobiera wpis
     parameters:
-      - name: dashboard-uuid
+      - name: todo-uuid
         in: path
         description: UUID pobierania wpisu
         required: true
@@ -41,20 +41,20 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Dashboard'
+              $ref: '#/components/schemas/ToDo'
       '404':
         description: Not found
         content: {}
     put:
       tags:
-        - dashboards
+        - todo
       summary: Dodawanie lub nadpisywanie wpisu
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/Dashboard'
+            $ref: '#/components/schemas/ToDo'
       parameters:
-        - name: dashboard-uuid
+        - name: todo-uuid
           in: path
           description: UUID pobierania wpisu
           required: true
@@ -69,16 +69,16 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Dashboard'
+                $ref: '#/components/schemas/ToDo'
         '400':
           description: Validation error
           content: {}
     delete:
       tags:
-        - dashes
+        - todo
       summary: Usuwa wpis
       parameters:
-        - name: dashboard-uuid
+        - name: todo-uuid
           in: path
           description: UUID pobierania wpisu
           required: true
@@ -91,15 +91,15 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Dashboard'
+                $ref: '#/components/schemas/ToDo'
         '404':
           description: Not found
           content: {}
 components:
   schema:
     Dashboard:
-      type: obbject
-      propertis:
+      type: object
+      properties:
         uuid:
           type: string
           format: UUID
