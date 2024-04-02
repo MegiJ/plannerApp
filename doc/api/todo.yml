@@ -8,10 +8,10 @@ tags:
   - name: todo
     description: ''
 paths:
-  /todo:
+  /todos:
     get:
       tags:
-        - todo
+        - todos
       summary: Pobiera wpisy
       responses:
         '200':
@@ -22,39 +22,35 @@ paths:
                 type: string
                 items:
                   $ref: '#/components/schemas/ToDo'
-/todo/{todo-uuid}:
-  get:
-    tags:
-      - todo
-    summary: Pobiera wpis
-    parameters:
-      - name: todo-uuid
-        in: path
-        description: Id pobieranego wpisu
-        required: true
-        schema:
-          type: integer
-          format: id
-    responses:
-      '200':
-        description: OK
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/ToDo'
-      '404':
-        description: Not found
-        content: {}
+  /todos/{todo-id}:
+    get:
+      tags:
+        - todos
+      summary: Pobiera wpis
+      parameters:
+        - name: todo-id
+          in: path
+          description: Id pobieranego wpisu
+          required: true
+          schema:
+            type: integer
+            format: id
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ToDo'
+        '404':
+          description: Not found
+          content: {}
     put:
       tags:
-        - todo
+        - todos
       summary: Dodawanie lub nadpisywanie wpisu
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ToDo'
       parameters:
-        - name: todo-uuid
+        - name: todo-id
           in: path
           description: Id pobieranego wpisu
           required: true
@@ -63,6 +59,10 @@ paths:
             format: id
       requestBody:
         description: Uaktualniony lub wstawiony wpis
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ToDo'
       responses:
         '200':
           description: OK
@@ -96,12 +96,21 @@ paths:
           description: Not found
           content: {}
 components:
-  schema:
-    Dashboard:
+  schemas:
+    ToDo:
       type: object
       properties:
-        uuid:
-          type: string
-          format: id
-        quantity:
+        td_id:
           type: integer
+          format: td_id
+        note:
+          type: string
+        personalData:
+          $ref: '#/components/schemas/PersonalData'
+    PersonalData:
+      type: object
+      properties:
+        pd_id:
+          type: integer
+          format: pd_id
+
