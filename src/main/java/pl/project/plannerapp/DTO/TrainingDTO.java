@@ -1,16 +1,13 @@
-package pl.project.plannerapp.model;
+package pl.project.plannerapp.DTO;
 
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotNull;
+import pl.project.plannerapp.model.PersonalData;
 
 import java.time.Instant;
 
-public class Training {
-
-    @Id
-    @GeneratedValue
-    private int t_id;
+public class TrainingDTO {
 
     @NotNull
     private Instant date;
@@ -20,20 +17,11 @@ public class Training {
 
     private PersonalData personalData;
 
-    public int getT_id() {
-        return t_id;
-    }
-
-    public Training setT_id(int t_id) {
-        this.t_id = t_id;
-        return this;
-    }
-
     public Instant getDate() {
         return date;
     }
 
-    public Training setDate(Instant date) {
+    public TrainingDTO setDate(Instant date) {
         this.date = date;
         return this;
     }
@@ -42,7 +30,7 @@ public class Training {
         return exercise;
     }
 
-    public Training setExercise(String exercise) {
+    public TrainingDTO setExercise(String exercise) {
         this.exercise = exercise;
         return this;
     }
@@ -51,7 +39,7 @@ public class Training {
         return personalData;
     }
 
-    public Training setPersonalData(PersonalData personalData) {
+    public TrainingDTO setPersonalData(PersonalData personalData) {
         this.personalData = personalData;
         return this;
     }
