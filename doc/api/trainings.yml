@@ -1,0 +1,113 @@
+openapi: 3.0.1
+info:
+  title: API / Training
+  version: 1.0.0-oas3
+servers:
+  - url: http://localhost/api
+tags:
+  - name: trainings
+    description: ''
+paths:
+  /trainings:
+    get:
+      tags:
+        - trainings
+      summary: Pobiera listę treningów
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Training'
+  /trainings/{training-id}:
+    get:
+      tags:
+        - trainings
+      summary: Pobiera ćwiczenie
+      parameters:
+        - name: training-id
+          in: path
+          description: Id pobieranego ćwiczenia
+          required: true
+          schema:
+            type: integer
+            format: id
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Training'
+        '404':
+          description: Not found
+          content: {}
+    put:
+      tags:
+        - trainings
+      summary: Dodawanie lub nadpisywanie ćwiczenia
+      parameters:
+        - name: training-id
+          in: path
+          description: Id pobieranego ćwiczenia
+          required: true
+          schema:
+            type: integer
+            format: id
+      requestBody:
+        description: Uaktualnione lub wstawione ćwiczenie
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Training'
+      responses:
+        '200':
+          description: OK
+          content: {}
+        '400':
+          description: Validation error
+          content: {}
+    delete:
+      tags:
+        - trainings
+      summary: Usuwa ćwiczenie
+      parameters:
+        - name: training-id
+          in: path
+          description: Id pobieranego ćwiczenia
+          required: true
+          schema:
+            type: integer
+            format: id
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Training'
+        '404':
+          description: Not found
+          content: {}
+components:
+  schemas:
+    Training:
+      type: object
+      properties:
+        td_id:
+          type: integer
+          format: t_id
+        exercise:
+          type: string
+        personalData:
+          $ref: '#/components/schemas/PersonalData'
+    PersonalData:
+      type: object
+      properties:
+        pd_id:
+          type: integer
+          format: pd_id
+
