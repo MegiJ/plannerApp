@@ -9,7 +9,7 @@ import net.karneim.pojobuilder.GeneratePojoBuilder;
 public class PersonalData {
 
     @NotNull
-    private int pd_id;
+    private int id;
 
     @NotNull
     private String name;
@@ -23,12 +23,12 @@ public class PersonalData {
     @NotNull
     private String email;
 
-    public int getPd_id() {
-        return pd_id;
+    public int getId() {
+        return id;
     }
 
-    public PersonalData setPd_id(int pd_id) {
-        this.pd_id = pd_id;
+    public PersonalData setId(int id) {
+        this.id = id;
         return this;
     }
 

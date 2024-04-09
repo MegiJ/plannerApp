@@ -11,11 +11,11 @@ public class AccountDetails {
 
     @Id
     @GeneratedValue
-    private Long ad_id;
+    private Long id;
 
     @Column(unique = true)
     @NotNull
-    private UUID ad_uuid;
+    private UUID uuid;
 
     @NotNull
     private String accountType;
@@ -26,21 +26,21 @@ public class AccountDetails {
     @NotNull
     private boolean isBlocked;
 
-    public Long getAd_id() {
-        return ad_id;
+    public Long getId() {
+        return id;
     }
 
-    public AccountDetails setAd_id(Long ad_id) {
-        this.ad_id = ad_id;
+    public AccountDetails setId(Long id) {
+        this.id = id;
         return this;
     }
 
-    public UUID getAd_uuid() {
-        return ad_uuid;
+    public UUID getUuid() {
+        return uuid;
     }
 
-    public AccountDetails setAd_uuid(UUID ad_uuid) {
-        this.ad_uuid = ad_uuid;
+    public AccountDetails setUuid(UUID uuid) {
+        this.uuid = uuid;
         return this;
     }
 

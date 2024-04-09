@@ -10,7 +10,7 @@ public class Diet {
 
     @Id
     @GeneratedValue
-    private int d_id;
+    private int id;
 
     @NotNull
     private Instant date;
@@ -20,12 +20,12 @@ public class Diet {
 
     private PersonalData personalData;
 
-    public int getD_id() {
-        return d_id;
+    public int getId() {
+        return id;
     }
 
-    public Diet setD_id(int d_id) {
-        this.d_id = d_id;
+    public Diet setId(int id) {
+        this.id = id;
         return this;
     }
 
