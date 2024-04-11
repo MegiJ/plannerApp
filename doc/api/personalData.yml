@@ -1,17 +1,17 @@
 openapi: 3.0.1
 info:
-  title: API / PersonalDatas
+  title: API / PersonalData
   version: 1.0.0-oas3
 servers:
   - url: http://localhost/api
 tags:
-  - name: personalDatas
+  - name: personalData
     description: ''
 paths:
   /employees:
     get:
       tags:
-        - personalDatas
+        - personalData
       summary: Pobiera listę użytkowników
       responses:
         '200':
@@ -22,10 +22,10 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/PersonalData'
-  /employees/{employee-uuid}:
+  /personalData/{personalData-id}:
     get:
       tags:
-        - personalDatas
+        - personalData
       summary: Pobiera użytkownika
       parameters:
         - name: personalData-id
@@ -47,7 +47,7 @@ paths:
           content: {}
     put:
       tags:
-        - personalDatas
+        - personalData
       summary: Nadpisuje użytkownika
       parameters:
         - name: personalData-id
@@ -73,7 +73,7 @@ paths:
           content: {}
     delete:
       tags:
-        - employees
+        - personalData
       summary: Usuwa użytkownika
       parameters:
         - name: personalData-id
