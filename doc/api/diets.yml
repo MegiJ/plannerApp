@@ -5,14 +5,14 @@ info:
 servers:
   - url: http://localhost/api
 tags:
-  - name: trainings
+  - name: diets
     description: ''
 paths:
-  /trainings:
+  /diets:
     get:
       tags:
-        - trainings
-      summary: Pobiera listę treningów
+        - diets
+      summary: Pobiera listę diet
       responses:
         '200':
           description: OK
@@ -21,16 +21,16 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Training'
-  /trainings/{training-id}:
+                  $ref: '#/components/schemas/Diet'
+  /diets/{diets-id}:
     get:
       tags:
-        - trainings
-      summary: Pobiera ćwiczenie
+        - diets
+      summary: Pobiera dietę
       parameters:
-        - name: training-id
+        - name: diet-id
           in: path
-          description: Id pobieranego ćwiczenia
+          description: Id pobieranego diety
           required: true
           schema:
             type: integer
@@ -41,28 +41,28 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Training'
+                $ref: '#/components/schemas/Diets'
         '404':
           description: Not found
           content: {}
     put:
       tags:
-        - trainings
-      summary: Dodawanie lub nadpisywanie ćwiczenia
+        - diets
+      summary: Dodawanie lub nadpisywanie diety
       parameters:
-        - name: training-id
+        - name: diet-id
           in: path
-          description: Id pobieranego ćwiczenia
+          description: Id pobieranej diety
           required: true
           schema:
             type: integer
             format: id
       requestBody:
-        description: Uaktualnione lub wstawione ćwiczenie
+        description: Uaktualnione lub wstawione diety
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Training'
+              $ref: '#/components/schemas/Diet'
       responses:
         '200':
           description: OK
@@ -72,12 +72,12 @@ paths:
           content: {}
     delete:
       tags:
-        - trainings
-      summary: Usuwa ćwiczenie
+        - diets
+      summary: Usuwa dietę
       parameters:
-        - name: training-id
+        - name: diet-id
           in: path
-          description: Id pobieranego ćwiczenia
+          description: Id pobieranej diety
           required: true
           schema:
             type: integer
@@ -88,7 +88,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Training'
+                $ref: '#/components/schemas/Diets'
         '404':
           description: Not found
           content: {}
@@ -103,11 +103,11 @@ components:
         exercise:
           type: string
         personalData:
-          $ref: '#/components/schemas/Training'
+          $ref: '#/components/schemas/Diet'
     PersonalData:
       type: object
       properties:
         pd_id:
           type: integer
-          format: id
+          format: pd_id
 

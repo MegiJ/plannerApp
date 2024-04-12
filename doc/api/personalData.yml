@@ -78,7 +78,7 @@ paths:
       parameters:
         - name: personalData-id
           in: path
-          description: UUID usuwanego użytkownika
+          description: Id usuwanego użytkownika
           required: true
           schema:
             type: id
@@ -94,4 +94,4 @@ components:
       properties:
         uuid:
           type: string
-          format: UUID
+          format: id
