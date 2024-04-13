@@ -1,0 +1,97 @@
+openapi: 3.0.1
+info:
+  title: API / LoggingData
+  version: 1.0.0-oas3
+servers:
+  - url: http://localhost/api
+tags:
+  - name: loggingData
+    description: ''
+paths:
+  /employees:
+    get:
+      tags:
+        - loggingData
+      summary: Pobiera listę użytkowników
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PersonalData'
+  /personalData/{personalData-id}:
+    get:
+      tags:
+        - personalData
+      summary: Pobiera użytkownika
+      parameters:
+        - name: personalData-id
+          in: path
+          description: Id pobieranego użytkownika
+          required: true
+          schema:
+            type: int
+            format: id
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PersonalData'
+        '404':
+          description: Nie istnieje
+          content: {}
+    put:
+      tags:
+        - personalData
+      summary: Nadpisuje użytkownika
+      parameters:
+        - name: personalData-id
+          in: path
+          description: Id pobieranego użytkownika
+          required: true
+          schema:
+            type: int
+            format: id
+      requestBody:
+        description: Uaktualniany lub wstawiany użytkownik
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PersonalData'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content: {}
+        '400':
+          description: Błąd walidacji
+          content: {}
+    delete:
+      tags:
+        - personalData
+      summary: Usuwa użytkownika
+      parameters:
+        - name: personalData-id
+          in: path
+          description: Id usuwanego użytkownika
+          required: true
+          schema:
+            type: id
+            format: id
+      responses:
+        '200':
+          description: OK
+          content: {}
+components:
+  schemas:
+    Employee:
+      type: object
+      properties:
+        uuid:
+          type: string
+          format: id
