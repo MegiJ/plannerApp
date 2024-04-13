@@ -21,14 +21,14 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/PersonalData'
+                  $ref: '#/components/schemas/LoggingData'
   /personalData/{personalData-id}:
     get:
       tags:
-        - personalData
+        - loggingData
       summary: Pobiera użytkownika
       parameters:
-        - name: personalData-id
+        - name: loggingData-id
           in: path
           description: Id pobieranego użytkownika
           required: true
