@@ -22,7 +22,7 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/LoggingData'
-  /personalData/{personalData-id}:
+  /loggingData/{loggingData-id}:
     get:
       tags:
         - loggingData
@@ -41,16 +41,16 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/PersonalData'
+                $ref: '#/components/schemas/LoggingData'
         '404':
           description: Nie istnieje
           content: {}
     put:
       tags:
-        - personalData
+        - loggingData
       summary: Nadpisuje użytkownika
       parameters:
-        - name: personalData-id
+        - name: loggingData-id
           in: path
           description: Id pobieranego użytkownika
           required: true
@@ -62,7 +62,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/PersonalData'
+              $ref: '#/components/schemas/LoggingData'
         required: true
       responses:
         '200':
@@ -73,10 +73,10 @@ paths:
           content: {}
     delete:
       tags:
-        - personalData
+        - loggingData
       summary: Usuwa użytkownika
       parameters:
-        - name: personalData-id
+        - name: loggingData-id
           in: path
           description: Id usuwanego użytkownika
           required: true
