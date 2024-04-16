@@ -13,18 +13,25 @@ public class AccountDetails {
     @GeneratedValue
     private Long id;
 
-    @Column(unique = true)
     @NotNull
-    private UUID uuid;
-
-    @NotNull
-    private String accountType;
+    private String role;
 
     @NotNull
     private boolean isExpired;
 
     @NotNull
-    private boolean isBlocked;
+    private boolean isLocked;
+
+    @NotNull
+    private boolean isCredentialsExpired;
+
+    public AccountDetails(Long id, String role, boolean isExpired, boolean isLocked, boolean isCredentialsExpired) {
+        this.id = id;
+        this.role = role;
+        this.isExpired = isExpired;
+        this.isLocked = isLocked;
+        this.isCredentialsExpired = isCredentialsExpired;
+    }
 
     public Long getId() {
         return id;
@@ -35,21 +42,12 @@ public class AccountDetails {
         return this;
     }
 
-    public UUID getUuid() {
-        return uuid;
+    public String getRole() {
+        return role;
     }
 
-    public AccountDetails setUuid(UUID uuid) {
-        this.uuid = uuid;
-        return this;
-    }
-
-    public String getAccountType() {
-        return accountType;
-    }
-
-    public AccountDetails setAccountType(String accountType) {
-        this.accountType = accountType;
+    public AccountDetails setRole(String role) {
+        this.role = role;
         return this;
     }
 
@@ -62,12 +60,21 @@ public class AccountDetails {
         return this;
     }
 
-    public boolean isBlocked() {
-        return isBlocked;
+    public boolean isLocked() {
+        return isLocked;
     }
 
-    public AccountDetails setBlocked(boolean blocked) {
-        isBlocked = blocked;
+    public AccountDetails setLocked(boolean locked) {
+        isLocked = locked;
+        return this;
+    }
+
+    public boolean isCredentialsExpired() {
+        return isCredentialsExpired;
+    }
+
+    public AccountDetails setCredentialsExpired(boolean credentialsExpired) {
+        isCredentialsExpired = credentialsExpired;
         return this;
     }
 }
