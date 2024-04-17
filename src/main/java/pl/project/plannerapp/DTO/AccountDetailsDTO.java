@@ -7,34 +7,24 @@ import java.util.UUID;
 
 @GeneratePojoBuilder
 public class AccountDetailsDTO {
-
     @NotNull
-    private UUID ad_uuid;
-
-    @NotNull
-    private String accountType;
+    private String role;
 
     @NotNull
     private boolean isExpired;
 
     @NotNull
-    private boolean isBlocked;
+    private boolean isLocked;
 
-    public UUID getAd_uuid() {
-        return ad_uuid;
+    @NotNull
+    private boolean isCredentialsExpired;
+
+    public String getRole() {
+        return role;
     }
 
-    public AccountDetailsDTO setAd_uuid(UUID ad_uuid) {
-        this.ad_uuid = ad_uuid;
-        return this;
-    }
-
-    public String getAccountType() {
-        return accountType;
-    }
-
-    public AccountDetailsDTO setAccountType(String accountType) {
-        this.accountType = accountType;
+    public AccountDetailsDTO setRole(String role) {
+        this.role = role;
         return this;
     }
 
@@ -47,12 +37,21 @@ public class AccountDetailsDTO {
         return this;
     }
 
-    public boolean isBlocked() {
-        return isBlocked;
+    public boolean isLocked() {
+        return isLocked;
     }
 
-    public AccountDetailsDTO setBlocked(boolean blocked) {
-        isBlocked = blocked;
+    public AccountDetailsDTO setLocked(boolean locked) {
+        isLocked = locked;
+        return this;
+    }
+
+    public boolean isCredentialsExpired() {
+        return isCredentialsExpired;
+    }
+
+    public AccountDetailsDTO setCredentialsExpired(boolean credentialsExpired) {
+        isCredentialsExpired = credentialsExpired;
         return this;
     }
 }
