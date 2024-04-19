@@ -8,7 +8,7 @@ tags:
   - name: loggingData
     description: ''
 paths:
-  /employees:
+  /loggingData:
     get:
       tags:
         - loggingData
@@ -33,7 +33,7 @@ paths:
           description: Id pobieranego użytkownika
           required: true
           schema:
-            type: int
+            type: integer
             format: id
       responses:
         '200':
@@ -55,7 +55,7 @@ paths:
           description: Id pobieranego użytkownika
           required: true
           schema:
-            type: int
+            type: integer
             format: id
       requestBody:
         description: Uaktualniany lub wstawiany użytkownik
@@ -81,7 +81,7 @@ paths:
           description: Id usuwanego użytkownika
           required: true
           schema:
-            type: id
+            type: integer
             format: id
       responses:
         '200':
@@ -92,6 +92,6 @@ components:
     Employee:
       type: object
       properties:
-        uuid:
-          type: string
+        id:
+          type: integer
           format: id

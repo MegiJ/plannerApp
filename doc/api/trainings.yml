@@ -97,7 +97,7 @@ components:
     Training:
       type: object
       properties:
-        td_id:
+        id:
           type: integer
           format: id
         exercise:

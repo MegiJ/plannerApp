@@ -1,6 +1,6 @@
 openapi: 3.0.1
 info:
-  title: API / Training
+  title: API / Diet
   version: 1.0.0-oas3
 servers:
   - url: http://localhost/api
@@ -41,7 +41,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Diets'
+                $ref: '#/components/schemas/Diet'
         '404':
           description: Not found
           content: {}
@@ -88,7 +88,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Diets'
+                $ref: '#/components/schemas/Diet'
         '404':
           description: Not found
           content: {}
@@ -109,5 +109,4 @@ components:
       properties:
         pd_id:
           type: integer
-          format: pd_id
-
+          format: id
