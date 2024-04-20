@@ -102,7 +102,7 @@ components:
       properties:
         td_id:
           type: integer
-          format: td_id
+          format: id
         note:
           type: string
         personalData:
@@ -112,5 +112,5 @@ components:
       properties:
         pd_id:
           type: integer
-          format: pd_id
+          format: id
 
