@@ -11,7 +11,7 @@ public class AccountDetails {
 
     @Id
     @GeneratedValue
-    private Long id;
+    private int id;
 
     @NotNull
     private String role;
@@ -25,7 +25,7 @@ public class AccountDetails {
     @NotNull
     private boolean isCredentialsExpired;
 
-    public AccountDetails(Long id, String role, boolean isExpired, boolean isLocked, boolean isCredentialsExpired) {
+    public AccountDetails(int id, String role, boolean isExpired, boolean isLocked, boolean isCredentialsExpired) {
         this.id = id;
         this.role = role;
         this.isExpired = isExpired;
@@ -33,11 +33,11 @@ public class AccountDetails {
         this.isCredentialsExpired = isCredentialsExpired;
     }
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public AccountDetails setId(Long id) {
+    public AccountDetails setId(int id) {
         this.id = id;
         return this;
     }

@@ -11,7 +11,7 @@ import lombok.*;
 @Setter
 @Builder
 
-public class AccountDetails {
+public class AccountDetailsEntity {
 
     @Id
     @SequenceGenerator(name = "account_details_seq", sequenceName = "account_details_seq", allocationSize = 1)
