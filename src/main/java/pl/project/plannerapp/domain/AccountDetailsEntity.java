@@ -17,7 +17,7 @@ public class AccountDetailsEntity {
     @SequenceGenerator(name = "account_details_seq", sequenceName = "account_details_seq", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "account_details_seq")
     @Column(name = "ad_id")
-    private Long id;
+    private int id;
 
     @Column(name = "role")
     private String role;
