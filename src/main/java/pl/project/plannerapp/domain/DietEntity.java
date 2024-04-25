@@ -30,7 +30,4 @@ public class DietEntity {
 
     @Column(name = "personalData_id")
     private PersonalData personalData;
-
-
-
 }

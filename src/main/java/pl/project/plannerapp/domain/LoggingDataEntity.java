@@ -29,4 +29,5 @@ public class LoggingDataEntity {
 
     @Column(name = "account_details_id")
     private AccountDetails accountDetails;
+
 }
