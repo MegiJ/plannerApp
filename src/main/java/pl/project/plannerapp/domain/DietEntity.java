@@ -19,15 +19,15 @@ public class DietEntity {
     @Id
     @SequenceGenerator(name = "diet_seq", sequenceName = "diet_seq", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "diet_seq")
-    @Column(name = "d_id")
+    @Column(name = "ID")
     private int id;
 
-    @Column(name = "date")
+    @Column(name = "DATE")
     private Instant date;
 
-    @Column(name = "meal")
+    @Column(name = "MEAL")
     private String meal;
 
-    @Column(name = "personalData_id")
+    @Column(name = "PERSONAL_DATA_ID")
     private PersonalData personalData;
 }

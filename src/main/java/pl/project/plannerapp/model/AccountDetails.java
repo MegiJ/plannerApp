@@ -25,12 +25,16 @@ public class AccountDetails {
     @NotNull
     private boolean isCredentialsExpired;
 
-    public AccountDetails(int id, String role, boolean isExpired, boolean isLocked, boolean isCredentialsExpired) {
+    @NotNull
+    private boolean isDisabled;
+
+    public AccountDetails(int id, String role, boolean isExpired, boolean isLocked, boolean isCredentialsExpired, boolean isDisabled) {
         this.id = id;
         this.role = role;
         this.isExpired = isExpired;
         this.isLocked = isLocked;
         this.isCredentialsExpired = isCredentialsExpired;
+        this.isDisabled = isDisabled;
     }
 
     public int getId() {
@@ -75,6 +79,15 @@ public class AccountDetails {
 
     public AccountDetails setCredentialsExpired(boolean credentialsExpired) {
         isCredentialsExpired = credentialsExpired;
+        return this;
+    }
+
+    public boolean isDisabled() {
+        return isDisabled;
+    }
+
+    public AccountDetails setDisabled(boolean disabled) {
+        isDisabled = disabled;
         return this;
     }
 }

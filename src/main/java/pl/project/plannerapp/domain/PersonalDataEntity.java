@@ -16,19 +16,19 @@ public class PersonalDataEntity {
     @Id
     @SequenceGenerator(name = "personal_data_seq", sequenceName = "personal_data_seq", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "personal_data_seq")
-    @Column(name = "pd_id")
+    @Column(name = "ID")
     private int id;
 
-    @Column(name = "name")
+    @Column(name = "NAME")
     private String name;
 
-    @Column(name = "surname")
+    @Column(name = "SURNAME")
     private String surname;
 
-    @Column(name = "phone")
+    @Column(name = "PHONE")
     private int phone;
 
-    @Column(name = "email")
+    @Column(name = "EMAIL")
     private String email;
 
 }

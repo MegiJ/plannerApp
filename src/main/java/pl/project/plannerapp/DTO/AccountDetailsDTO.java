@@ -19,6 +19,10 @@ public class AccountDetailsDTO {
     @NotNull
     private boolean isCredentialsExpired;
 
+    @NotNull
+    private boolean idDisabled;
+
+
     public String getRole() {
         return role;
     }
@@ -52,6 +56,15 @@ public class AccountDetailsDTO {
 
     public AccountDetailsDTO setCredentialsExpired(boolean credentialsExpired) {
         isCredentialsExpired = credentialsExpired;
+        return this;
+    }
+
+    public boolean isIdDisabled() {
+        return idDisabled;
+    }
+
+    public AccountDetailsDTO setIdDisabled(boolean idDisabled) {
+        this.idDisabled = idDisabled;
         return this;
     }
 }

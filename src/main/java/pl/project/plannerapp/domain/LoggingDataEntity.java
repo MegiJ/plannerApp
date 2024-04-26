@@ -18,16 +18,16 @@ public class LoggingDataEntity {
     @Id
     @SequenceGenerator(name = "logging_data_seq", sequenceName = "logging_data_seq", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "logging_data_seq")
-    @Column(name = "login")
+    @Column(name = "LOGIN")
     private String login;
 
-    @Column(name = "password")
+    @Column(name = "PASSWORD")
     private String password;
 
-    @Column(name = "personal_data_id")
+    @Column(name = "ACCOUNT_ID")
     private PersonalData personalData;
 
-    @Column(name = "account_details_id")
+    @Column(name = "ACCOUNT_DETAILS_ID")
     private AccountDetails accountDetails;
 
 }
