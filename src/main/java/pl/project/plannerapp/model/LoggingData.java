@@ -2,6 +2,8 @@ package pl.project.plannerapp.model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import net.karneim.pojobuilder.GeneratePojoBuilder;
@@ -9,6 +11,11 @@ import net.karneim.pojobuilder.GeneratePojoBuilder;
 @GeneratePojoBuilder
 @Embeddable
 public class LoggingData {
+
+    @Id
+    @GeneratedValue
+    private int id;
+
     @Column(unique = true)
     @Size(min = 3)
     private String login;
@@ -19,6 +26,15 @@ public class LoggingData {
     private PersonalData personalData;
 
     private AccountDetails accountDetails;
+
+    public int getId() {
+        return id;
+    }
+
+    public LoggingData setId(int id) {
+        this.id = id;
+        return this;
+    }
 
     public String getLogin() {
         return login;
