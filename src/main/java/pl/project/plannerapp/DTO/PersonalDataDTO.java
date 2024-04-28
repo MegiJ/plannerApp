@@ -1,5 +1,7 @@
 package pl.project.plannerapp.DTO;
 
+import com.fasterxml.jackson.annotation.JsonView;
+import com.google.common.base.Joiner;
 import jakarta.persistence.Embeddable;
 import jakarta.validation.constraints.NotNull;
 import net.karneim.pojobuilder.GeneratePojoBuilder;
@@ -7,18 +9,31 @@ import net.karneim.pojobuilder.GeneratePojoBuilder;
 @GeneratePojoBuilder
 @Embeddable
 public class PersonalDataDTO {
+    public static class View {
+        public interface Basic{}
+        public interface Extended extends Basic {}
+    }
 
+    @JsonView(View.Basic.class)
     @NotNull
     private String name;
 
+    @JsonView(View.Basic.class)
     @NotNull
     private String surname;
 
+    @JsonView(View.Extended.class)
     @NotNull
     private int phone;
 
+    @JsonView(View.Extended.class)
     @NotNull
     private String email;
+
+    @JsonView(View.Basic.class)
+    public String nameAndSurname() {
+        return Joiner.on(" ").skipNulls().join(name, surname);
+    }
 
     public String getName() {
         return name;

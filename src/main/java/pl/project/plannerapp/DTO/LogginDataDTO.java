@@ -1,5 +1,6 @@
 package pl.project.plannerapp.DTO;
 
+import com.fasterxml.jackson.annotation.JsonView;
 import jakarta.persistence.Embeddable;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
@@ -9,10 +10,16 @@ import net.karneim.pojobuilder.GeneratePojoBuilder;
 @GeneratePojoBuilder
 @Embeddable
 public class LogginDataDTO {
+    public static class View {
+        public interface Basic{}
+        public interface Extended extends Basic {}
+    }
 
+    @JsonView(AccountDetailsDTO.View.Basic.class)
     @Size(min = 3)
     private String login;
 
+    @JsonView(AccountDetailsDTO.View.Extended.class)
     @Pattern(regexp = "(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).{6,}$")
     private String password;
 
