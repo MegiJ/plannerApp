@@ -1,0 +1,97 @@
+openapi: 3.0.1
+info:
+  title: API / AccountDetails
+  version: 1.0.0-oas3
+servers:
+  - url: http://localhost/api
+tags:
+  - name: accountDetails
+    description: ''
+paths:
+  /personalData:
+    get:
+      tags:
+        - accountDetails
+      summary: Pobiera listę użytkowników
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AccountDetails'
+  /personalData/{personalData-id}:
+    get:
+      tags:
+        - accountDetails
+      summary: Pobiera użytkownika
+      parameters:
+        - name: accountDetails-id
+          in: path
+          description: Id pobieranego użytkownika
+          required: true
+          schema:
+            type: integer
+            format: id
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountDetails'
+        '404':
+          description: Nie istnieje
+          content: {}
+    put:
+      tags:
+        - accountDetails
+      summary: Nadpisuje użytkownika
+      parameters:
+        - name: accountDetails-id
+          in: path
+          description: Id pobieranego użytkownika
+          required: true
+          schema:
+            type: integer
+            format: id
+      requestBody:
+        description: Uaktualniany lub wstawiany użytkownik
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AccountDetails'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content: {}
+        '400':
+          description: Błąd walidacji
+          content: {}
+    delete:
+      tags:
+        - accountDetails
+      summary: Usuwa użytkownika
+      parameters:
+        - name: accountDetails-id
+          in: path
+          description: Id usuwanego użytkownika
+          required: true
+          schema:
+            type: integer
+            format: id
+      responses:
+        '200':
+          description: OK
+          content: {}
+components:
+  schemas:
+    Employee:
+      type: object
+      properties:
+        uuid:
+          type: string
+          format: id
