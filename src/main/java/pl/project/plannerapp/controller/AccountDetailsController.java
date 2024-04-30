@@ -13,6 +13,8 @@ import java.util.List;
 @RestController
 @RequestMapping(path = "/api/accountDetails", produces = MediaType.APPLICATION_JSON_VALUE)
 public class AccountDetailsController {
+    interface AccountDetailsView extends AccountDetailsDTO.View.Basic {}
+    interface Account
     private final AccountDetailsService accountDetailsService;
     private final ApplicationEventPublisher applicationEventPublisher;
 
