@@ -16,6 +16,7 @@ import java.util.List;
 @RestController
 @RequestMapping(path = "/api/diets", produces = MediaType.APPLICATION_JSON_VALUE)
 public class DietController {
+    interface DietView extends DietDTO.View.Basic{}
     private final DietService dietService;
     private final PersonalDataService personalDataService;
     private final ApplicationEventPublisher applicationEventPublisher;
