@@ -15,6 +15,7 @@ import java.util.List;
 @RestController
 @RequestMapping(path = "/api/loggingData", produces = MediaType.APPLICATION_JSON_VALUE)
 public class LoggingDataController {
+    interface LoggingDataView extends LogginDataDTO.View.Basic {}
     private final LoggingDataService loggingDataService;
     private final PersonalDataService personalDataService;
     private final AccountDetailsService accountDetailsService;
