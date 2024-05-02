@@ -14,6 +14,8 @@ import java.util.List;
 @RestController
 @RequestMapping(path = "/api/personalData", produces = MediaType.APPLICATION_JSON_VALUE)
 public class PersonalDataController {
+    interface PersonalDataView extends PersonalDataDTO.View.Basic {}
+
     private  final PersonalDataService personalDataService;
 
     @Autowired

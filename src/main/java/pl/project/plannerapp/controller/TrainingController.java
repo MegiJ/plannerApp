@@ -14,6 +14,7 @@ import java.util.List;
 @RestController
 @RequestMapping(path = "/api/trainings", produces = MediaType.APPLICATION_JSON_VALUE)
 public class TrainingController {
+    interface TrainingView extends TrainingDTO.View.Basic {}
     private final TrainingService trainingService;
     private final PersonalDataService personalDataService;
     private final ApplicationEventPublisher applicationEventPublisher;

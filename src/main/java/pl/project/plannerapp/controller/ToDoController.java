@@ -16,6 +16,7 @@ import java.util.List;
 @RestController
 @RequestMapping(path = "/api/todos", produces = MediaType.APPLICATION_JSON_VALUE)
 public class ToDoController {
+    interface ToDoView extends ToDoDTO.View.Basic {}
     private final ToDoService toDoService;
     private final PersonalDataService personalDataService;
     private final ApplicationEventPublisher applicationEventPublisher;
