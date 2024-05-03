@@ -1,13 +1,20 @@
 package pl.project.plannerapp.service;
 
+import ch.qos.logback.core.pattern.ConverterUtil;
+import jakarta.persistence.Converter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 import pl.project.plannerapp.DTO.DietDTO;
+import pl.project.plannerapp.model.Diet;
 import pl.project.plannerapp.repo.DietRepo;
 import pl.project.plannerapp.repo.PersonalDataRepo;
+import pl.project.plannerapp.utils.ConventerUtils;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class DietImpl implements DietService {
@@ -22,7 +29,9 @@ public class DietImpl implements DietService {
 
     @Override
     public List<DietDTO> getAll() {
-        return null;
+        return dietRepo.findAll().stream()
+                .map(ConventerUtils::convert)
+                .collect(Collectors.toList());
     }
 
     @Override
@@ -32,11 +41,13 @@ public class DietImpl implements DietService {
 
     @Override
     public void delete(int id) {
-
+        Diet diet = dietRepo.findById(id)
+        .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+        dietRepo.delete(diet);
     }
 
     @Override
     public Optional<DietDTO> getById(int id) {
-        return Optional.empty();
+        return dietRepo.findById(id).map(ConventerUtils::convert);
     }
 }
