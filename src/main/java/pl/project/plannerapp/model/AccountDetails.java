@@ -4,14 +4,13 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import net.karneim.pojobuilder.GeneratePojoBuilder;
 
-import java.util.UUID;
 
 @GeneratePojoBuilder
 public class AccountDetails {
 
     @Id
     @GeneratedValue
-    private int id;
+    private Long id;
 
     @NotNull
     private String role;
@@ -28,7 +27,7 @@ public class AccountDetails {
     @NotNull
     private boolean isDisabled;
 
-    public AccountDetails(int id, String role, boolean isExpired, boolean isLocked, boolean isCredentialsExpired, boolean isDisabled) {
+    public AccountDetails(Long id, String role, boolean isExpired, boolean isLocked, boolean isCredentialsExpired, boolean isDisabled) {
         this.id = id;
         this.role = role;
         this.isExpired = isExpired;
@@ -37,11 +36,11 @@ public class AccountDetails {
         this.isDisabled = isDisabled;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public AccountDetails setId(int id) {
+    public AccountDetails setId(Long id) {
         this.id = id;
         return this;
     }

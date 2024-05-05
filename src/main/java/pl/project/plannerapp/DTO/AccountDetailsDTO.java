@@ -13,6 +13,9 @@ public class AccountDetailsDTO {
         public interface Extended extends Basic {}
     }
 
+    @NotNull
+    private Long id;
+
     @JsonView(View.Basic.class)
     @NotNull
     private String role;

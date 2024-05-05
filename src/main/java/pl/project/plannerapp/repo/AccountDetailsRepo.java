@@ -9,4 +9,6 @@ import java.util.Optional;
 @Repository
 public interface AccountDetailsRepo extends JpaRepository<AccountDetails, Long> {
     Optional<AccountDetails> findById(Long id);
+
+
 }
