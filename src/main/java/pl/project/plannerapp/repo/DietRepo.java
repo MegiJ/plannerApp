@@ -6,5 +6,5 @@ import pl.project.plannerapp.model.Diet;
 import java.util.Optional;
 
 public interface DietRepo extends JpaRepository<Diet, Integer> {
-    Optional<Diet> findById(int id);
+    Optional<Diet> findById(Long id);
 }

@@ -4,12 +4,12 @@ import com.fasterxml.jackson.annotation.JsonView;
 import jakarta.persistence.Embeddable;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
-import lombok.AllArgsConstructor;
 import net.karneim.pojobuilder.GeneratePojoBuilder;
+import pl.project.plannerapp.model.LoggingData;
 
 @GeneratePojoBuilder
 @Embeddable
-public class LogginDataDTO {
+public class LoggingDataDTO {
     public static class View {
         public interface Basic{}
         public interface Extended extends Basic {}
@@ -27,7 +27,7 @@ public class LogginDataDTO {
         return login;
     }
 
-    public LogginDataDTO setLogin(String login) {
+    public LoggingDataDTO setLogin(String login) {
         this.login = login;
         return this;
     }
@@ -36,7 +36,7 @@ public class LogginDataDTO {
         return password;
     }
 
-    public LogginDataDTO setPassword(String password) {
+    public LoggingDataDTO setPassword(String password) {
         this.password = password;
         return this;
     }

@@ -32,19 +32,19 @@ public class TrainingController {
     }
 
     @GetMapping("/{training-id}")
-    public TrainingDTO get(@PathVariable int id) {
+    public TrainingDTO get(@PathVariable Long id) {
         return null;
     }
 
     @Transactional
     @PutMapping("/{training-id}")
-    public void put(@PathVariable int id, @RequestBody TrainingDTO trainingJson) {
+    public void put(@PathVariable Long id, @RequestBody TrainingDTO trainingJson) {
 
     }
 
     @Transactional
     @DeleteMapping("/{training-id}")
-    public void delete(@PathVariable int id) {
+    public void delete(@PathVariable Long id) {
 
     }
 }

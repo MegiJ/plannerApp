@@ -17,7 +17,7 @@ public class AccountDetailsEntity {
     @SequenceGenerator(name = "account_details_seq", sequenceName = "account_details_seq", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "account_details_seq")
     @Column(name = "ID")
-    private int id;
+    private Long id;
 
     @Column(name = "ROLE")
     private String role;
@@ -33,9 +33,5 @@ public class AccountDetailsEntity {
 
     @Column(name = "IS_DISABLED")
     private boolean isDisabled;
-
-
-
-
 
 }

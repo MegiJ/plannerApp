@@ -6,10 +6,8 @@ import org.springframework.http.MediaType;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import pl.project.plannerapp.DTO.DietDTO;
-import pl.project.plannerapp.DTO.TrainingDTO;
 import pl.project.plannerapp.service.DietService;
 import pl.project.plannerapp.service.PersonalDataService;
-import pl.project.plannerapp.service.TrainingService;
 
 import java.util.List;
 
@@ -34,19 +32,19 @@ public class DietController {
     }
 
     @GetMapping("/{diet-id}")
-    public DietDTO get(@PathVariable int id) {
+    public DietDTO get(Long id) {
         return null;
     }
 
     @Transactional
     @PutMapping("/{diet-id}")
-    public void put(@PathVariable int id, @RequestBody DietDTO dietJson) {
+    public void put(@PathVariable Long id, @RequestBody DietDTO dietJson) {
 
     }
 
     @Transactional
     @DeleteMapping("/{diet-id}")
-    public void delete(@PathVariable int id) {
+    public void delete(@PathVariable Long id) {
         
     }
 }

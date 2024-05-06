@@ -33,7 +33,7 @@ paths:
           description: Id pobieranego ćwiczenia
           required: true
           schema:
-            type: integer
+            type: Long
             format: id
       responses:
         '200':
@@ -55,7 +55,7 @@ paths:
           description: Id pobieranego ćwiczenia
           required: true
           schema:
-            type: integer
+            type: Long
             format: id
       requestBody:
         description: Uaktualnione lub wstawione ćwiczenie
@@ -80,7 +80,7 @@ paths:
           description: Id pobieranego ćwiczenia
           required: true
           schema:
-            type: integer
+            type: Long
             format: id
       responses:
         '200':
@@ -98,7 +98,7 @@ components:
       type: object
       properties:
         id:
-          type: integer
+          type: Long
           format: id
         exercise:
           type: string
@@ -108,6 +108,6 @@ components:
       type: object
       properties:
         pd_id:
-          type: integer
+          type: Long
           format: id
 

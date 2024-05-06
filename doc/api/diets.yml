@@ -30,10 +30,10 @@ paths:
       parameters:
         - name: diet-id
           in: path
-          description: Id pobieranego diety
+          description: Id pobieranej diety
           required: true
           schema:
-            type: integer
+            type: Long
             format: id
       responses:
         '200':
@@ -55,7 +55,7 @@ paths:
           description: Id pobieranej diety
           required: true
           schema:
-            type: integer
+            type: Long
             format: id
       requestBody:
         description: Uaktualnione lub wstawione diety
@@ -80,7 +80,7 @@ paths:
           description: Id pobieranej diety
           required: true
           schema:
-            type: integer
+            type: Long
             format: id
       responses:
         '200':
@@ -98,7 +98,7 @@ components:
       type: object
       properties:
         td_id:
-          type: integer
+          type: Long
           format: id
         exercise:
           type: string
@@ -108,5 +108,5 @@ components:
       type: object
       properties:
         pd_id:
-          type: integer
+          type: Long
           format: id

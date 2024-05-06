@@ -21,7 +21,7 @@ public class TrainingEntity {
     @SequenceGenerator(name = "training_seq", sequenceName = "training_seq", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "training_seq")
     @Column(name = "ID")
-    private int id;
+    private Long id;
 
     @Column(name = "DATE_TRAINING")
     private Instant date;

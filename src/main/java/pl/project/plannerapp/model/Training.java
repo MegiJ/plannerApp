@@ -10,7 +10,7 @@ public class Training {
 
     @Id
     @GeneratedValue
-    private int id;
+    private Long id;
 
     @NotNull
     private Instant date;
@@ -20,11 +20,11 @@ public class Training {
 
     private PersonalData personalData;
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public Training setId(int id) {
+    public Training setId(Long id) {
         this.id = id;
         return this;
     }

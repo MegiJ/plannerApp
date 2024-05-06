@@ -1,14 +1,17 @@
 package pl.project.plannerapp.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import pl.project.plannerapp.DTO.LogginDataDTO;
+import org.springframework.web.server.ResponseStatusException;
+import pl.project.plannerapp.DTO.LoggingDataDTO;
+import pl.project.plannerapp.model.LoggingData;
 import pl.project.plannerapp.repo.AccountDetailsRepo;
 import pl.project.plannerapp.repo.LoggingDataRepo;
 import pl.project.plannerapp.repo.PersonalDataRepo;
-import pl.project.plannerapp.utils.ConventerUtils;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -25,7 +28,28 @@ public class LoggingDataServiceImpl implements LoggingDataService {
     }
 
     @Override
-    public List<LogginData> getAll() {
-        return loggingDataRepo.findAll();
+    public List<LoggingDataDTO> getAll() {
+        return loggingDataRepo.findAll()
+                .stream()
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public void put(Long id, LoggingDataDTO loggingDataDTO) {
+
+    }
+
+    @Override
+    public void delete(Long id) {
+        LoggingData loggingData = loggingDataRepo.findById(id)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+        loggingDataRepo.delete(loggingData);
+    }
+
+    @Override
+    public Optional<LoggingDataDTO> getById(Long id) {
+        return loggingDataRepo.findById(id)
+                .stream()
+                .collect(Collectors.toList());
     }
 }

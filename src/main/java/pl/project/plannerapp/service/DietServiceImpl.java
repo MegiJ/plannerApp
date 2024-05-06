@@ -8,7 +8,6 @@ import pl.project.plannerapp.DTO.DietDTO;
 import pl.project.plannerapp.model.Diet;
 import pl.project.plannerapp.repo.DietRepo;
 import pl.project.plannerapp.repo.PersonalDataRepo;
-import pl.project.plannerapp.utils.ConventerUtils;
 
 import java.util.List;
 import java.util.Optional;
@@ -27,25 +26,23 @@ public class DietServiceImpl implements DietService {
 
     @Override
     public List<DietDTO> getAll() {
-        return dietRepo.findAll().stream()
-                .map(ConventerUtils::convert)
-                .collect(Collectors.toList());
+        return dietRepo.findAll();
     }
 
     @Override
-    public void put(int id, DietDTO dietDTO) {
+    public void put (Long id, DietDTO dietDTO) {
 
     }
 
     @Override
-    public void delete(int id) {
+    public void delete(Long id) {
         Diet diet = dietRepo.findById(id)
         .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
         dietRepo.delete(diet);
     }
 
     @Override
-    public Optional<DietDTO> getById(int id) {
-        return dietRepo.findById(id).map(ConventerUtils::convert);
+    public Optional<DietDTO> getById(Long id) {
+        return dietRepo.findById(id);
     }
 }

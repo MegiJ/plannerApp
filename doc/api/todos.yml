@@ -33,7 +33,7 @@ paths:
           description: Id pobieranego wpisu
           required: true
           schema:
-            type: integer
+            type: Long
             format: id
       responses:
         '200':
@@ -55,7 +55,7 @@ paths:
           description: Id pobieranego wpisu
           required: true
           schema:
-            type: string
+            type: Long
             format: id
       requestBody:
         description: Uaktualniony lub wstawiony wpis
@@ -83,7 +83,7 @@ paths:
           description: Id pobierania wpisu
           required: true
           schema:
-            type: string
+            type: Long
             format: id
       responses:
         '200':
@@ -101,7 +101,7 @@ components:
       type: object
       properties:
         td_id:
-          type: integer
+          type: Long
           format: id
         note:
           type: string
@@ -111,6 +111,6 @@ components:
       type: object
       properties:
         pd_id:
-          type: integer
+          type: Long
           format: id
 

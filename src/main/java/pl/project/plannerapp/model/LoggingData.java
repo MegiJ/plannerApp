@@ -14,7 +14,7 @@ public class LoggingData {
 
     @Id
     @GeneratedValue
-    private int id;
+    private Long id;
 
     @Column(unique = true)
     @Size(min = 3)
@@ -27,11 +27,11 @@ public class LoggingData {
 
     private AccountDetails accountDetails;
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public LoggingData setId(int id) {
+    public LoggingData setId(Long id) {
         this.id = id;
         return this;
     }

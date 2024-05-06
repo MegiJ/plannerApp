@@ -33,7 +33,7 @@ paths:
           description: Id pobieranego użytkownika
           required: true
           schema:
-            type: integer
+            type: Long
             format: id
       responses:
         '200':
@@ -55,7 +55,7 @@ paths:
           description: Id pobieranego użytkownika
           required: true
           schema:
-            type: integer
+            type: Long
             format: id
       requestBody:
         description: Uaktualniany lub wstawiany użytkownik
@@ -81,7 +81,7 @@ paths:
           description: Id usuwanego użytkownika
           required: true
           schema:
-            type: integer
+            type: Long
             format: id
       responses:
         '200':
@@ -93,5 +93,5 @@ components:
       type: object
       properties:
         id:
-          type: integer
+          type: Long
           format: id

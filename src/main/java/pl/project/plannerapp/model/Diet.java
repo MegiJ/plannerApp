@@ -10,7 +10,7 @@ public class Diet {
 
     @Id
     @GeneratedValue
-    private int id;
+    private Long id;
 
     @NotNull
     private Instant date;
@@ -20,11 +20,11 @@ public class Diet {
 
     private PersonalData personalData;
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public Diet setId(int id) {
+    public Diet setId(Long id) {
         this.id = id;
         return this;
     }
