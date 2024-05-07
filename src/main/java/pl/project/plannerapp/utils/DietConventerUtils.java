@@ -11,7 +11,7 @@ public class DietConventerUtils {
     public static DietDTO convert(Diet diet) {
         return new DietDTOBuilder()
                 .withId(diet.getId())
-                .withPersonalData(convert(diet.getPersonalData()))
+                .withPersonalData(convert(diet.getPersonalData())
                 .build();
     }
 

@@ -2,6 +2,9 @@ package pl.project.plannerapp.DTO;
 
 import com.fasterxml.jackson.annotation.JsonView;
 import jakarta.persistence.Embeddable;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import net.karneim.pojobuilder.GeneratePojoBuilder;
@@ -14,6 +17,9 @@ public class LoggingDataDTO {
         public interface Basic{}
         public interface Extended extends Basic {}
     }
+
+    @NotNull
+    private Long id;
 
     @JsonView(AccountDetailsDTO.View.Basic.class)
     @Size(min = 3)
@@ -29,6 +35,15 @@ public class LoggingDataDTO {
 
     public LoggingDataDTO setLogin(String login) {
         this.login = login;
+        return this;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public LoggingDataDTO setId(Long id) {
+        this.id = id;
         return this;
     }
 

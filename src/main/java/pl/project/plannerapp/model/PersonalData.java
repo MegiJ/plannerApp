@@ -12,7 +12,7 @@ public class PersonalData {
     private int id;
 
     @NotNull
-    private String name;
+    private String firstname;
 
     @NotNull
     private String surname;
@@ -32,12 +32,12 @@ public class PersonalData {
         return this;
     }
 
-    public String getName() {
-        return name;
+    public String getFirstname() {
+        return firstname;
     }
 
-    public PersonalData setName(String name) {
-        this.name = name;
+    public PersonalData setFirstname(String firstname) {
+        this.firstname = firstname;
         return this;
     }
 

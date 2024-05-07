@@ -16,7 +16,7 @@ public class PersonalDataDTO {
 
     @JsonView(View.Basic.class)
     @NotNull
-    private String name;
+    private String firstname;
 
     @JsonView(View.Basic.class)
     @NotNull
@@ -32,15 +32,15 @@ public class PersonalDataDTO {
 
     @JsonView(View.Basic.class)
     public String nameAndSurname() {
-        return Joiner.on(" ").skipNulls().join(name, surname);
+        return Joiner.on(" ").skipNulls().join(firstname, surname);
     }
 
-    public String getName() {
-        return name;
+    public String getFirstname() {
+        return firstname;
     }
 
-    public PersonalDataDTO setName(String name) {
-        this.name = name;
+    public PersonalDataDTO setFirstname(String firstname) {
+        this.firstname = firstname;
         return this;
     }
 

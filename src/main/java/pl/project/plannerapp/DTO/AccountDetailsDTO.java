@@ -36,6 +36,14 @@ public class AccountDetailsDTO {
     @NotNull
     private boolean idDisabled;
 
+    public Long getId() {
+        return id;
+    }
+
+    public AccountDetailsDTO setId(Long id) {
+        this.id = id;
+        return this;
+    }
 
     public String getRole() {
         return role;
