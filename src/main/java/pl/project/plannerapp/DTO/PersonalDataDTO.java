@@ -14,6 +14,9 @@ public class PersonalDataDTO {
         public interface Extended extends Basic {}
     }
 
+    @NotNull
+    private Long id;
+
     @JsonView(View.Basic.class)
     @NotNull
     private String firstname;
@@ -33,6 +36,15 @@ public class PersonalDataDTO {
     @JsonView(View.Basic.class)
     public String nameAndSurname() {
         return Joiner.on(" ").skipNulls().join(firstname, surname);
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public PersonalDataDTO setId(Long id) {
+        this.id = id;
+        return this;
     }
 
     public String getFirstname() {

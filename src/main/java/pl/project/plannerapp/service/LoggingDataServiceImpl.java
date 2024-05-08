@@ -9,6 +9,7 @@ import pl.project.plannerapp.model.LoggingData;
 import pl.project.plannerapp.repo.AccountDetailsRepo;
 import pl.project.plannerapp.repo.LoggingDataRepo;
 import pl.project.plannerapp.repo.PersonalDataRepo;
+import pl.project.plannerapp.utils.LoggingDataConventerUtils;
 
 import java.util.List;
 import java.util.Optional;
@@ -31,6 +32,7 @@ public class LoggingDataServiceImpl implements LoggingDataService {
     public List<LoggingDataDTO> getAll() {
         return loggingDataRepo.findAll()
                 .stream()
+                .map(LoggingDataConventerUtils::convert)
                 .collect(Collectors.toList());
     }
 
@@ -48,8 +50,6 @@ public class LoggingDataServiceImpl implements LoggingDataService {
 
     @Override
     public Optional<LoggingDataDTO> getById(Long id) {
-        return loggingDataRepo.findById(id)
-                .stream()
-                .collect(Collectors.toList());
+        return loggingDataRepo.findById(id).map(LoggingDataConventerUtils::convert);
     }
 }

@@ -1,11 +1,14 @@
 package pl.project.plannerapp.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 import pl.project.plannerapp.DTO.TrainingDTO;
 import pl.project.plannerapp.model.Training;
 import pl.project.plannerapp.repo.PersonalDataRepo;
 import pl.project.plannerapp.repo.TrainingRepo;
+import pl.project.plannerapp.utils.TrainingConventerUtils;
 
 import java.util.List;
 import java.util.Optional;
@@ -24,7 +27,10 @@ public class TrainingServiceImpl implements TrainingService {
 
     @Override
     public List<TrainingDTO> getAll() {
-        return trainingRepo.findAll();
+        return trainingRepo.findAll()
+                .stream()
+                .map(TrainingConventerUtils::convert)
+                .collect(Collectors.toList());
 
     }
 
@@ -36,10 +42,12 @@ public class TrainingServiceImpl implements TrainingService {
     @Override
     public void delete(Long id) {
         Training training = trainingRepo.findById(id)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+        trainingRepo.delete(training);
     }
 
     @Override
     public Optional<TrainingDTO> getById(Long id) {
-        return Optional.empty();
+        return trainingRepo.findById(id).map(TrainingConventerUtils::convert);
     }
 }

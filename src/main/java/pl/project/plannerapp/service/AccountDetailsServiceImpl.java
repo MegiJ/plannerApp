@@ -47,9 +47,4 @@ public class AccountDetailsServiceImpl implements AccountDetailsService {
         return accountDetailsRepo.findById(id).map(AccountDetailsConventerUtils::convert);
     }
 
-    public static AccountDetails newAccountDetails(Long id) {
-        return new AccountDetailsBuilder()
-                .withId(id)
-                .build;
-    }
 }

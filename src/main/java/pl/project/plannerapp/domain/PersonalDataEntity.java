@@ -17,7 +17,7 @@ public class PersonalDataEntity {
     @SequenceGenerator(name = "personal_data_seq", sequenceName = "personal_data_seq", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "personal_data_seq")
     @Column(name = "ID")
-    private int id;
+    private Long id;
 
     @Column(name = "NAME")
     private String name;

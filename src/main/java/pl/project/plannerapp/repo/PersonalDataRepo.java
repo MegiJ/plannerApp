@@ -7,7 +7,7 @@ import pl.project.plannerapp.model.PersonalData;
 import java.util.Optional;
 
 @Repository
-public interface PersonalDataRepo extends JpaRepository<PersonalData, Integer> {
+public interface PersonalDataRepo extends JpaRepository<PersonalData, Long> {
     @Override
-    Optional<PersonalData> findById(Integer id);
+    Optional<PersonalData> findById(Long id);
 }

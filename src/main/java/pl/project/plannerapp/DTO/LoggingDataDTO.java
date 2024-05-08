@@ -8,7 +8,9 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import net.karneim.pojobuilder.GeneratePojoBuilder;
+import pl.project.plannerapp.model.AccountDetails;
 import pl.project.plannerapp.model.LoggingData;
+import pl.project.plannerapp.model.PersonalData;
 
 @GeneratePojoBuilder
 @Embeddable
@@ -28,6 +30,28 @@ public class LoggingDataDTO {
     @JsonView(AccountDetailsDTO.View.Extended.class)
     @Pattern(regexp = "(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).{6,}$")
     private String password;
+
+    private PersonalData personalData;
+
+    private AccountDetails accountDetails;
+
+    public PersonalData getPersonalData() {
+        return personalData;
+    }
+
+    public LoggingDataDTO setPersonalData(PersonalData personalData) {
+        this.personalData = personalData;
+        return this;
+    }
+
+    public AccountDetails getAccountDetails() {
+        return accountDetails;
+    }
+
+    public LoggingDataDTO setAccountDetails(AccountDetails accountDetails) {
+        this.accountDetails = accountDetails;
+        return this;
+    }
 
     public String getLogin() {
         return login;

@@ -6,5 +6,5 @@ import pl.project.plannerapp.model.ToDo;
 import java.util.Optional;
 
 public interface ToDoRepo extends JpaRepository {
-    Optional<ToDo> findById(int id);
+    Optional<ToDo> findById(Long id);
 }

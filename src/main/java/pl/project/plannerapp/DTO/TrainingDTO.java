@@ -54,8 +54,8 @@ public class TrainingDTO {
         return this;
     }
 
-    public Training getPersonalData() {
-        return personalData;
+    public TrainingDTO getPersonalData() {
+        return this;
     }
 
     public TrainingDTO setPersonalData(PersonalData personalData) {

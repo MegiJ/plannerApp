@@ -16,8 +16,10 @@ public class LoggingDataConventerUtils {
 
     public static LoggingDataConventerUtils convert(LoggingDataDTO loggingDataDTO) {
         return new LoggingDataBuilder()
+                .withId(loggingDataDTO.getId())
                 .withLogin(loggingDataDTO.getLogin())
                 .withPassword(loggingDataDTO.getPassword())
+                .withPrsonalData(convert(loggingDataDTO.getPersonalData()))
                 .build();
     }
 }

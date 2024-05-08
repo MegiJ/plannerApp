@@ -20,7 +20,7 @@ public class DietEntity {
     @SequenceGenerator(name = "diet_seq", sequenceName = "diet_seq", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "diet_seq")
     @Column(name = "ID")
-    private int id;
+    private Long id;
 
     @Column(name = "DATE")
     private Instant date;

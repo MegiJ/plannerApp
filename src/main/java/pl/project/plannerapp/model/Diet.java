@@ -48,7 +48,7 @@ public class Diet {
         return this;
     }
 
-    public DietDTO getPersonalData() {
+    public Diet getPersonalData() {
         return this;
     }
 

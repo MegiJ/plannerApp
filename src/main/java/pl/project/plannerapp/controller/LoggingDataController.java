@@ -33,19 +33,19 @@ public class LoggingDataController {
     }
 
     @GetMapping("/{loggingData-id}")
-    public LoggingDataDTO get(@PathVariable int id) {
+    public LoggingDataDTO get(@PathVariable Long id) {
         return null;
     }
 
     @Transactional
     @PutMapping("/{loggingData-id}")
-    public void put(@PathVariable int id, @RequestBody LoggingDataDTO logginDataJson) {
+    public void put(@PathVariable Long id, @RequestBody LoggingDataDTO logginDataJson) {
 
     }
 
     @Transactional
     @DeleteMapping("/{loggingData-id}")
-    public void delete(@PathVariable int id) {
+    public void delete(@PathVariable Long id) {
 
     }
 }

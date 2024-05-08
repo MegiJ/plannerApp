@@ -29,19 +29,19 @@ public class PersonalDataController {
     }
 
     @GetMapping("/{personalData-id}")
-    public PersonalDataDTO get(@PathVariable int id) {
+    public PersonalDataDTO get(@PathVariable Long id) {
         return null;
     }
 
     @Transactional
     @PutMapping("/personalData-id}")
-    public void put(@PathVariable int id, @RequestBody PersonalDataDTO personalDataJson) {
+    public void put(@PathVariable Long id, @RequestBody PersonalDataDTO personalDataJson) {
 
     }
 
     @Transactional
     @DeleteMapping("/{personalData-id}")
-    public void delete(@PathVariable int id) {
+    public void delete(@PathVariable Long id) {
 
     }
 }
