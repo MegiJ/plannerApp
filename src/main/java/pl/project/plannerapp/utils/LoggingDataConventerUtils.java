@@ -3,7 +3,7 @@ package pl.project.plannerapp.utils;
 import pl.project.plannerapp.DTO.LoggingDataDTO;
 import pl.project.plannerapp.model.LoggingData;
 
-public class LoggingDataUtils {
+public class LoggingDataConventerUtils {
 
     public static LoggingDataDTO convert(LoggingData loggingData) {
         return new LoggingDataDTOBuilder()
@@ -14,7 +14,7 @@ public class LoggingDataUtils {
                 .build();
     }
 
-    public static LoggingDataUtils convert(LoggingDataDTO loggingDataDTO) {
+    public static LoggingDataConventerUtils convert(LoggingDataDTO loggingDataDTO) {
         return new LoggingDataBuilder()
                 .withLogin(loggingDataDTO.getLogin())
                 .withPassword(loggingDataDTO.getPassword())

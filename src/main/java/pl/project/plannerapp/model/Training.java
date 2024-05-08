@@ -47,12 +47,13 @@ public class Training {
         return this;
     }
 
-    public PersonalData getPersonalData() {
-        return personalData;
+    public Training getPersonalData() {
+        return this;
     }
 
     public Training setPersonalData(PersonalData personalData) {
         this.personalData = personalData;
         return this;
     }
+
 }

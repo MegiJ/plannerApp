@@ -3,7 +3,7 @@ package pl.project.plannerapp.utils;
 import pl.project.plannerapp.DTO.PersonalDataDTO;
 import pl.project.plannerapp.model.PersonalData;
 
-public class PersonalDataUtils {
+public class PersonalDataConventerUtils {
     public static PersonalDataDTO convert(PersonalData personalData) {
         return new PersonalDataDTOBuilder()
                 .withId(personalData.getId())

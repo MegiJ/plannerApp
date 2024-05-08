@@ -52,4 +52,13 @@ public class DietDTO {
         this.personalData = personalData;
         return this;
     }
+
+    public Long getId() {
+        return id;
+    }
+
+    public DietDTO setId(Long id) {
+        this.id = id;
+        return this;
+    }
 }

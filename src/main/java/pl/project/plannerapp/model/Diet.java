@@ -49,7 +49,7 @@ public class Diet {
     }
 
     public DietDTO getPersonalData() {
-        return personalData;
+        return this;
     }
 
     public Diet setPersonalData(PersonalData personalData) {

@@ -1,10 +1,9 @@
 package pl.project.plannerapp.DTO;
 
 import com.fasterxml.jackson.annotation.JsonView;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotNull;
 import pl.project.plannerapp.model.PersonalData;
+import pl.project.plannerapp.model.Training;
 
 import java.time.Instant;
 
@@ -13,6 +12,9 @@ public class TrainingDTO {
         public interface Basic{}
         public interface Extended extends Basic {}
     }
+
+    @NotNull
+    private Long id;
 
     @JsonView(View.Basic.class)
     @NotNull
@@ -24,6 +26,15 @@ public class TrainingDTO {
 
     @JsonView(View.Extended.class)
     private PersonalData personalData;
+
+    public Long getId() {
+        return id;
+    }
+
+    public TrainingDTO setId(Long id) {
+        this.id = id;
+        return this;
+    }
 
     public Instant getDate() {
         return date;
@@ -43,7 +54,7 @@ public class TrainingDTO {
         return this;
     }
 
-    public PersonalData getPersonalData() {
+    public Training getPersonalData() {
         return personalData;
     }
 
