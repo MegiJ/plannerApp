@@ -11,6 +11,7 @@ public class LoggingDataConventerUtils {
                 .withLogin(loggingData.getLogin())
                 .withPassword(loggingData.getPassword())
                 .withPersonalData(convert(loggingData.getPersonalData()))
+                .withAccountDetails(convert(loggingData.getAccountDetails()))
                 .build();
     }
 
@@ -20,6 +21,7 @@ public class LoggingDataConventerUtils {
                 .withLogin(loggingDataDTO.getLogin())
                 .withPassword(loggingDataDTO.getPassword())
                 .withPrsonalData(convert(loggingDataDTO.getPersonalData()))
+                .withAccountDetails(convert(loggingDataDTO.getAccountDetails()))
                 .build();
     }
 }
