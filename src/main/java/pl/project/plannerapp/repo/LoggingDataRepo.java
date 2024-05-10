@@ -9,5 +9,5 @@ import java.util.Optional;
 
 @Repository
 public interface LoggingDataRepo extends JpaRepository<LoggingData, Integer> {
-    Optional<LoggingDataDTO> findById(Long id);
+    Optional<LoggingData> findById(Long id);
 }

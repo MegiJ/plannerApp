@@ -39,7 +39,7 @@ public class LoggingDataController {
 
     @Transactional
     @PutMapping("/{loggingData-id}")
-    public void put(@PathVariable Long id, @RequestBody LoggingDataDTO logginDataJson) {
+    public void put(@PathVariable Long id, @RequestBody LoggingDataDTO loggingDataJson) {
 
     }
 
