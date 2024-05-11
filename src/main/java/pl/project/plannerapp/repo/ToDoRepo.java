@@ -1,10 +1,12 @@
 package pl.project.plannerapp.repo;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 import pl.project.plannerapp.model.ToDo;
 
 import java.util.Optional;
 
-public interface ToDoRepo extends JpaRepository {
+@Repository
+public interface ToDoRepo extends JpaRepository<ToDoRepo, Long> {
     Optional<ToDo> findById(Long id);
 }

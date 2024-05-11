@@ -11,6 +11,9 @@ public class ToDoDTO {
         public interface Extended extends Basic {}
     }
 
+    @NotNull
+    private Long id;
+
     @JsonView(View.Basic.class)
     @NotNull
     private String note;
@@ -21,6 +24,15 @@ public class ToDoDTO {
 
     @JsonView(View.Extended.class)
     private PersonalData personalData;
+
+    public Long getId() {
+        return id;
+    }
+
+    public ToDoDTO setId(Long id) {
+        this.id = id;
+        return this;
+    }
 
     public String getNote() {
         return note;

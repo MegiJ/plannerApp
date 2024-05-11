@@ -5,6 +5,6 @@ import pl.project.plannerapp.model.Diet;
 
 import java.util.Optional;
 
-public interface DietRepo extends JpaRepository<Diet, Integer> {
+public interface DietRepo extends JpaRepository<Diet, Long> {
     Optional<Diet> findById(Long id);
 }

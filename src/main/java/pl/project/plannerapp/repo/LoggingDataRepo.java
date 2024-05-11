@@ -8,6 +8,6 @@ import pl.project.plannerapp.model.LoggingData;
 import java.util.Optional;
 
 @Repository
-public interface LoggingDataRepo extends JpaRepository<LoggingData, Integer> {
+public interface LoggingDataRepo extends JpaRepository<LoggingData, Long> {
     Optional<LoggingData> findById(Long id);
 }
