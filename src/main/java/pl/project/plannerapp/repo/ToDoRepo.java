@@ -7,6 +7,7 @@ import pl.project.plannerapp.model.ToDo;
 import java.util.Optional;
 
 @Repository
-public interface ToDoRepo extends JpaRepository<ToDoRepo, Long> {
+public interface ToDoRepo extends JpaRepository<ToDo, Long> {
+
     Optional<ToDo> findById(Long id);
 }
