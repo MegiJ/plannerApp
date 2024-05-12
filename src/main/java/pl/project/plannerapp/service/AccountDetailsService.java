@@ -13,4 +13,5 @@ public interface AccountDetailsService {
     void delete(Long id);
 
     Optional<AccountDetailsDTO> getById(Long id);
+
 }

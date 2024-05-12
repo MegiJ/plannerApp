@@ -13,4 +13,6 @@ public interface LoggingDataService {
     void delete(Long id);
 
     Optional<LoggingDataDTO> getById(Long id);
+
+    void validateNewOperation(Long id, LoggingDataDTO loggingDataDTO);
 }
