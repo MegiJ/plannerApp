@@ -35,7 +35,7 @@ public class TrainingServiceImpl implements TrainingService {
     }
 
     @Override
-    public void put(Long id, TrainingDTO trainingDTO) {
+    public void add(TrainingDTO trainingDTO) {
 
     }
 

@@ -1,5 +1,6 @@
 package pl.project.plannerapp.service;
 
+import com.google.common.base.Objects;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -51,5 +52,15 @@ public class LoggingDataServiceImpl implements LoggingDataService {
     @Override
     public Optional<LoggingDataDTO> getById(Long id) {
         return loggingDataRepo.findById(id).map(LoggingDataConventerUtils::convert);
+    }
+
+    @Override
+    public void validateNewOperation(Long id, LoggingDataDTO loggingDataDTO) {
+        if(!Objects.equal(loggingDataDTO.getId(), id)) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+        }
+
+        loggingDataRepo.findById(loggingDataDTO.getId())
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }
 }

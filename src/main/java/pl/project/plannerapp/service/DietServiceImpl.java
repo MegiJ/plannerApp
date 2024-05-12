@@ -34,14 +34,12 @@ public class DietServiceImpl implements DietService {
     }
 
     @Override
-    public void put (Long id, DietDTO dietDTO) {
-
+    public void add(Diet diet) {
+        dietRepo.save(diet);
     }
 
     @Override
-    public void delete(Long id) {
-        Diet diet = dietRepo.findById(id)
-        .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+    public void delete(Diet diet) {
         dietRepo.delete(diet);
     }
 
