@@ -13,7 +13,7 @@ public class DietConventerUtils {
                 .withId(diet.getId())
                 .withDate(diet.getDate())
                 .withMeal(diet.getMeal())
-                .withPersonalData(convert(diet.getPersonalData())
+                .withPersonalData(convert(diet.getPersonalData()))
                 .build();
     }
 
@@ -22,7 +22,7 @@ public class DietConventerUtils {
                 .withId(dietDTO.getId())
                 .withDate(dietDTO.getDate())
                 .withMeal(dietDTO.getMeal())
-                .withPersonalData(convert(dietDTO.getPersonalData())
+                .withPersonalData(convert(dietDTO.getPersonalData()))
                 .build();
     }
 

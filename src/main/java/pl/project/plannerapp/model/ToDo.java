@@ -3,9 +3,10 @@ package pl.project.plannerapp.model;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotNull;
+import net.karneim.pojobuilder.GeneratePojoBuilder;
 
 import java.time.Instant;
-
+@GeneratePojoBuilder
 public class ToDo {
     @Id
     @GeneratedValue
