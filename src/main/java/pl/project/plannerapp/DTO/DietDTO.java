@@ -2,7 +2,7 @@ package pl.project.plannerapp.DTO;
 
 import com.fasterxml.jackson.annotation.JsonView;
 import jakarta.validation.constraints.NotNull;
-import pl.project.plannerapp.repo.model.PersonalData;
+import pl.project.plannerapp.model.PersonalData;
 
 import java.time.Instant;
 

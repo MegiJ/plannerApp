@@ -5,7 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 import pl.project.plannerapp.DTO.TrainingDTO;
-import pl.project.plannerapp.repo.model.Training;
+import pl.project.plannerapp.model.Training;
 import pl.project.plannerapp.repo.PersonalDataRepo;
 import pl.project.plannerapp.repo.TrainingRepo;
 import pl.project.plannerapp.utils.TrainingConventerUtils;

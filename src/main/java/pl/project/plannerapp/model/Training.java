@@ -1,4 +1,4 @@
-package pl.project.plannerapp.repo.model;
+package pl.project.plannerapp.model;
 
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;

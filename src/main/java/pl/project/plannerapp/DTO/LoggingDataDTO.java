@@ -6,8 +6,8 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import net.karneim.pojobuilder.GeneratePojoBuilder;
-import pl.project.plannerapp.repo.model.AccountDetails;
-import pl.project.plannerapp.repo.model.PersonalData;
+import pl.project.plannerapp.model.AccountDetails;
+import pl.project.plannerapp.model.PersonalData;
 
 @GeneratePojoBuilder
 @Embeddable

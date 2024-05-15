@@ -1,7 +1,7 @@
 package pl.project.plannerapp.utils;
 
 import pl.project.plannerapp.DTO.AccountDetailsDTO;
-import pl.project.plannerapp.repo.model.AccountDetails;
+import pl.project.plannerapp.model.AccountDetails;
 
 public class AccountDetailsConventerUtils {
 

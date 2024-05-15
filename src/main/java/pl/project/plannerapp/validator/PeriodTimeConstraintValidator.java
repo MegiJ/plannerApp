@@ -2,7 +2,7 @@ package pl.project.plannerapp.validator;
 
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
-import pl.project.plannerapp.repo.model.PeriodTime;
+import pl.project.plannerapp.model.PeriodTime;
 
 public class PeriodTimeConstraintValidator implements ConstraintValidator<PeriodTimeConstraint, PeriodTime> {
     @Override

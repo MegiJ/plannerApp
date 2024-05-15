@@ -5,7 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 import pl.project.plannerapp.DTO.AccountDetailsDTO;
-import pl.project.plannerapp.repo.model.AccountDetails;
+import pl.project.plannerapp.model.AccountDetails;
 import pl.project.plannerapp.repo.AccountDetailsRepo;
 import pl.project.plannerapp.utils.AccountDetailsConventerUtils;
 

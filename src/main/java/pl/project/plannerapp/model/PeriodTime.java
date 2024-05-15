@@ -1,4 +1,4 @@
-package pl.project.plannerapp.repo.model;
+package pl.project.plannerapp.model;
 
 import net.karneim.pojobuilder.GeneratePojoBuilder;
 import pl.project.plannerapp.validator.PeriodConstraint;

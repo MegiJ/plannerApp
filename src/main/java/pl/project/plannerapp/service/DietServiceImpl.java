@@ -3,7 +3,7 @@ package pl.project.plannerapp.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.project.plannerapp.DTO.DietDTO;
-import pl.project.plannerapp.repo.model.Diet;
+import pl.project.plannerapp.model.Diet;
 import pl.project.plannerapp.repo.DietRepo;
 import pl.project.plannerapp.repo.PersonalDataRepo;
 import pl.project.plannerapp.utils.DietConventerUtils;

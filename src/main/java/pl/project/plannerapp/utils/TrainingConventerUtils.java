@@ -1,7 +1,7 @@
 package pl.project.plannerapp.utils;
 
 import pl.project.plannerapp.DTO.TrainingDTO;
-import pl.project.plannerapp.repo.model.Training;
+import pl.project.plannerapp.model.Training;
 
 public class TrainingConventerUtils {
     public static TrainingDTO convert (Training training) {

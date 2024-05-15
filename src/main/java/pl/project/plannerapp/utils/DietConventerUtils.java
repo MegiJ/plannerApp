@@ -2,7 +2,7 @@ package pl.project.plannerapp.utils;
 
 
 import pl.project.plannerapp.DTO.DietDTO;
-import pl.project.plannerapp.repo.model.Diet;
+import pl.project.plannerapp.model.Diet;
 
 
 public class DietConventerUtils {

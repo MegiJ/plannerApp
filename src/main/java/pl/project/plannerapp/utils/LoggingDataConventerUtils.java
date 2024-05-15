@@ -1,7 +1,7 @@
 package pl.project.plannerapp.utils;
 
 import pl.project.plannerapp.DTO.LoggingDataDTO;
-import pl.project.plannerapp.repo.model.LoggingData;
+import pl.project.plannerapp.model.LoggingData;
 
 public class LoggingDataConventerUtils {
 

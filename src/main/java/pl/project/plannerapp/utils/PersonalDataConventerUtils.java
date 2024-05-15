@@ -1,7 +1,7 @@
 package pl.project.plannerapp.utils;
 
 import pl.project.plannerapp.DTO.PersonalDataDTO;
-import pl.project.plannerapp.repo.model.PersonalData;
+import pl.project.plannerapp.model.PersonalData;
 
 public class PersonalDataConventerUtils {
     public static PersonalDataDTO convert(PersonalData personalData) {
