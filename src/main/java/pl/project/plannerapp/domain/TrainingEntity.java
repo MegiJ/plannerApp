@@ -2,8 +2,7 @@ package pl.project.plannerapp.domain;
 
 import jakarta.persistence.*;
 import lombok.*;
-import org.hibernate.engine.spi.PersistenceContext;
-import pl.project.plannerapp.model.PersonalData;
+import pl.project.plannerapp.repo.model.PersonalData;
 
 import java.time.Instant;
 

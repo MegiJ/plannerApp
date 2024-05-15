@@ -6,7 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 import pl.project.plannerapp.DTO.LoggingDataDTO;
-import pl.project.plannerapp.model.LoggingData;
+import pl.project.plannerapp.repo.model.LoggingData;
 import pl.project.plannerapp.repo.AccountDetailsRepo;
 import pl.project.plannerapp.repo.LoggingDataRepo;
 import pl.project.plannerapp.repo.PersonalDataRepo;

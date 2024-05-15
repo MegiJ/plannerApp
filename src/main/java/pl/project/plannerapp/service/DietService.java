@@ -1,7 +1,7 @@
 package pl.project.plannerapp.service;
 
 import pl.project.plannerapp.DTO.DietDTO;
-import pl.project.plannerapp.model.Diet;
+import pl.project.plannerapp.repo.model.Diet;
 
 import java.util.List;
 import java.util.Optional;

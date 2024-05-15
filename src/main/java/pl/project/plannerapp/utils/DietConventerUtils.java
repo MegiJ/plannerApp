@@ -1,10 +1,8 @@
 package pl.project.plannerapp.utils;
 
 
-import pl.project.plannerapp.DTO.AccountDetailsDTO;
 import pl.project.plannerapp.DTO.DietDTO;
-import pl.project.plannerapp.model.AccountDetails;
-import pl.project.plannerapp.model.Diet;
+import pl.project.plannerapp.repo.model.Diet;
 
 
 public class DietConventerUtils {

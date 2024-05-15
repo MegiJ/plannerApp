@@ -1,7 +1,7 @@
 package pl.project.plannerapp.utils;
 
 import pl.project.plannerapp.DTO.ToDoDTO;
-import pl.project.plannerapp.model.ToDo;
+import pl.project.plannerapp.repo.model.ToDo;
 
 public class ToDoConventerUtils {
     public static ToDoDTO convert (ToDo toDo) {

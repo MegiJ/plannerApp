@@ -2,15 +2,12 @@ package pl.project.plannerapp.DTO;
 
 import com.fasterxml.jackson.annotation.JsonView;
 import jakarta.persistence.Embeddable;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import net.karneim.pojobuilder.GeneratePojoBuilder;
-import pl.project.plannerapp.model.AccountDetails;
-import pl.project.plannerapp.model.LoggingData;
-import pl.project.plannerapp.model.PersonalData;
+import pl.project.plannerapp.repo.model.AccountDetails;
+import pl.project.plannerapp.repo.model.PersonalData;
 
 @GeneratePojoBuilder
 @Embeddable

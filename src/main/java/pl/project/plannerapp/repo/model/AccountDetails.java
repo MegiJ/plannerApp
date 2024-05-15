@@ -1,4 +1,4 @@
-package pl.project.plannerapp.model;
+package pl.project.plannerapp.repo.model;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;

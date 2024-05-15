@@ -1,10 +1,9 @@
-package pl.project.plannerapp.model;
+package pl.project.plannerapp.repo.model;
 
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotNull;
 import net.karneim.pojobuilder.GeneratePojoBuilder;
-import pl.project.plannerapp.DTO.DietDTO;
 
 import java.time.Instant;
 

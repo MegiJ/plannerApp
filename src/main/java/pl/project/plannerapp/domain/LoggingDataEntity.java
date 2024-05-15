@@ -2,8 +2,8 @@ package pl.project.plannerapp.domain;
 
 import jakarta.persistence.*;
 import lombok.*;
-import pl.project.plannerapp.model.AccountDetails;
-import pl.project.plannerapp.model.PersonalData;
+import pl.project.plannerapp.repo.model.AccountDetails;
+import pl.project.plannerapp.repo.model.PersonalData;
 
 @Entity
 @Table(name = "logging_data")
