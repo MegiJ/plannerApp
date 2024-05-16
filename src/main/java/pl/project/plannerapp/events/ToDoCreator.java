@@ -1,18 +1,18 @@
 package pl.project.plannerapp.events;
 
 import org.springframework.context.ApplicationEvent;
-import pl.project.plannerapp.DTO.LoggingDataDTO;
+import pl.project.plannerapp.DTO.PersonalDataDTO;
 
 
 public class ToDoCreator extends ApplicationEvent {
-    private final LoggingDataDTO loggingDataDTO;
+    private final PersonalDataDTO personalDataDTO;
 
-    public ToDoCreator(Object source, LoggingDataDTO loggingDataDTO) {
+    public ToDoCreator(Object source, PersonalDataDTO personalDataDTO) {
         super(source);
-        this.loggingDataDTO = loggingDataDTO;
+        this.personalDataDTO = personalDataDTO;
     }
 
-    public LoggingDataDTO getLoggingDataDTO() {
-        return loggingDataDTO;
+    public PersonalDataDTO getPersonalDataDTO() {
+        return personalDataDTO;
     }
 }
