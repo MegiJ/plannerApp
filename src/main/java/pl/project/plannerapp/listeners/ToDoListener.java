@@ -25,5 +25,5 @@ public class ToDoListener {
     public void onAddToDo(ToDoCreator toDoCreator) {
         PersonalDataDTO personalDataDTO = toDoCreator.getPersonalDataDTO();
 
-    }
+            }
 }
