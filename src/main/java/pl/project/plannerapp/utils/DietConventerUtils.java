@@ -6,6 +6,7 @@ import pl.project.plannerapp.model.Diet;
 
 
 public class DietConventerUtils {
+
     public static DietDTO convert(Diet diet) {
         return new DietDTOBuilder()
                 .withId(diet.getId())
@@ -14,6 +15,7 @@ public class DietConventerUtils {
                 .withPersonalData(convert(diet.getPersonalData()))
                 .build();
     }
+
 
     public static Diet convert(DietDTO dietDTO) {
         return new DietBuilder()
