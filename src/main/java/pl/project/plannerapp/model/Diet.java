@@ -49,7 +49,6 @@ public class Diet {
         return this;
     }
 
-
     public PersonalData getPersonalData() {
         return personalData;
     }

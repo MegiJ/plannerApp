@@ -50,7 +50,7 @@ public class Training {
     }
 
     public Training getPersonalData() {
-        return this;
+        return getPersonalData();
     }
 
     public Training setPersonalData(PersonalData personalData) {
