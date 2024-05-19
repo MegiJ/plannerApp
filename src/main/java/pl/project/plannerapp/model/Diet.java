@@ -4,6 +4,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotNull;
 import net.karneim.pojobuilder.GeneratePojoBuilder;
+import pl.project.plannerapp.DTO.DietDTO;
 
 import java.time.Instant;
 
@@ -49,8 +50,8 @@ public class Diet {
         return this;
     }
 
-    public PersonalData getPersonalData() {
-        return personalData;
+    public DietDTO getPersonalData() {
+        return getPersonalData();
     }
 
     public Diet setPersonalData(PersonalData personalData) {

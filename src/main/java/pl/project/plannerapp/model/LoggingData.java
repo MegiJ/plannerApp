@@ -7,6 +7,7 @@ import jakarta.persistence.Id;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import net.karneim.pojobuilder.GeneratePojoBuilder;
+import pl.project.plannerapp.DTO.LoggingDataDTO;
 
 @GeneratePojoBuilder
 @Embeddable
@@ -54,7 +55,7 @@ public class LoggingData {
         return this;
     }
 
-    public PersonalData getPersonalData() {
+    public LoggingData getPersonalData() {
         return personalData;
     }
 
@@ -63,7 +64,7 @@ public class LoggingData {
         return this;
     }
 
-    public AccountDetails getAccountDetails() {
+    public LoggingDataDTO getAccountDetails() {
         return accountDetails;
     }
 

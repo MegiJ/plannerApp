@@ -32,7 +32,7 @@ public class LoggingDataDTO {
 
     private AccountDetails accountDetails;
 
-    public PersonalData getPersonalData() {
+    public LoggingDataDTO getPersonalData() {
         return personalData;
     }
 
@@ -41,7 +41,7 @@ public class LoggingDataDTO {
         return this;
     }
 
-    public AccountDetails getAccountDetails() {
+    public LoggingDataDTO getAccountDetails() {
         return accountDetails;
     }
 

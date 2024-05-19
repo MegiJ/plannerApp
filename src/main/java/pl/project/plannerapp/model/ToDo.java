@@ -47,7 +47,7 @@ public class ToDo {
         return this;
     }
 
-    public PersonalData getPersonalData() {
+    public ToDo getPersonalData() {
         return personalData;
     }
 

@@ -52,7 +52,7 @@ public class ToDoDTO {
         return this;
     }
 
-    public PersonalData getPersonalData() {
+    public ToDoDTO getPersonalData() {
         return personalData;
     }
 

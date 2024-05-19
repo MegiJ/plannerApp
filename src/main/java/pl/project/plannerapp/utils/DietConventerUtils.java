@@ -3,11 +3,12 @@ package pl.project.plannerapp.utils;
 
 import pl.project.plannerapp.DTO.DietDTO;
 import pl.project.plannerapp.model.Diet;
-
+import pl.project.plannerapp.model.PersonalData;
 
 public class DietConventerUtils {
 
-    public static DietDTO convert(Diet diet) {
+
+    public static DietDTO convert (Diet diet) {
         return new DietDTOBuilder()
                 .withId(diet.getId())
                 .withDate(diet.getDate())
@@ -16,8 +17,7 @@ public class DietConventerUtils {
                 .build();
     }
 
-
-    public static Diet convert(DietDTO dietDTO) {
+    public static Diet convert (DietDTO dietDTO) {
         return new DietBuilder()
                 .withId(dietDTO.getId())
                 .withDate(dietDTO.getDate())
@@ -25,5 +25,4 @@ public class DietConventerUtils {
                 .withPersonalData(convert(dietDTO.getPersonalData()))
                 .build();
     }
-
 }
