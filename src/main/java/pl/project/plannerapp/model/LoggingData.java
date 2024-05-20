@@ -55,7 +55,7 @@ public class LoggingData {
         return this;
     }
 
-    public LoggingData getPersonalData() {
+    public PersonalData getPersonalData() {
         return personalData;
     }
 
@@ -64,7 +64,7 @@ public class LoggingData {
         return this;
     }
 
-    public LoggingDataDTO getAccountDetails() {
+    public AccountDetails getAccountDetails() {
         return accountDetails;
     }
 

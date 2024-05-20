@@ -28,25 +28,16 @@ public class LoggingDataDTO {
     @Pattern(regexp = "(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).{6,}$")
     private String password;
 
-    private PersonalData personalData;
+    private PersonalDataDTO personalDataDTO;
 
-    private AccountDetails accountDetails;
+    private AccountDetailsDTO accountDetailsDTO;
 
-    public LoggingDataDTO getPersonalData() {
-        return personalData;
+    public Long getId() {
+        return id;
     }
 
-    public LoggingDataDTO setPersonalData(PersonalData personalData) {
-        this.personalData = personalData;
-        return this;
-    }
-
-    public LoggingDataDTO getAccountDetails() {
-        return accountDetails;
-    }
-
-    public LoggingDataDTO setAccountDetails(AccountDetails accountDetails) {
-        this.accountDetails = accountDetails;
+    public LoggingDataDTO setId(Long id) {
+        this.id = id;
         return this;
     }
 
@@ -59,21 +50,30 @@ public class LoggingDataDTO {
         return this;
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public LoggingDataDTO setId(Long id) {
-        this.id = id;
-        return this;
-    }
-
     public String getPassword() {
         return password;
     }
 
     public LoggingDataDTO setPassword(String password) {
         this.password = password;
+        return this;
+    }
+
+    public PersonalDataDTO getPersonalDataDTO() {
+        return personalDataDTO;
+    }
+
+    public LoggingDataDTO setPersonalDataDTO(PersonalDataDTO personalDataDTO) {
+        this.personalDataDTO = personalDataDTO;
+        return this;
+    }
+
+    public AccountDetailsDTO getAccountDetailsDTO() {
+        return accountDetailsDTO;
+    }
+
+    public LoggingDataDTO setAccountDetailsDTO(AccountDetailsDTO accountDetailsDTO) {
+        this.accountDetailsDTO = accountDetailsDTO;
         return this;
     }
 }

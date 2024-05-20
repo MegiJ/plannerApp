@@ -23,7 +23,7 @@ public class ToDoDTO {
     private Instant date;
 
     @JsonView(View.Extended.class)
-    private PersonalData personalData;
+    private PersonalDataDTO personalDataDTO;
 
     public Long getId() {
         return id;
@@ -52,12 +52,12 @@ public class ToDoDTO {
         return this;
     }
 
-    public ToDoDTO getPersonalData() {
-        return personalData;
+    public PersonalDataDTO getPersonalDataDTO() {
+        return personalDataDTO;
     }
 
-    public ToDoDTO setPersonalData(PersonalData personalData) {
-        this.personalData = personalData;
+    public ToDoDTO setPersonalDataDTO(PersonalDataDTO personalDataDTO) {
+        this.personalDataDTO = personalDataDTO;
         return this;
     }
 }

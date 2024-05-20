@@ -24,7 +24,7 @@ public class TrainingDTO {
     private String exercise;
 
     @JsonView(View.Extended.class)
-    private PersonalData personalData;
+    private PersonalDataDTO personalDataDTO;
 
     public Long getId() {
         return id;
@@ -53,12 +53,12 @@ public class TrainingDTO {
         return this;
     }
 
-    public TrainingDTO getPersonalData() {
-        return this;
+    public PersonalDataDTO getPersonalDataDTO() {
+        return personalDataDTO;
     }
 
-    public TrainingDTO setPersonalData(PersonalData personalData) {
-        this.personalData = personalData;
+    public TrainingDTO setPersonalDataDTO(PersonalDataDTO personalDataDTO) {
+        this.personalDataDTO = personalDataDTO;
         return this;
     }
 }

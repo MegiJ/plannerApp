@@ -24,7 +24,16 @@ public class DietDTO {
     private String meal;
 
     @JsonView(View.Extended.class)
-    private PersonalData personalData;
+    private PersonalDataDTO personalDataDTO;
+
+    public Long getId() {
+        return id;
+    }
+
+    public DietDTO setId(Long id) {
+        this.id = id;
+        return this;
+    }
 
     public Instant getDate() {
         return date;
@@ -44,21 +53,12 @@ public class DietDTO {
         return this;
     }
 
-    public DietDTO getPersonalData() {
-        return this;
+    public PersonalDataDTO getPersonalDataDTO() {
+        return personalDataDTO;
     }
 
-    public DietDTO setPersonalData(PersonalData personalData) {
-        this.personalData = personalData;
-        return this;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public DietDTO setId(Long id) {
-        this.id = id;
+    public DietDTO setPersonalDataDTO(PersonalDataDTO personalDataDTO) {
+        this.personalDataDTO = personalDataDTO;
         return this;
     }
 }
