@@ -2,10 +2,11 @@ package pl.project.plannerapp.DTO;
 
 import com.fasterxml.jackson.annotation.JsonView;
 import jakarta.validation.constraints.NotNull;
+import net.karneim.pojobuilder.GeneratePojoBuilder;
 import pl.project.plannerapp.model.PersonalData;
 
 import java.time.Instant;
-
+@GeneratePojoBuilder
 public class DietDTO {
     public static class View {
         public interface Basic {}
@@ -30,9 +31,8 @@ public class DietDTO {
         return id;
     }
 
-    public DietDTO setId(Long id) {
+    public void setId(Long id) {
         this.id = id;
-        return this;
     }
 
     public Instant getDate() {
