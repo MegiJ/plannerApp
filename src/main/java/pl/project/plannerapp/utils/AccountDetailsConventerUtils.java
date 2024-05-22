@@ -1,10 +1,12 @@
 package pl.project.plannerapp.utils;
 
 import lombok.Builder;
+import net.karneim.pojobuilder.GeneratePojoBuilder;
 import pl.project.plannerapp.DTO.AccountDetailsDTO;
 import pl.project.plannerapp.model.AccountDetails;
 
 @Builder
+@GeneratePojoBuilder
 public class AccountDetailsConventerUtils {
 
     public static AccountDetailsDTO convert(AccountDetails accountDetails) {

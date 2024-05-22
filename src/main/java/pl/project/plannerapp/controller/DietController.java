@@ -2,15 +2,19 @@ package pl.project.plannerapp.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 import pl.project.plannerapp.DTO.DietDTO;
 import pl.project.plannerapp.service.DietService;
 import pl.project.plannerapp.service.PersonalDataService;
 
 import java.util.List;
 
+@Validated
 @RestController
 @RequestMapping(path = "/api/diets", produces = MediaType.APPLICATION_JSON_VALUE)
 public class DietController {
@@ -28,12 +32,13 @@ public class DietController {
 
     @GetMapping
     public List<DietDTO> get() {
-        return null;
+        return dietService.getAll();
     }
 
     @GetMapping("/{diet-id}")
-    public DietDTO get(Long id) {
-        return null;
+    public DietDTO get(@PathVariable Long id) {
+        return dietService.getById(id)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }
 
     @Transactional
