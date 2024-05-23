@@ -1,10 +1,11 @@
 package pl.project.plannerapp.utils;
 
 
+import lombok.Builder;
 import pl.project.plannerapp.DTO.DietDTO;
 import pl.project.plannerapp.model.Diet;
-import pl.project.plannerapp.model.PersonalData;
 
+@Builder
 public class DietConventerUtils {
 
 

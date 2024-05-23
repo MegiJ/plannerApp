@@ -6,11 +6,12 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
-import net.karneim.pojobuilder.GeneratePojoBuilder;
-import pl.project.plannerapp.DTO.LoggingDataDTO;
+import lombok.Builder;
+import lombok.NoArgsConstructor;
 
-@GeneratePojoBuilder
+@Builder
 @Embeddable
+@NoArgsConstructor
 public class LoggingData {
 
     @Id

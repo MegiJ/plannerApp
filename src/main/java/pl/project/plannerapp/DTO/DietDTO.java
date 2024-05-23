@@ -2,11 +2,10 @@ package pl.project.plannerapp.DTO;
 
 import com.fasterxml.jackson.annotation.JsonView;
 import jakarta.validation.constraints.NotNull;
-import net.karneim.pojobuilder.GeneratePojoBuilder;
-import pl.project.plannerapp.model.PersonalData;
+import lombok.Builder;
 
 import java.time.Instant;
-@GeneratePojoBuilder
+@Builder
 public class DietDTO {
     public static class View {
         public interface Basic {}

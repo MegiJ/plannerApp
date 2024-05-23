@@ -2,11 +2,7 @@ package pl.project.plannerapp.DTO;
 
 import com.fasterxml.jackson.annotation.JsonView;
 import jakarta.validation.constraints.NotNull;
-import net.karneim.pojobuilder.GeneratePojoBuilder;
 
-import java.util.UUID;
-
-@GeneratePojoBuilder
 public class AccountDetailsDTO {
     public static class View {
         public interface Basic{}
@@ -34,7 +30,7 @@ public class AccountDetailsDTO {
 
     @JsonView(View.Extended.class)
     @NotNull
-    private boolean idDisabled;
+    private boolean isDisabled;
 
     public Long getId() {
         return id;
@@ -81,12 +77,12 @@ public class AccountDetailsDTO {
         return this;
     }
 
-    public boolean isIdDisabled() {
-        return idDisabled;
+    public boolean isDisabled() {
+        return isDisabled;
     }
 
-    public AccountDetailsDTO setIdDisabled(boolean idDisabled) {
-        this.idDisabled = idDisabled;
+    public AccountDetailsDTO setDisabled(boolean disabled) {
+        isDisabled = disabled;
         return this;
     }
 }

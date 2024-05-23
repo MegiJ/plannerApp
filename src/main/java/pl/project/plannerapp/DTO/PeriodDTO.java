@@ -1,10 +1,11 @@
 package pl.project.plannerapp.DTO;
 
-import net.karneim.pojobuilder.GeneratePojoBuilder;
+
+import lombok.Builder;
 
 import javax.annotation.Nullable;
 import java.time.LocalDateTime;
-@GeneratePojoBuilder
+@Builder
 public class PeriodDTO {
 
     @Nullable

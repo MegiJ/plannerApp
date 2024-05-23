@@ -1,8 +1,10 @@
 package pl.project.plannerapp.utils;
 
+import lombok.Builder;
 import pl.project.plannerapp.DTO.ToDoDTO;
 import pl.project.plannerapp.model.ToDo;
 
+@Builder
 public class ToDoConventerUtils {
     public static ToDoDTO convert (ToDo toDo) {
         return new ToDoDTOBuilder()

@@ -4,10 +4,12 @@ import com.fasterxml.jackson.annotation.JsonView;
 import com.google.common.base.Joiner;
 import jakarta.persistence.Embeddable;
 import jakarta.validation.constraints.NotNull;
-import net.karneim.pojobuilder.GeneratePojoBuilder;
+import lombok.Builder;
+import lombok.NoArgsConstructor;
 
-@GeneratePojoBuilder
+@Builder
 @Embeddable
+@NoArgsConstructor
 public class PersonalDataDTO {
     public static class View {
         public interface Basic{}

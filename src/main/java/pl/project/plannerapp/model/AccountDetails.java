@@ -3,10 +3,7 @@ package pl.project.plannerapp.model;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.Builder;
-import net.karneim.pojobuilder.GeneratePojoBuilder;
 
-
-@GeneratePojoBuilder
 @Builder
 public class AccountDetails {
 

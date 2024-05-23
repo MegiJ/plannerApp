@@ -5,12 +5,12 @@ import jakarta.persistence.Embeddable;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
-import net.karneim.pojobuilder.GeneratePojoBuilder;
-import pl.project.plannerapp.model.AccountDetails;
-import pl.project.plannerapp.model.PersonalData;
+import lombok.Builder;
+import lombok.NoArgsConstructor;
 
-@GeneratePojoBuilder
+@Builder
 @Embeddable
+@NoArgsConstructor
 public class LoggingDataDTO {
     public static class View {
         public interface Basic{}
