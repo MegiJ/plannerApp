@@ -2,6 +2,7 @@ package pl.project.plannerapp.utils;
 
 
 import lombok.Builder;
+import org.jetbrains.annotations.NotNull;
 import pl.project.plannerapp.DTO.DietDTO;
 import pl.project.plannerapp.model.Diet;
 
@@ -9,7 +10,7 @@ import pl.project.plannerapp.model.Diet;
 public class DietConventerUtils {
 
 
-    public static DietDTO convert (Diet diet) {
+    public static DietDTO convert (@NotNull Diet diet) {
         return new DietDTOBuilder()
                 .withId(diet.getId())
                 .withDate(diet.getDate())
