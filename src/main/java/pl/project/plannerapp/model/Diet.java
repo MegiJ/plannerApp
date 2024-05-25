@@ -4,10 +4,11 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotNull;
 import lombok.Builder;
+import lombok.NoArgsConstructor;
 import pl.project.plannerapp.DTO.DietDTO;
 import java.time.Instant;
 
-@Builder
+@NoArgsConstructor
 public class Diet {
 
     @Id

@@ -10,7 +10,7 @@ import pl.project.plannerapp.model.Diet;
 public class DietConventerUtils {
 
 
-    public static DietDTO convert (@NotNull Diet diet) {
+    public static DietDTO convert (Diet diet) {
         return new DietDTOBuilder()
                 .withId(diet.getId())
                 .withDate(diet.getDate())

@@ -3,8 +3,10 @@ package pl.project.plannerapp.model;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.Builder;
+import lombok.NoArgsConstructor;
 
-@Builder
+@NoArgsConstructor
+
 public class AccountDetails {
 
     @Id
