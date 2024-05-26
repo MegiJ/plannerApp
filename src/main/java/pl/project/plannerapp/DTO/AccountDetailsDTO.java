@@ -2,7 +2,9 @@ package pl.project.plannerapp.DTO;
 
 import com.fasterxml.jackson.annotation.JsonView;
 import jakarta.validation.constraints.NotNull;
+import lombok.Builder;
 
+@Builder
 public class AccountDetailsDTO {
     public static class View {
         public interface Basic{}
