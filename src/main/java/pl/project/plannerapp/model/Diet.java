@@ -9,6 +9,7 @@ import pl.project.plannerapp.DTO.DietDTO;
 import java.time.Instant;
 
 @NoArgsConstructor
+@Builder
 public class Diet {
 
     @Id

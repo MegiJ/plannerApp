@@ -1,11 +1,11 @@
 package pl.project.plannerapp.utils;
 
-import lombok.Builder;
+
 import pl.project.plannerapp.DTO.AccountDetailsDTO;
 
 import pl.project.plannerapp.model.AccountDetails;
 
-@Builder
+
 public class AccountDetailsConventerUtils {
 
     public static AccountDetailsDTO convert(AccountDetails accountDetails) {

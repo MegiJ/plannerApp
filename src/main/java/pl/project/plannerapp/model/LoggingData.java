@@ -6,10 +6,12 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
+import lombok.Builder;
 import lombok.NoArgsConstructor;
 
 @Embeddable
 @NoArgsConstructor
+@Builder
 public class LoggingData {
 
     @Id

@@ -7,6 +7,7 @@ import lombok.Builder;
 
 import java.time.Instant;
 
+@Builder
 public class ToDo {
     @Id
     @GeneratedValue

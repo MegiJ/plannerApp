@@ -5,6 +5,8 @@ import jakarta.validation.constraints.NotNull;
 import lombok.Builder;
 
 import java.time.Instant;
+
+@Builder
 public class DietDTO {
     public static class View {
         public interface Basic {}

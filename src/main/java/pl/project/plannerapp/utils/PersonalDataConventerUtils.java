@@ -1,11 +1,10 @@
 package pl.project.plannerapp.utils;
 
 
-import lombok.Builder;
 import pl.project.plannerapp.DTO.PersonalDataDTO;
 import pl.project.plannerapp.model.PersonalData;
 
-@Builder
+
 public class PersonalDataConventerUtils {
     public static PersonalDataDTO convert(PersonalData personalData) {
         return new PersonalDataDTOBuilder()

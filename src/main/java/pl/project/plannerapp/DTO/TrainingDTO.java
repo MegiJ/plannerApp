@@ -2,10 +2,12 @@ package pl.project.plannerapp.DTO;
 
 import com.fasterxml.jackson.annotation.JsonView;
 import jakarta.validation.constraints.NotNull;
+import lombok.Builder;
 import pl.project.plannerapp.model.PersonalData;
 
 import java.time.Instant;
 
+@Builder
 public class TrainingDTO {
     public static class View {
         public interface Basic{}

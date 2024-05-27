@@ -6,7 +6,7 @@ import org.jetbrains.annotations.NotNull;
 import pl.project.plannerapp.DTO.DietDTO;
 import pl.project.plannerapp.model.Diet;
 
-@Builder
+
 public class DietConventerUtils {
 
 

@@ -6,7 +6,7 @@ import javax.annotation.Nullable;
 import java.time.LocalTime;
 
 @PeriodConstraint
-
+@Builder
 public class PeriodTime {
 
     @Nullable

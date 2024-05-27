@@ -5,12 +5,13 @@ import jakarta.persistence.Embeddable;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
+import lombok.Builder;
 import lombok.NoArgsConstructor;
 
 
 @Embeddable
 @NoArgsConstructor
-
+@Builder
 public class LoggingDataDTO {
     public static class View {
         public interface Basic{}

@@ -2,10 +2,12 @@ package pl.project.plannerapp.model;
 
 import jakarta.persistence.Embeddable;
 import jakarta.validation.constraints.NotNull;
+import lombok.Builder;
 import lombok.NoArgsConstructor;
 
 @Embeddable
 @NoArgsConstructor
+@Builder
 public class PersonalData {
 
     @NotNull

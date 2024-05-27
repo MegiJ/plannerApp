@@ -4,7 +4,7 @@ import lombok.Builder;
 import pl.project.plannerapp.DTO.LoggingDataDTO;
 import pl.project.plannerapp.model.LoggingData;
 
-@Builder
+
 public class LoggingDataConventerUtils {
 
     public static LoggingDataDTO convert(LoggingData loggingData) {

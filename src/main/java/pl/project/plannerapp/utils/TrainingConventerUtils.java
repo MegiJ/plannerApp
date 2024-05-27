@@ -1,10 +1,9 @@
 package pl.project.plannerapp.utils;
 
-import lombok.Builder;
 import pl.project.plannerapp.DTO.TrainingDTO;
 import pl.project.plannerapp.model.Training;
 
-@Builder
+
 public class TrainingConventerUtils {
     public static TrainingDTO convert (Training training) {
         return new TrainingDTOBuilder()

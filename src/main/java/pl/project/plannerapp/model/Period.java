@@ -7,7 +7,7 @@ import javax.annotation.Nullable;
 import java.time.LocalDateTime;
 
 @PeriodConstraint
-
+@Builder
 public class Period {
 
     @Nullable

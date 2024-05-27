@@ -6,6 +6,7 @@ import lombok.Builder;
 import javax.annotation.Nullable;
 import java.time.LocalDateTime;
 
+@Builder
 public class PeriodDTO {
 
     @Nullable
