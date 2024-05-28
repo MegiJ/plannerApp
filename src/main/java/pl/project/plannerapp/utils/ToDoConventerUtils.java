@@ -1,6 +1,7 @@
 package pl.project.plannerapp.utils;
 
 import pl.project.plannerapp.DTO.ToDoDTO;
+import pl.project.plannerapp.model.PersonalData;
 import pl.project.plannerapp.model.ToDo;
 
 
@@ -13,6 +14,7 @@ public class ToDoConventerUtils {
                 .withPersonalData(convert(toDo.getPersonalData()))
                 .build();
     }
+
 
     public static ToDo convert (ToDoDTO toDoDTO) {
         return new ToDoDTOBuilder()

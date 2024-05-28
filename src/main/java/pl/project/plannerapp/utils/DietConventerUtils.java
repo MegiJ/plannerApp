@@ -1,8 +1,6 @@
 package pl.project.plannerapp.utils;
 
 
-import lombok.Builder;
-import org.jetbrains.annotations.NotNull;
 import pl.project.plannerapp.DTO.DietDTO;
 import pl.project.plannerapp.model.Diet;
 
@@ -18,6 +16,7 @@ public class DietConventerUtils {
                 .withPersonalData(convert(diet.getPersonalData()))
                 .build();
     }
+
 
     public static Diet convert (DietDTO dietDTO) {
         return new DietBuilder()
