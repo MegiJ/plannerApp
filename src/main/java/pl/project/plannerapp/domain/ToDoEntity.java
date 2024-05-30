@@ -18,9 +18,10 @@ public class ToDoEntity {
 
     @Id
     @SequenceGenerator(name = "todo_seq", sequenceName = "todo_seq", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "toto_seq")
+//    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "toto_seq")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
-    private int id;
+    private Long id;
 
     @Column(name = "DATE_TODO")
     private Instant date;

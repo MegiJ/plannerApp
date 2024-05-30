@@ -11,7 +11,7 @@ import java.time.Instant;
 public class ToDo {
     @Id
     @GeneratedValue
-    private int id;
+    private Long id;
 
     @NotNull
     private String note;
@@ -19,13 +19,15 @@ public class ToDo {
     @NotNull
     private Instant date;
 
+    private boolean isCompleted;
+
     private PersonalData personalData;
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public ToDo setId(int id) {
+    public ToDo setId(Long id) {
         this.id = id;
         return this;
     }
@@ -45,6 +47,15 @@ public class ToDo {
 
     public ToDo setDate(Instant date) {
         this.date = date;
+        return this;
+    }
+
+    public boolean isCompleted() {
+        return isCompleted;
+    }
+
+    public ToDo setCompleted(boolean completed) {
+        isCompleted = completed;
         return this;
     }
 

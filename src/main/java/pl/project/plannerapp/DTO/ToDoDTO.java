@@ -24,6 +24,9 @@ public class ToDoDTO {
     @NotNull
     private Instant date;
 
+    @JsonView(View.Basic.class)
+    private boolean isCompleted;
+
     @JsonView(View.Extended.class)
     private PersonalDataDTO personalDataDTO;
 
@@ -51,6 +54,15 @@ public class ToDoDTO {
 
     public ToDoDTO setDate(Instant date) {
         this.date = date;
+        return this;
+    }
+
+    public boolean isCompleted() {
+        return isCompleted;
+    }
+
+    public ToDoDTO setCompleted(boolean completed) {
+        isCompleted = completed;
         return this;
     }
 
