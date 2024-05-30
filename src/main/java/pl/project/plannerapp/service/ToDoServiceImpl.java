@@ -3,6 +3,7 @@ package pl.project.plannerapp.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.project.plannerapp.DTO.ToDoDTO;
+import pl.project.plannerapp.model.ToDo;
 import pl.project.plannerapp.repo.PersonalDataRepo;
 import pl.project.plannerapp.repo.ToDoRepo;
 
@@ -21,22 +22,33 @@ public class ToDoServiceImpl implements ToDoService {
     }
 
     @Override
-    public List<ToDoDTO> getAll() {
+    public List<ToDoDTO> getAllTasks() {
         return null;
     }
 
     @Override
-    public void add(ToDoDTO toDoDTO) {
+    public ToDo addTask(ToDoDTO toDoDTO) {
+        return null;
+    }
 
+    public ToDo addTask(ToDo toDo) {
+
+        return toDo;
     }
 
     @Override
-    public void delete(Long id) {
+    public boolean deleteTask(Long id) {
 
+        return false;
     }
 
     @Override
     public Optional<ToDoDTO> getById(Long id) {
         return Optional.empty();
+    }
+
+    @Override
+    public ToDo markTaskAsCompleted(Long id) {
+        return null;
     }
 }
