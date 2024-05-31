@@ -1,76 +1,14 @@
 package pl.project.plannerapp.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Embeddable;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.validation.constraints.Pattern;
-import jakarta.validation.constraints.Size;
 import lombok.Builder;
-import lombok.NoArgsConstructor;
+import lombok.Getter;
 
-@Embeddable
-@NoArgsConstructor
 @Builder
+@Getter
 public class LoggingData {
-
-    @Id
-    @GeneratedValue
     private Long id;
-
-    @Column(unique = true)
-    @Size(min = 3)
     private String login;
-
-    @Pattern(regexp = "(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).{6,}$")
     private String password;
-
     private PersonalData personalData;
-
     private AccountDetails accountDetails;
-
-    public Long getId() {
-        return id;
-    }
-
-    public LoggingData setId(Long id) {
-        this.id = id;
-        return this;
-    }
-
-    public String getLogin() {
-        return login;
-    }
-
-    public LoggingData setLogin(String login) {
-        this.login = login;
-        return this;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public LoggingData setPassword(String password) {
-        this.password = password;
-        return this;
-    }
-
-    public PersonalData getPersonalData() {
-        return personalData;
-    }
-
-    public LoggingData setPersonalData(PersonalData personalData) {
-        this.personalData = personalData;
-        return this;
-    }
-
-    public AccountDetails getAccountDetails() {
-        return accountDetails;
-    }
-
-    public LoggingData setAccountDetails(AccountDetails accountDetails) {
-        this.accountDetails = accountDetails;
-        return this;
-    }
 }

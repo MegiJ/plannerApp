@@ -28,7 +28,8 @@ public class TrainingEntity {
     @Column(name = "EXERCISE")
     private String exercise;
 
-    @Column(name = "USER_ID")
-    private PersonalData personalData;
+    @ManyToOne
+    @JoinColumn(name = "USER_ID", referencedColumnName = "ID")
+    private PersonalDataEntity personalDataEntity;
 
 }

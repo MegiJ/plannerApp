@@ -11,5 +11,4 @@ public class PersonalData {
     private String surname;
     private int phone;
     private String email;
-
 }

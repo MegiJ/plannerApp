@@ -35,4 +35,10 @@ public class PersonalDataEntity {
     @OneToMany(mappedBy = "personalDataEntity")
     private List<ToDoEntity> toDoList;
 
+    @OneToMany(mappedBy = "personalDataEntity")
+    private List<DietEntity> dietEntities;
+
+    @OneToMany(mappedBy = "personalDataEntity")
+    private List<TrainingEntity> trainingEntities;
+
 }

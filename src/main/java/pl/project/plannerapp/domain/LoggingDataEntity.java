@@ -1,6 +1,8 @@
 package pl.project.plannerapp.domain;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
 import lombok.*;
 import pl.project.plannerapp.model.AccountDetails;
 import pl.project.plannerapp.model.PersonalData;
@@ -21,10 +23,12 @@ public class LoggingDataEntity {
     @Column(name = "ID")
     private Long id;
 
-    @Column(name = "LOGIN")
+    @Column(name = "LOGIN", unique = true)
+    @Size(min = 3)
     private String login;
 
     @Column(name = "PASSWORD")
+    @Pattern(regexp = "(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).{6,}$")
     private String password;
 
     @Column(name = "ACCOUNT_ID")

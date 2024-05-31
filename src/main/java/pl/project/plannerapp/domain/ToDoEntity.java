@@ -13,9 +13,7 @@ import java.time.Instant;
 @Getter
 @Setter
 @Builder
-
 public class ToDoEntity {
-
     @Id
     @SequenceGenerator(name = "todo_seq", sequenceName = "todo_seq", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "todo_seq")
