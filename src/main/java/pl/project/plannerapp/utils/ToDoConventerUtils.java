@@ -3,10 +3,9 @@ package pl.project.plannerapp.utils;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import pl.project.plannerapp.DTO.ToDoDTO;
-import pl.project.plannerapp.model.PersonalData;
 import pl.project.plannerapp.model.ToDo;
 
-@NoArgsConstructor(access = AccessLevel.PRIVATE)  // privste onacza ze konstruktor bedzie miec mod dost prywatny
+@NoArgsConstructor(access = AccessLevel.PRIVATE)  // private oznacza ze konstruktor bedzie miec mod dost prywatny
 public class ToDoConventerUtils {
     public static ToDoDTO convert (ToDo toDo) {
         return ToDoDTO.builder()

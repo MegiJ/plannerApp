@@ -14,7 +14,6 @@ public class PersonalDataConventerUtils {
                 .withEmail(personalData.getEmail())
                 .build();
     }
-
     public static PersonalData convert(PersonalDataDTO personalDataDTO) {
         return PersonalData.builder()
                 .withFirstname(personalDataDTO.getFirstname())

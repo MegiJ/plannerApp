@@ -1,32 +1,32 @@
 package pl.project.plannerapp.utils;
 
 
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 import pl.project.plannerapp.DTO.AccountDetailsDTO;
 
 import pl.project.plannerapp.model.AccountDetails;
 
-
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class AccountDetailsConventerUtils {
-
     public static AccountDetailsDTO convert(AccountDetails accountDetails) {
-        return new AccountDetailsDTOBuilder()
-                .withId(accountDetails.getId())
-                .withRole(accountDetails.getRole())
-                .withExpired(accountDetails.isExpired())
-                .withLocked(accountDetails.isLocked())
-                .withCredentialsExpired(accountDetails.isCredentialsExpired())
-                .withDisabled(accountDetails.isDisabled())
+        return AccountDetailsDTO.builder()
+                .id(accountDetails.getId())
+                .role(accountDetails.getRole())
+                .isExpired(accountDetails.isExpired())
+                .isLocked(accountDetails.isLocked())
+                .isCredentialsExpired(accountDetails.isCredentialsExpired())
+                .isDisabled(accountDetails.isDisabled())
                 .build();
     }
-
     public static AccountDetails convert(AccountDetailsDTO accountDetailsDTO) {
-        return new AccountDetailsBuilder()
-                .withId(accountDetailsDTO.getId())
-                .withRole(accountDetailsDTO.getRole())
-                .withExpired(accountDetailsDTO.isExpired())
-                .withLocked(accountDetailsDTO.isLocked())
-                .withCredentialsExpired(accountDetailsDTO.isCredentialsExpired())
-                .withDisabled(accountDetailsDTO.isDisabled())
+        return AccountDetails.builder()
+                .id(accountDetailsDTO.getId())
+                .role(accountDetailsDTO.getRole())
+                .isExpired(accountDetailsDTO.isExpired())
+                .isLocked(accountDetailsDTO.isLocked())
+                .isCredentialsExpired(accountDetailsDTO.isCredentialsExpired())
+                .isDisabled(accountDetailsDTO.isDisabled())
                 .build();
     }
 }

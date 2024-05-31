@@ -6,24 +6,20 @@ import pl.project.plannerapp.model.Diet;
 
 
 public class DietConventerUtils {
-
-
     public static DietDTO convert (Diet diet) {
-        return new DietDTOBuilder()
-                .withId(diet.getId())
-                .withDate(diet.getDate())
-                .withMeal(diet.getMeal())
-                .withPersonalData(convert(diet.getPersonalData()))
+        return DietDTO.builder()
+                .id(diet.getId())
+                .date(diet.getDate())
+                .meal(diet.getMeal())
+                .personalDataDTO(PersonalDataConventerUtils.convert(diet.getPersonalData()))
                 .build();
     }
-
-
     public static Diet convert (DietDTO dietDTO) {
-        return new DietBuilder()
-                .withId(dietDTO.getId())
-                .withDate(dietDTO.getDate())
-                .withMeal(dietDTO.getMeal())
-                .withPersonalData(convert(dietDTO.getPersonalData()))
+        return Diet.builder()
+                .id(dietDTO.getId())
+                .date(dietDTO.getDate())
+                .meal(dietDTO.getMeal())
+                .personalData(PersonalDataConventerUtils.convert(dietDTO.getPersonalDataDTO()))
                 .build();
     }
 }
