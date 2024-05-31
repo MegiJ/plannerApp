@@ -27,18 +27,12 @@ public class ToDoServiceImpl implements ToDoService {
     }
 
     @Override
-    public ToDo addTask(ToDoDTO toDoDTO) {
-        return null;
-    }
-
     public ToDo addTask(ToDo toDo) {
-
         return toDo;
     }
 
     @Override
     public boolean deleteTask(Long id) {
-
         return false;
     }
 

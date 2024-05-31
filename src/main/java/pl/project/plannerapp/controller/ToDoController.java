@@ -11,6 +11,7 @@ import pl.project.plannerapp.DTO.ToDoDTO;
 import pl.project.plannerapp.model.ToDo;
 import pl.project.plannerapp.service.PersonalDataService;
 import pl.project.plannerapp.service.ToDoService;
+import pl.project.plannerapp.utils.ToDoConventerUtils;
 
 import java.util.List;
 
@@ -36,7 +37,7 @@ public class ToDoController {
     }
     @PostMapping
     public ResponseEntity<ToDo> addTask(@RequestBody ToDoDTO toDoDTO) {
-        ToDo newToDo = toDoService.addTask(toDoDTO);
+        ToDo newToDo = toDoService.addTask(ToDoConventerUtils.convert(toDoDTO));
         return ResponseEntity.status(HttpStatus.CREATED).body(newToDo);
     }
 

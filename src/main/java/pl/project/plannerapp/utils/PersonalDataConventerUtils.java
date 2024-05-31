@@ -7,7 +7,7 @@ import pl.project.plannerapp.model.PersonalData;
 
 public class PersonalDataConventerUtils {
     public static PersonalDataDTO convert(PersonalData personalData) {
-        return new PersonalDataDTOBuilder()
+        return PersonalDataDTO.builder()
                 .withId(personalData.getId())
                 .withFirstname(personalData.getFirstname())
                 .withPhone(personalData.getPhone())
@@ -16,7 +16,7 @@ public class PersonalDataConventerUtils {
     }
 
     public static PersonalData convert(PersonalDataDTO personalDataDTO) {
-        return new PersonalDataBuilder()
+        return PersonalData.builder()
                 .withFirstname(personalDataDTO.getFirstname())
                 .withSurname(personalDataDTO.getSurname())
                 .withPhone(personalDataDTO.getPhone())

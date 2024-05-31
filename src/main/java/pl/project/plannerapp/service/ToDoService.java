@@ -9,7 +9,7 @@ import java.util.Optional;
 public interface ToDoService {
     List<ToDoDTO> getAllTasks();
 
-    ToDo addTask(ToDoDTO toDoDTO);
+    ToDo addTask(ToDo toDo);
 
     boolean deleteTask(Long id);
 

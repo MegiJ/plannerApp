@@ -3,6 +3,8 @@ package pl.project.plannerapp.domain;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "personal_data")
 @AllArgsConstructor
@@ -10,7 +12,6 @@ import lombok.*;
 @Getter
 @Setter
 @Builder
-
 public class PersonalDataEntity {
 
     @Id
@@ -30,5 +31,8 @@ public class PersonalDataEntity {
 
     @Column(name = "EMAIL")
     private String email;
+
+    @OneToMany(mappedBy = "personalDataEntity")
+    private List<ToDoEntity> toDoList;
 
 }

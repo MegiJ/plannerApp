@@ -1,28 +1,29 @@
 package pl.project.plannerapp.utils;
 
-import lombok.Builder;
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 import pl.project.plannerapp.DTO.ToDoDTO;
 import pl.project.plannerapp.model.PersonalData;
 import pl.project.plannerapp.model.ToDo;
 
-@Builder
+@NoArgsConstructor(access = AccessLevel.PRIVATE)  // privste onacza ze konstruktor bedzie miec mod dost prywatny
 public class ToDoConventerUtils {
     public static ToDoDTO convert (ToDo toDo) {
-        return new ToDoDTOBuilder()
-                .withId(toDo.getId())
-                .withNote(toDo.getNote())
-                .withDate(toDo.getDate())
-                .withPersonalData(convert(toDo.getPersonalData()))
+        return ToDoDTO.builder()
+                .id(toDo.getId())
+                .note(toDo.getNote())
+                .date(toDo.getDate())
+                .isCompleted(toDo.isCompleted())
+                .personalDataDTO(PersonalDataConventerUtils.convert(toDo.getPersonalData()))
                 .build();
     }
 
-
     public static ToDo convert (ToDoDTO toDoDTO) {
-        return new ToDoDTOBuilder()
+        return ToDo.builder()
                 .withId(toDoDTO.getId())
                 .withNote(toDoDTO.getNote())
                 .withDate(toDoDTO.getDate())
-                .withPersonalData(convert(toDoDTO.getPersonalData()))
+                .withPersonalData(PersonalDataConventerUtils.convert(toDoDTO.getPersonalDataDTO()))
                 .build();
     }
 }

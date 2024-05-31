@@ -18,8 +18,7 @@ public class ToDoEntity {
 
     @Id
     @SequenceGenerator(name = "todo_seq", sequenceName = "todo_seq", allocationSize = 1)
-//    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "toto_seq")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "todo_seq")
     @Column(name = "ID")
     private Long id;
 
@@ -29,7 +28,11 @@ public class ToDoEntity {
     @Column(name = "NOTE")
     private String note;
 
-    @Column(name = "USER_ID")
-    private PersonalData personalData;
+    @Column(name = "IS_COMPLETED")
+    private boolean isCompleted;
+
+    @ManyToOne
+    @JoinColumn(name = "USER_ID", referencedColumnName = "ID")
+    private PersonalDataEntity personalDataEntity;
 
 }
