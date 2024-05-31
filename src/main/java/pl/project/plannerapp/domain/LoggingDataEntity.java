@@ -4,8 +4,6 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import lombok.*;
-import pl.project.plannerapp.model.AccountDetails;
-import pl.project.plannerapp.model.PersonalData;
 
 @Entity
 @Table(name = "logging_data")
@@ -14,9 +12,7 @@ import pl.project.plannerapp.model.PersonalData;
 @Getter
 @Setter
 @Builder
-
 public class LoggingDataEntity {
-
     @Id
     @SequenceGenerator(name = "logging_data_seq", sequenceName = "logging_data_seq", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "logging_data_seq")
@@ -24,17 +20,19 @@ public class LoggingDataEntity {
     private Long id;
 
     @Column(name = "LOGIN", unique = true)
-    @Size(min = 3)
+    @Size(min = 5)
     private String login;
 
     @Column(name = "PASSWORD")
     @Pattern(regexp = "(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).{6,}$")
     private String password;
 
-    @Column(name = "ACCOUNT_ID")
-    private PersonalData personalData;
+    @OneToOne
+    @JoinColumn(name = "ACCOUNT_ID", referencedColumnName = "ID")
+    private PersonalDataEntity personalDataEntity;
 
-    @Column(name = "ACCOUNT_DETAILS_ID")
-    private AccountDetails accountDetails;
+    @OneToOne
+    @JoinColumn(name = "ACCOUNT_DETAILS_ID", referencedColumnName = "ID")
+    private AccountDetailsEntity accountDetailsEntity;
 
 }

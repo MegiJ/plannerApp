@@ -3,6 +3,8 @@ package pl.project.plannerapp.domain;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "account_details")
 @AllArgsConstructor
@@ -32,5 +34,9 @@ public class AccountDetailsEntity {
 
     @Column(name = "IS_DISABLED")
     private boolean isDisabled;
+
+    @OneToOne(mappedBy = "accountDetailsEntity")
+    private List<LoggingDataEntity> loggingDataEntities;
+
 
 }

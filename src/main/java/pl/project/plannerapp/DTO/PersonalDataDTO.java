@@ -9,7 +9,6 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 public class PersonalDataDTO {
-
     private Long id;
     private String firstname;
     private String surname;
