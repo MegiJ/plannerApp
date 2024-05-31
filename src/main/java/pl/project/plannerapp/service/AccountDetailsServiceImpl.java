@@ -23,7 +23,7 @@ public class AccountDetailsServiceImpl implements AccountDetailsService {
     }
 
     @Override
-    public List<AccountDetailsDTO> getAll() {
+    public List<AccountDetailsDTO> getAllAccount() {
         return accountDetailsRepo.findAll().stream()
                 .map(AccountDetailsConventerUtils::convert)
                 .collect(Collectors.toList());
@@ -35,7 +35,7 @@ public class AccountDetailsServiceImpl implements AccountDetailsService {
     }
 
     @Override
-    public void delete(Long id) {
+    public void deleteAccount(Long id) {
         AccountDetails accountDetails = accountDetailsRepo.findById(id)
             .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
         accountDetailsRepo.delete(accountDetails);

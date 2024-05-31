@@ -32,7 +32,7 @@ public class DietController {
 
     @GetMapping
     public List<DietDTO> get() {
-        return dietService.getAll();
+        return dietService.getAllDiet();
     }
 
     @GetMapping("/{diet-id}")

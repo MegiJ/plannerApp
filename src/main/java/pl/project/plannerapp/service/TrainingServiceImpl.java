@@ -26,7 +26,7 @@ public class TrainingServiceImpl implements TrainingService {
     }
 
     @Override
-    public List<TrainingDTO> getAll() {
+    public List<TrainingDTO> getAllTraining() {
         return trainingRepo.findAll()
                 .stream()
                 .map(TrainingConventerUtils::convert)
@@ -35,19 +35,21 @@ public class TrainingServiceImpl implements TrainingService {
     }
 
     @Override
-    public void add(TrainingDTO trainingDTO) {
-
+    public Training addExercise(Training training) {
+        trainingRepo.save(training);
+        return training;
     }
-
     @Override
-    public void delete(Long id) {
+    public boolean deleteExercise(Long id) {
         Training training = trainingRepo.findById(id)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
         trainingRepo.delete(training);
+        return true;
     }
 
     @Override
     public Optional<TrainingDTO> getById(Long id) {
-        return trainingRepo.findById(id).map(TrainingConventerUtils::convert);
+        return trainingRepo.findById(id)
+                .map(TrainingConventerUtils::convert);
     }
 }

@@ -1,7 +1,6 @@
 package pl.project.plannerapp.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.transaction.annotation.Transactional;
@@ -26,7 +25,7 @@ public class AccountDetailsController {
 
     @GetMapping
     public List<AccountDetailsDTO> get() {
-        return accountDetailsService.getAll();
+        return accountDetailsService.getAllAccount();
     }
 
     @GetMapping("/{accountDetails-id}")
@@ -43,6 +42,6 @@ public class AccountDetailsController {
     @Transactional
     @DeleteMapping("/{accountDetails-id}")
     public void delete(@PathVariable Long id) {
-        accountDetailsService.delete(id);
+        accountDetailsService.deleteAccount(id);
     }
 }

@@ -1,14 +1,19 @@
 package pl.project.plannerapp.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 import pl.project.plannerapp.DTO.ToDoDTO;
 import pl.project.plannerapp.model.ToDo;
 import pl.project.plannerapp.repo.PersonalDataRepo;
 import pl.project.plannerapp.repo.ToDoRepo;
+import pl.project.plannerapp.utils.ToDoConventerUtils;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class ToDoServiceImpl implements ToDoService {
@@ -23,22 +28,30 @@ public class ToDoServiceImpl implements ToDoService {
 
     @Override
     public List<ToDoDTO> getAllTasks() {
-        return null;
+        return toDoRepo.findAll()
+                .stream()
+                .map(ToDoConventerUtils::convert)
+                .collect(Collectors.toList());
     }
 
     @Override
     public ToDo addTask(ToDo toDo) {
+        toDoRepo.save(toDo);
         return toDo;
     }
 
     @Override
     public boolean deleteTask(Long id) {
-        return false;
+        ToDo toDo = toDoRepo.findById(id)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+        toDoRepo.delete(toDo);
+        return true;
     }
 
     @Override
     public Optional<ToDoDTO> getById(Long id) {
-        return Optional.empty();
+        return toDoRepo.findById(id)
+                .map(ToDoConventerUtils::convert);
     }
 
     @Override

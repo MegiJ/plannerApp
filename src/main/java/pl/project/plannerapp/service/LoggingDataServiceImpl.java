@@ -30,7 +30,7 @@ public class LoggingDataServiceImpl implements LoggingDataService {
     }
 
     @Override
-    public List<LoggingDataDTO> getAll() {
+    public List<LoggingDataDTO> getAllLoginData() {
         return loggingDataRepo.findAll()
                 .stream()
                 .map(LoggingDataConventerUtils::convert)

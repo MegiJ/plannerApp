@@ -24,7 +24,7 @@ public class DietServiceImpl implements DietService {
     }
 
     @Override
-    public List<DietDTO> getAll() {
+    public List<DietDTO> getAllDiet() {
         return dietRepo.findAll()
                 .stream()
                 .map(DietConventerUtils::convert)
@@ -32,13 +32,13 @@ public class DietServiceImpl implements DietService {
     }
 
     @Override
-    public void add(Diet diet) {
+    public Diet addDiet(Diet diet) {
         dietRepo.save(diet);
+        return diet;
     }
 
-    @Override
-    public void delete(Diet diet) {
-        dietRepo.delete(diet);
+    public boolean deleteDiet(Long id) {
+        return false;
     }
 
     @Override

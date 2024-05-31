@@ -23,7 +23,7 @@ public class PersonalDataServiceImpl implements PersonalDataService {
     }
 
     @Override
-    public List<PersonalDataDTO> getAll() {
+    public List<PersonalDataDTO> getAllPersonalData() {
         return personalDataRepo.findAll()
                 .stream()
                 .map(PersonalDataConventerUtils::convert)

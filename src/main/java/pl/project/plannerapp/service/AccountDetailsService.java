@@ -6,11 +6,11 @@ import java.util.List;
 import java.util.Optional;
 
 public interface AccountDetailsService {
-    List<AccountDetailsDTO> getAll();
+    List<AccountDetailsDTO> getAllAccount();
 
     void put(Long id, AccountDetailsDTO accountDetailsDTO);
 
-    void delete(Long id);
+    void deleteAccount(Long id);
 
     Optional<AccountDetailsDTO> getById(Long id);
 

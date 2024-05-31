@@ -7,10 +7,8 @@ import java.util.List;
 import java.util.Optional;
 
 public interface DietService {
-    List<DietDTO> getAll();
-    void add(Diet diet);
-
-    void delete(Diet diet);
-
+    List<DietDTO> getAllDiet();
+    Diet addDiet(Diet diet);
+    boolean deleteDiet(Long id);
     Optional<DietDTO> getById(Long id);
 }

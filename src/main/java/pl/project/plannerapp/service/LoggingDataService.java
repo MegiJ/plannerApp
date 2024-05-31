@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface LoggingDataService {
-    List<LoggingDataDTO> getAll();
+    List<LoggingDataDTO> getAllLoginData();
 
     void put (Long id, LoggingDataDTO loggingDataDTO);
 
@@ -14,5 +14,4 @@ public interface LoggingDataService {
 
     Optional<LoggingDataDTO> getById(Long id);
 
-    void validateNewOperation(Long id, LoggingDataDTO loggingDataDTO);
 }
