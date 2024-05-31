@@ -51,16 +51,7 @@ public class LoggingDataServiceImpl implements LoggingDataService {
 
     @Override
     public Optional<LoggingDataDTO> getById(Long id) {
-        return loggingDataRepo.findById(id).map(LoggingDataConventerUtils::convert);
-    }
-
-    @Override
-    public void validateNewOperation(Long id, LoggingDataDTO loggingDataDTO) {
-        if(!Objects.equal(loggingDataDTO.getId(), id)) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
-        }
-
-        loggingDataRepo.findById(loggingDataDTO.getId())
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+        return loggingDataRepo.findById(id)
+                .map(LoggingDataConventerUtils::convert);
     }
 }
