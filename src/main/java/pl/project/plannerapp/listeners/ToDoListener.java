@@ -4,12 +4,8 @@ package pl.project.plannerapp.listeners;
 import org.springframework.stereotype.Component;
 import pl.project.plannerapp.DTO.PersonalDataDTO;
 import pl.project.plannerapp.events.ToDoCreator;
-import pl.project.plannerapp.model.ToDo;
 import pl.project.plannerapp.repo.PersonalDataRepo;
 import pl.project.plannerapp.service.ToDoService;
-import pl.project.plannerapp.utils.PersonalDataConventerUtils;
-import pl.project.plannerapp.utils.ToDoConventerUtils;
-import pl.project.plannerapp.utils.TrainingConventerUtils;
 
 
 @Component

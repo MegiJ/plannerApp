@@ -6,14 +6,15 @@ import org.springframework.http.MediaType;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import pl.project.plannerapp.DTO.LoggingDataDTO;
-import pl.project.plannerapp.service.*;
+import pl.project.plannerapp.service.AccountDetailsService;
+import pl.project.plannerapp.service.LoggingDataService;
+import pl.project.plannerapp.service.PersonalDataService;
 
 import java.util.List;
 
 @RestController
 @RequestMapping(path = "/api/loggingData", produces = MediaType.APPLICATION_JSON_VALUE)
 public class LoggingDataController {
-    interface LoggingDataView extends LoggingDataDTO.View.Basic {}
     private final LoggingDataService loggingDataService;
     private final PersonalDataService personalDataService;
     private final AccountDetailsService accountDetailsService;

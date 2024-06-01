@@ -5,16 +5,13 @@ import org.springframework.http.MediaType;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import pl.project.plannerapp.DTO.PersonalDataDTO;
-import pl.project.plannerapp.DTO.TrainingDTO;
 import pl.project.plannerapp.service.PersonalDataService;
-import pl.project.plannerapp.service.TrainingService;
 
 import java.util.List;
 
 @RestController
 @RequestMapping(path = "/api/personalData", produces = MediaType.APPLICATION_JSON_VALUE)
 public class PersonalDataController {
-    interface PersonalDataView extends PersonalDataDTO.View.Basic {}
 
     private  final PersonalDataService personalDataService;
 

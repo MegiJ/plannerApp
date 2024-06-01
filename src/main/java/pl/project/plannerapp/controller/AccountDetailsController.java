@@ -14,8 +14,6 @@ import java.util.List;
 @RestController
 @RequestMapping(path = "/api/accountDetails", produces = MediaType.APPLICATION_JSON_VALUE)
 public class AccountDetailsController {
-    interface AccountDetailsView extends AccountDetailsDTO.View.Basic {}
-
     private final AccountDetailsService accountDetailsService;
 
     @Autowired
