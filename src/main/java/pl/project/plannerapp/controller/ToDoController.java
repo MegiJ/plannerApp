@@ -32,7 +32,7 @@ public class ToDoController {
     @Transactional
     @DeleteMapping("/{todo-id}")
     public void delete(@PathVariable Long id) {
-
+        toDoService.deleteTask(id);
     }
     @PostMapping
     public ResponseEntity<ToDo> addTask(@RequestBody ToDoDTO toDoDTO) {
