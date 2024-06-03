@@ -2,9 +2,11 @@ package pl.project.plannerapp.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 import pl.project.plannerapp.DTO.LoggingDataDTO;
 import pl.project.plannerapp.service.AccountDetailsService;
 import pl.project.plannerapp.service.LoggingDataService;
@@ -35,7 +37,8 @@ public class LoggingDataController {
 
     @GetMapping("/{loggingData-id}")
     public LoggingDataDTO get(@PathVariable Long id) {
-        return null;
+        return loggingDataService.getById(id)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }
 
     @Transactional
