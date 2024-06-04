@@ -41,7 +41,7 @@ public class ToDoConventerUtils {
                 .id(toDo.getId())
                 .note(toDo.getNote())
                 .date(toDo.getDate())
-                .personalData(PersonalDataConventerUtils.convert(toDo.getPersonalData()))
+                .personalDataEntity(PersonalDataConventerUtils.convert(toDo.getPersonalData()))
                 .build();
     }
 
