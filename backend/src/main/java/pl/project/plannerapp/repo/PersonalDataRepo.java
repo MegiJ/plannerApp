@@ -9,6 +9,5 @@ import java.util.Optional;
 
 @Repository
 public interface PersonalDataRepo extends JpaRepository<PersonalDataEntity, Long> {
-    @Override
     Optional<PersonalDataEntity> findById(Long id);
 }

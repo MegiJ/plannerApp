@@ -27,13 +27,13 @@ public class PersonalDataConventerUtils {
                 .build();
     }
 
-    public static PersonalDataEntity convert (PersonalData personalData) {
+    public static PersonalDataEntity convert (PersonalData personalDataToEntity) {
         return PersonalDataEntity.builder()
-                .id(personalData.getId())
-                .firstname(personalData.getFirstname())
-                .surname(personalData.getSurname())
-                .phone(personalData.getPhone())
-                .email(personalData.getEmail())
+                .id(personalDataToEntity.getId())
+                .firstname(personalDataToEntity.getFirstname())
+                .surname(personalDataToEntity.getSurname())
+                .phone(personalDataToEntity.getPhone())
+                .email(personalDataToEntity.getEmail())
                 .build();
     }
     public static PersonalData convert (PersonalDataEntity personalDataEntity) {

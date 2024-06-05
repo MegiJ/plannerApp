@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface ToDoService {
-    List<ToDoDTO> getAllTasks();
+    List<ToDo> getAllTasks();
 
     ToDo addTask(ToDo toDo);
 

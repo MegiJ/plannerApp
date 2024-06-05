@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 import pl.project.plannerapp.DTO.ToDoDTO;
+import pl.project.plannerapp.domain.ToDoEntity;
 import pl.project.plannerapp.model.ToDo;
 import pl.project.plannerapp.repo.PersonalDataRepo;
 import pl.project.plannerapp.repo.ToDoRepo;
@@ -26,7 +27,7 @@ public class ToDoServiceImpl implements ToDoService {
     }
 
     @Override
-    public List<ToDoDTO> getAllTasks() {
+    public List<ToDo> getAllTasks() {
         return toDoRepo.findAll()
                 .stream()
                 .map(ToDoConventerUtils::convert)
@@ -41,9 +42,9 @@ public class ToDoServiceImpl implements ToDoService {
 
     @Override
     public boolean deleteTask(Long id) {
-        ToDo toDo = toDoRepo.findById(id)
+        ToDoEntity toDoEntity = toDoRepo.findById(id)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
-        toDoRepo.delete(toDo);
+        toDoRepo.delete(toDoEntity);
         return true;
     }
 
