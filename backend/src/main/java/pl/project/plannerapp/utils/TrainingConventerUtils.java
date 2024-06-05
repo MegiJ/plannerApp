@@ -1,6 +1,7 @@
 package pl.project.plannerapp.utils;
 
 import pl.project.plannerapp.DTO.TrainingDTO;
+import pl.project.plannerapp.domain.TrainingEntity;
 import pl.project.plannerapp.model.Training;
 
 
@@ -20,6 +21,24 @@ public class TrainingConventerUtils {
                 .date(trainingDTO.getDate())
                 .exercise(trainingDTO.getExercise())
                 .personalData(PersonalDataConventerUtils.convert(trainingDTO.getPersonalDataDTO()))
+                .build();
+    }
+
+    public static TrainingEntity convert (Training training) {
+        return TrainingEntity.builder()
+                .id(training.getId())
+                .date(training.getDate())
+                .exercise(training.getExercise())
+                .personalDataEntity(PersonalDataConventerUtils.convert(training.getPersonalData()))
+                .build();
+    }
+
+    public static Training convert (TrainingEntity trainingEntity) {
+        return Training.builder()
+                .id(trainingEntity.getId())
+                .date(trainingEntity.getDate())
+                .exercise(trainingEntity.getExercise())
+                .personalData(PersonalDataConventerUtils.convert(trainingEntity.getPersonalDataEntity()))
                 .build();
     }
 }

@@ -2,6 +2,7 @@ package pl.project.plannerapp.utils;
 
 
 import pl.project.plannerapp.DTO.DietDTO;
+import pl.project.plannerapp.domain.DietEntity;
 import pl.project.plannerapp.model.Diet;
 
 
@@ -20,6 +21,22 @@ public class DietConventerUtils {
                 .date(dietDTO.getDate())
                 .meal(dietDTO.getMeal())
                 .personalData(PersonalDataConventerUtils.convert(dietDTO.getPersonalDataDTO()))
+                .build();
+    }
+    public static DietEntity convert (Diet dietToEntity) {
+        return DietEntity.builder()
+                .id((dietToEntity.getId()))
+                .date(dietToEntity.getDate())
+                .meal(dietToEntity.getMeal())
+                .personalDataEntity(PersonalDataConventerUtils.convert(dietToEntity.getPersonalData()))
+                .build();
+    }
+    public static Diet convert (DietEntity dietEntity) {
+        return Diet.builder()
+                .id(dietEntity.getId())
+                .date(dietEntity.getDate())
+                .meal(dietEntity.getMeal())
+                .personalData(PersonalDataConventerUtils.convert(dietEntity.getPersonalDataEntity()))
                 .build();
     }
 }

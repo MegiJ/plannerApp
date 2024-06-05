@@ -3,7 +3,7 @@ package pl.project.plannerapp.model;
 import lombok.Builder;
 import lombok.Getter;
 
-@Builder(setterPrefix = "with")
+@Builder
 @Getter
 public class PersonalData {
     private Long id;

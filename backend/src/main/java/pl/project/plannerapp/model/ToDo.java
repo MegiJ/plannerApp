@@ -5,7 +5,7 @@ import lombok.Getter;
 
 import java.time.Instant;
 
-@Builder(setterPrefix = "with")
+@Builder
 @Getter
 public class ToDo {
     private Long id;

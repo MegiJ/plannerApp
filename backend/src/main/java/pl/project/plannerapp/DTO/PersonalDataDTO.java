@@ -3,7 +3,7 @@ package pl.project.plannerapp.DTO;
 import com.google.common.base.Joiner;
 import lombok.*;
 
-@Builder(setterPrefix = "with")
+@Builder
 @Getter
 @Setter
 @AllArgsConstructor
