@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import pl.project.plannerapp.DTO.AccountDetailsDTO;
 
 import pl.project.plannerapp.domain.AccountDetailsEntity;
+import pl.project.plannerapp.domain.PersonalDataEntity;
 import pl.project.plannerapp.model.AccountDetails;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
@@ -42,7 +43,7 @@ public class AccountDetailsConventerUtils {
                 .build();
     }
 
-    public static AccountDetails convert (AccountDetailsEntity accountDetailsEntity) {
+    public static AccountDetails convert(AccountDetailsEntity accountDetailsEntity) {
         return AccountDetails.builder()
                 .id(accountDetailsEntity.getId())
                 .role(accountDetailsEntity.getRole())
