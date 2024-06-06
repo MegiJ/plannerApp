@@ -24,13 +24,13 @@ public class LoggingDataConventerUtils {
                 .accountDetails(AccountDetailsConventerUtils.convert(loggingDataDTO.getAccountDetailsDTO()))
                 .build();
     }
-    public static LoggingDataEntity convert (LoggingData loggingData) {
+    public static LoggingDataEntity convertToEntity(LoggingData loggingDataToEntity) {
         return LoggingDataEntity.builder()
-                .id(loggingData.getId())
-                .login(loggingData.getLogin())
-                .password(loggingData.getPassword())
-                .personalDataEntity(PersonalDataConventerUtils.convert(loggingData.getPersonalData()))
-                .accountDetailsEntity(AccountDetailsConventerUtils.convert(loggingData.getAccountDetails()))
+                .id(loggingDataToEntity.getId())
+                .login(loggingDataToEntity.getLogin())
+                .password(loggingDataToEntity.getPassword())
+                .personalDataEntity(PersonalDataConventerUtils.convertToEntity(loggingDataToEntity.getPersonalData()))
+                .accountDetailsEntity(AccountDetailsConventerUtils.convertToEntity(loggingDataToEntity.getAccountDetails()))
                 .build();
     }
     public static LoggingData convert (LoggingDataEntity loggingDataEntity) {

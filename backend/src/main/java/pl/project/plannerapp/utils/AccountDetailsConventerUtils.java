@@ -31,7 +31,7 @@ public class AccountDetailsConventerUtils {
                 .build();
     }
 
-    public static AccountDetailsEntity convert (AccountDetails accountDetails) {
+    public static AccountDetailsEntity convertToEntity(AccountDetails accountDetails) {
         return AccountDetailsEntity.builder()
                 .id(accountDetails.getId())
                 .role(accountDetails.getRole())

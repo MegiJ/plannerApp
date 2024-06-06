@@ -12,6 +12,7 @@ public class DietConventerUtils {
                 .id(diet.getId())
                 .date(diet.getDate())
                 .meal(diet.getMeal())
+                .personalDataDTO(PersonalDataConventerUtils.convert(diet.getPersonalData()))
                 .build();
     }
     public static Diet convert (DietDTO dietDTO) {
@@ -19,13 +20,15 @@ public class DietConventerUtils {
                 .id(dietDTO.getId())
                 .date(dietDTO.getDate())
                 .meal(dietDTO.getMeal())
+                .personalData(PersonalDataConventerUtils.convert(dietDTO.getPersonalDataDTO()))
                 .build();
     }
-    public static DietEntity convert (Diet dietToEntity) {
+    public static DietEntity convertToEntity(Diet dietToEntity) {
         return DietEntity.builder()
                 .id((dietToEntity.getId()))
                 .date(dietToEntity.getDate())
                 .meal(dietToEntity.getMeal())
+                .personalDataEntity(PersonalDataConventerUtils.convertToEntity(dietToEntity.getPersonalData()))
                 .build();
     }
     public static Diet convert (DietEntity dietEntity) {
@@ -33,6 +36,7 @@ public class DietConventerUtils {
                 .id(dietEntity.getId())
                 .date(dietEntity.getDate())
                 .meal(dietEntity.getMeal())
+                .personalData(PersonalDataConventerUtils.convert(dietEntity.getPersonalDataEntity()))
                 .build();
     }
 }

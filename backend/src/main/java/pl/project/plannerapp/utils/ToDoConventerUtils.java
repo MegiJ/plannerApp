@@ -33,12 +33,12 @@ public class ToDoConventerUtils {
                 .personalData(PersonalDataConventerUtils.convert(toDoEntity.getPersonalDataEntity()))
                 .build();
     }
-    public static ToDoEntity convert (ToDo toDo) {
+    public static ToDoEntity convertToEntity(ToDo toDo) {
         return ToDoEntity.builder()
                 .id(toDo.getId())
                 .note(toDo.getNote())
                 .date(toDo.getDate())
-                .personalDataEntity(PersonalDataConventerUtils.convert(toDo.getPersonalData()))
+                .personalDataEntity(PersonalDataConventerUtils.convertToEntity(toDo.getPersonalData()))
                 .build();
     }
 }

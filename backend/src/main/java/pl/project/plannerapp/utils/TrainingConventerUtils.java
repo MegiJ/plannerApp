@@ -24,12 +24,12 @@ public class TrainingConventerUtils {
                 .build();
     }
 
-    public static TrainingEntity convert (Training training) {
+    public static TrainingEntity convertToEntity(Training training) {
         return TrainingEntity.builder()
                 .id(training.getId())
                 .date(training.getDate())
                 .exercise(training.getExercise())
-                .personalDataEntity(PersonalDataConventerUtils.convert(training.getPersonalData()))
+                .personalDataEntity(PersonalDataConventerUtils.convertToEntity(training.getPersonalData()))
                 .build();
     }
 

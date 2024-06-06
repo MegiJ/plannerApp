@@ -27,7 +27,7 @@ public class PersonalDataConventerUtils {
                 .build();
     }
 
-    public static PersonalDataEntity convert (PersonalData personalDataToEntity) {
+    public static PersonalDataEntity convertToEntity(PersonalData personalDataToEntity) {
         return PersonalDataEntity.builder()
                 .id(personalDataToEntity.getId())
                 .firstname(personalDataToEntity.getFirstname())
