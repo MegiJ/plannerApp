@@ -39,7 +39,7 @@ public class LoggingDataConventerUtils {
                 .login(loggingDataEntity.getLogin())
                 .password(loggingDataEntity.getPassword())
                 .personalData(PersonalDataConventerUtils.convert(loggingDataEntity.getPersonalDataEntity()))
-                .accountDetails(AccountDetailsConventerUtils.convert(loggingDataEntity.getPersonalDataEntity()))
+                .accountDetails(AccountDetailsConventerUtils.convert(loggingDataEntity.getAccountDetailsEntity()))
                 .build();
     }
 }
