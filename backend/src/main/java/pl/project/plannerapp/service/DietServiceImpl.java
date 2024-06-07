@@ -2,7 +2,6 @@ package pl.project.plannerapp.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import pl.project.plannerapp.DTO.DietDTO;
 import pl.project.plannerapp.model.Diet;
 import pl.project.plannerapp.repo.DietRepo;
 import pl.project.plannerapp.repo.PersonalDataRepo;
@@ -24,7 +23,7 @@ public class DietServiceImpl implements DietService {
     }
 
     @Override
-    public List<DietDTO> getAllDiet() {
+    public List<Diet> getAllDiet() {
         return dietRepo.findAll()
                 .stream()
                 .map(DietConventerUtils::convert)
@@ -42,7 +41,7 @@ public class DietServiceImpl implements DietService {
     }
 
     @Override
-    public Optional<DietDTO> getById(Long id) {
+    public Optional<Diet> getById(Long id) {
         return dietRepo.findById(id)
                 .map(DietConventerUtils::convert);
     }

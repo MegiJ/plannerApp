@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface TrainingService  {
-    List<TrainingDTO> getAllTraining();
+    List<Training> getAllTraining();
 
     Training addExercise(Training training);
 

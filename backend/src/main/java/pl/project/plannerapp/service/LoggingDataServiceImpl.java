@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 import pl.project.plannerapp.DTO.LoggingDataDTO;
+import pl.project.plannerapp.domain.LoggingDataEntity;
 import pl.project.plannerapp.model.LoggingData;
 import pl.project.plannerapp.repo.AccountDetailsRepo;
 import pl.project.plannerapp.repo.LoggingDataRepo;
@@ -29,7 +30,7 @@ public class LoggingDataServiceImpl implements LoggingDataService {
     }
 
     @Override
-    public List<LoggingDataDTO> getAllLoginData() {
+    public List<LoggingData> getAllLoginData() {
         return loggingDataRepo.findAll()
                 .stream()
                 .map(LoggingDataConventerUtils::convert)
@@ -43,13 +44,13 @@ public class LoggingDataServiceImpl implements LoggingDataService {
 
     @Override
     public void delete(Long id) {
-        LoggingData loggingData = loggingDataRepo.findById(id)
+        LoggingDataEntity loggingDataEntity = loggingDataRepo.findById(id)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
-        loggingDataRepo.delete(loggingData);
+        loggingDataRepo.delete(loggingDataEntity);
     }
 
     @Override
-    public Optional<LoggingDataDTO> getById(Long id) {
+    public Optional<LoggingData> getById(Long id) {
         return loggingDataRepo.findById(id)
                 .map(LoggingDataConventerUtils::convert);
     }

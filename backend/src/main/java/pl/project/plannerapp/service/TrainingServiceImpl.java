@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 import pl.project.plannerapp.DTO.TrainingDTO;
+import pl.project.plannerapp.domain.TrainingEntity;
 import pl.project.plannerapp.model.Training;
 import pl.project.plannerapp.repo.PersonalDataRepo;
 import pl.project.plannerapp.repo.TrainingRepo;
@@ -26,7 +27,7 @@ public class TrainingServiceImpl implements TrainingService {
     }
 
     @Override
-    public List<TrainingDTO> getAllTraining() {
+    public List<Training> getAllTraining() {
         return trainingRepo.findAll()
                 .stream()
                 .map(TrainingConventerUtils::convert)
@@ -41,9 +42,9 @@ public class TrainingServiceImpl implements TrainingService {
     }
     @Override
     public boolean deleteExercise(Long id) {
-        Training training = trainingRepo.findById(id)
+        TrainingEntity trainingEntity = trainingRepo.findById(id)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
-        trainingRepo.delete(training);
+        trainingRepo.delete(trainingEntity);
         return true;
     }
 

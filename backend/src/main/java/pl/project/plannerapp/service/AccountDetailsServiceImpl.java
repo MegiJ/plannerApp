@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 import pl.project.plannerapp.DTO.AccountDetailsDTO;
+import pl.project.plannerapp.domain.AccountDetailsEntity;
 import pl.project.plannerapp.model.AccountDetails;
 import pl.project.plannerapp.repo.AccountDetailsRepo;
 import pl.project.plannerapp.utils.AccountDetailsConventerUtils;
@@ -23,7 +24,7 @@ public class AccountDetailsServiceImpl implements AccountDetailsService {
     }
 
     @Override
-    public List<AccountDetailsDTO> getAllAccount() {
+    public List<AccountDetails> getAllAccount() {
         return accountDetailsRepo.findAll().stream()
                 .map(AccountDetailsConventerUtils::convert)
                 .collect(Collectors.toList());
@@ -36,13 +37,13 @@ public class AccountDetailsServiceImpl implements AccountDetailsService {
 
     @Override
     public void deleteAccount(Long id) {
-        AccountDetails accountDetails = accountDetailsRepo.findById(id)
+        AccountDetailsEntity accountDetailsEntity = accountDetailsRepo.findById(id)
             .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
-        accountDetailsRepo.delete(accountDetails);
+        accountDetailsRepo.delete(accountDetailsEntity);
     }
 
     @Override
-    public Optional<AccountDetailsDTO> getById(Long id) {
+    public Optional<AccountDetails> getById(Long id) {
         return accountDetailsRepo.findById(id).map(AccountDetailsConventerUtils::convert);
     }
 
