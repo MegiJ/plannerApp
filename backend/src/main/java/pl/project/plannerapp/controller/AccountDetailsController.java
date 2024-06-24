@@ -23,18 +23,18 @@ public class AccountDetailsController {
 
     @GetMapping
     public List<AccountDetailsDTO> get() {
-        return accountDetailsService.getAllAccount();
+        return accountDetailsService.getAllAccounts();
     }
 
     @GetMapping("/{accountDetails-id}")
     public AccountDetailsDTO get(@PathVariable Long id) {
-        return accountDetailsService.getById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+        return accountDetailsService.getBySurname(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }
 
     @Transactional
     @PutMapping("/{accountDetails-id)")
     public void put (@PathVariable Long id, @RequestBody AccountDetailsDTO accountDetailsJson) {
-        accountDetailsService.put(id, accountDetailsJson);
+        accountDetailsService.addAccount(accountDetailsJson);
     }
 
     @Transactional

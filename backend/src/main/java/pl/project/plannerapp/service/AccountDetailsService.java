@@ -1,18 +1,16 @@
 package pl.project.plannerapp.service;
 
-import pl.project.plannerapp.DTO.AccountDetailsDTO;
 import pl.project.plannerapp.model.AccountDetails;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface AccountDetailsService {
-    List<AccountDetails> getAllAccount();
+    List<AccountDetails> getAllAccounts(); // lista kont
 
-    void put(Long id, AccountDetailsDTO accountDetailsDTO);
+    Long addAccount(AccountDetails accountDetails);
 
-    void deleteAccount(Long id);
+    boolean deleteAccount(Long idToBeRemoved);
 
-    Optional<AccountDetails> getById(Long id);
+    List<AccountDetails> getAllExpiredAccounts();
 
 }
