@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 import pl.project.plannerapp.domain.AccountDetailsEntity;
+import pl.project.plannerapp.exceptions.AccountDetailsException;
 import pl.project.plannerapp.model.AccountDetails;
 import pl.project.plannerapp.repo.AccountDetailsRepo;
 import pl.project.plannerapp.utils.AccountDetailsConventerUtils;
@@ -39,11 +40,6 @@ public class AccountDetailsServiceImpl implements AccountDetailsService {
             .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
         accountDetailsRepo.delete(accountDetailsEntity);
         return true;
-    }
-
-    @Override
-    public AccountDetails getBySurname(String surname) {
-        return accountDetailsRepo.findById(surname).map(AccountDetailsConventerUtils::convert);
     }
 
 }

@@ -11,6 +11,7 @@ public interface AccountDetailsService {
 
     boolean deleteAccount(Long idToBeRemoved);
 
+
     List<AccountDetails> getAllExpiredAccounts();
 
 }

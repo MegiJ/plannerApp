@@ -1,13 +1,12 @@
 package pl.project.plannerapp.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.server.ResponseStatusException;
 import pl.project.plannerapp.DTO.AccountDetailsDTO;
+import pl.project.plannerapp.model.AccountDetails;
 import pl.project.plannerapp.service.AccountDetailsService;
+import pl.project.plannerapp.utils.AccountDetailsConventerUtils;
 
 import java.util.List;
 
@@ -22,24 +21,18 @@ public class AccountDetailsController {
     }
 
     @GetMapping
-    public List<AccountDetailsDTO> get() {
-        return accountDetailsService.getAllAccounts();
+    public List<AccountDetailsDTO> getAll() {
+        List<AccountDetails> accountDetails = accountDetailsService.getAllAccounts();
+        return accountDetails.stream().map(AccountDetailsConventerUtils::convert).toList();
     }
 
-    @GetMapping("/{accountDetails-id}")
-    public AccountDetailsDTO get(@PathVariable Long id) {
-        return accountDetailsService.getBySurname(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+    @PostMapping
+    public void createAccountDetails(@RequestBody AccountDetailsDTO accountDetailsJson) {
+        accountDetailsService.addAccount(AccountDetailsConventerUtils.convert(accountDetailsJson));
     }
 
-    @Transactional
-    @PutMapping("/{accountDetails-id)")
-    public void put (@PathVariable Long id, @RequestBody AccountDetailsDTO accountDetailsJson) {
-        accountDetailsService.addAccount(accountDetailsJson);
-    }
-
-    @Transactional
-    @DeleteMapping("/{accountDetails-id}")
-    public void delete(@PathVariable Long id) {
-        accountDetailsService.deleteAccount(id);
+    @DeleteMapping("/{accountDetailsId}")
+    public void deleteAccountDetails(@PathVariable Long accountDetailsId) {
+        accountDetailsService.deleteAccount(accountDetailsId);
     }
 }

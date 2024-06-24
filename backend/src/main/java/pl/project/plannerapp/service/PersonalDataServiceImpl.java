@@ -6,8 +6,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 import pl.project.plannerapp.DTO.PersonalDataDTO;
 import pl.project.plannerapp.domain.PersonalDataEntity;
+import pl.project.plannerapp.exceptions.AccountDetailsException;
+import pl.project.plannerapp.model.AccountDetails;
 import pl.project.plannerapp.model.PersonalData;
 import pl.project.plannerapp.repo.PersonalDataRepo;
+import pl.project.plannerapp.utils.AccountDetailsConventerUtils;
 import pl.project.plannerapp.utils.PersonalDataConventerUtils;
 
 import java.util.List;
@@ -45,5 +48,12 @@ public class PersonalDataServiceImpl implements PersonalDataService {
     public Optional<PersonalData> getById(Long id) {
         return personalDataRepo.findById(id)
                 .map(PersonalDataConventerUtils::convert);
+    }
+
+    @Override
+    public PersonalData getBySurname(String surname) {
+        return personalDataRepo.findBySurname(surname)
+                .map(PersonalDataConventerUtils::convert)
+                .orElseThrow(()->new AccountDetailsException("Not found account details for surname: " + surname));
     }
 }

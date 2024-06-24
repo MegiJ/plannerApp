@@ -12,4 +12,5 @@ public interface AccountDetailsRepo extends JpaRepository<AccountDetailsEntity, 
     Optional<AccountDetailsEntity> findById(Long id);
 
 
+
 }
