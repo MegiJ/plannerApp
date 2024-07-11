@@ -11,6 +11,7 @@ import org.springframework.web.server.ResponseStatusException;
 import pl.project.plannerapp.DTO.DietDTO;
 import pl.project.plannerapp.service.DietService;
 import pl.project.plannerapp.service.PersonalDataService;
+import pl.project.plannerapp.utils.DietConventerUtils;
 
 import java.util.List;
 
@@ -31,12 +32,12 @@ public class DietController {
 
     @GetMapping
     public List<DietDTO> get() {
-        return dietService.getAllDiet();
+        return dietService.getAllDiet().stream().map(a-> DietConventerUtils.convert(a)).toList();
     }
 
     @GetMapping("/{diet-id}")
     public DietDTO get(@PathVariable Long id) {
-        return dietService.getById(id)
+        return dietService.getById(id).map(a->DietConventerUtils.convert(a))
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }
 

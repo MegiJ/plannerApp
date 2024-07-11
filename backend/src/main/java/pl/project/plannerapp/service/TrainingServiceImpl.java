@@ -9,6 +9,7 @@ import pl.project.plannerapp.domain.TrainingEntity;
 import pl.project.plannerapp.model.Training;
 import pl.project.plannerapp.repo.PersonalDataRepo;
 import pl.project.plannerapp.repo.TrainingRepo;
+import pl.project.plannerapp.utils.ToDoConventerUtils;
 import pl.project.plannerapp.utils.TrainingConventerUtils;
 
 import java.util.List;
@@ -37,7 +38,7 @@ public class TrainingServiceImpl implements TrainingService {
 
     @Override
     public Training addExercise(Training training) {
-        trainingRepo.save(training);
+        trainingRepo.save(TrainingConventerUtils.convertToEntity(training));
         return training;
     }
     @Override
@@ -49,7 +50,7 @@ public class TrainingServiceImpl implements TrainingService {
     }
 
     @Override
-    public Optional<TrainingDTO> getById(Long id) {
+    public Optional<Training> getById(Long id) {
         return trainingRepo.findById(id)
                 .map(TrainingConventerUtils::convert);
     }

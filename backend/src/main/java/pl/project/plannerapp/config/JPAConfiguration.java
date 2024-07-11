@@ -40,35 +40,35 @@ public class JPAConfiguration {
         return adapter;
     }
 
-    @Bean
-    public LocalContainerEntityManagerFactoryBean entityManagerFactoryBean(DataSourceBuilder dataSourceBuilder, HibernateJpaVendorAdapter jpaVendorAdapter) {
-        LocalContainerEntityManagerFactoryBean entityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
-        entityManagerFactoryBean.setDataSource(dataSourceBuilder.build());
-        entityManagerFactoryBean.setJpaVendorAdapter(jpaVendorAdapter);
-        entityManagerFactoryBean.setPackagesToScan(
-                "pl.project.plannerapp.model",
-                "pl.project.plannerapp.conventer"
-        );
-        entityManagerFactoryBean.setJpaPropertyMap(ImmutableMap.of(
-                AvailableSettings.DIALECT, "org.hibernate.dialect.MySQL8Dialect",
-//                AvailableSettings.SHOW_SQL, "true",
-                AvailableSettings.HBM2DDL_AUTO, "create"
-        ));
-        return entityManagerFactoryBean;
-    }
+//    @Bean
+//    public LocalContainerEntityManagerFactoryBean entityManagerFactoryBean(DataSourceBuilder dataSourceBuilder, HibernateJpaVendorAdapter jpaVendorAdapter) {
+//        LocalContainerEntityManagerFactoryBean entityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
+//        entityManagerFactoryBean.setDataSource(dataSourceBuilder.build());
+//        entityManagerFactoryBean.setJpaVendorAdapter(jpaVendorAdapter);
+//        entityManagerFactoryBean.setPackagesToScan(
+//                "pl.project.plannerapp.model",
+//                "pl.project.plannerapp.conventer"
+//        );
+//        entityManagerFactoryBean.setJpaPropertyMap(ImmutableMap.of(
+//                AvailableSettings.DIALECT, "org.hibernate.dialect.MySQL8Dialect",
+////                AvailableSettings.SHOW_SQL, "true",
+//                AvailableSettings.HBM2DDL_AUTO, "create"
+//        ));
+//        return entityManagerFactoryBean;
+//    }
 
-    @Bean
-    public EntityManager entityManager(EntityManagerFactory entityManagerFactory) {
-        return entityManagerFactory.createEntityManager();
-    }
+//    @Bean
+//    public EntityManager entityManager(EntityManagerFactory entityManagerFactory) {
+//        return entityManagerFactory.createEntityManager();
+//    }
 
-    @Bean
-    public HibernateExceptionTranslator hibernateExceptionTranslator() {
-        return new HibernateExceptionTranslator();
-    }
+//    @Bean
+//    public HibernateExceptionTranslator hibernateExceptionTranslator() {
+//        return new HibernateExceptionTranslator();
+//    }
 
-    @Bean(name = "transactionManager")
-    public PlatformTransactionManager platformTransactionManager(EntityManagerFactory entityManagerFactory) {
-        return new JpaTransactionManager(entityManagerFactory);
-    }
+//    @Bean(name = "transactionManager")
+//    public PlatformTransactionManager platformTransactionManager(EntityManagerFactory entityManagerFactory) {
+//        return new JpaTransactionManager(entityManagerFactory);
+//    }
 }

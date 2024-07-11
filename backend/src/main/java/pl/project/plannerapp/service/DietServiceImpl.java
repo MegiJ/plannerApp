@@ -32,7 +32,7 @@ public class DietServiceImpl implements DietService {
 
     @Override
     public Diet addDiet(Diet diet) {
-
+return null;
     }
 
     public boolean deleteDiet(Long id) {

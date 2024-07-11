@@ -11,6 +11,7 @@ import pl.project.plannerapp.DTO.LoggingDataDTO;
 import pl.project.plannerapp.service.AccountDetailsService;
 import pl.project.plannerapp.service.LoggingDataService;
 import pl.project.plannerapp.service.PersonalDataService;
+import pl.project.plannerapp.utils.LoggingDataConventerUtils;
 
 import java.util.List;
 
@@ -37,7 +38,7 @@ public class LoggingDataController {
 
     @GetMapping("/{loggingData-id}")
     public LoggingDataDTO get(@PathVariable Long id) {
-        return loggingDataService.getById(id)
+        return loggingDataService.getById(id).map(a-> LoggingDataConventerUtils.convert(a))
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }
 

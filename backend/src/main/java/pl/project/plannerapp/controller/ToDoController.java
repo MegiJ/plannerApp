@@ -5,7 +5,6 @@ import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import pl.project.plannerapp.DTO.ToDoDTO;
 import pl.project.plannerapp.model.ToDo;
@@ -29,10 +28,9 @@ public class ToDoController {
         this.applicationEventPublisher = applicationEventPublisher;
     }
 
-    @Transactional
-    @DeleteMapping("/{todo-id}")
-    public void delete(@PathVariable Long id) {
-        toDoService.deleteTask(id);
+    @DeleteMapping("/{todoId}")
+    public void deleteToDo(@PathVariable Long todoId) {
+        toDoService.deleteTask(todoId);
     }
     @PostMapping
     public ResponseEntity<ToDo> addTask(@RequestBody ToDoDTO toDoDTO) {
@@ -40,16 +38,16 @@ public class ToDoController {
         return ResponseEntity.status(HttpStatus.CREATED).body(newToDo);
     }
 
-    @PatchMapping("/{todo-id}/complete")
+    @PatchMapping("/{todoId}/complete")
     public ResponseEntity<ToDo> markTaskAsCompleted(@PathVariable Long toDoId) { // zaznacz zadanie jako ukonczone
         ToDo completedTask = toDoService.markTaskAsCompleted(toDoId);
         return ResponseEntity.ok(completedTask);
     }
 
     @GetMapping
-    public ResponseEntity<List<ToDoDTO>> getAllTasks() {
-        List<ToDoDTO> tasks = toDoService.getAllTasks();
-        return ResponseEntity.ok(tasks);
+    public List<ToDoDTO> getAllTasks() {
+        List<ToDo> tasks = toDoService.getAllTasks();
+        return tasks.stream().map(ToDoConventerUtils::convert).toList();
     }
 
     @DeleteMapping("/{todo-id}")

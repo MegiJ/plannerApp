@@ -36,7 +36,7 @@ public class ToDoServiceImpl implements ToDoService {
 
     @Override
     public ToDo addTask(ToDo toDo) {
-        toDoRepo.save(toDo);
+        toDoRepo.save(ToDoConventerUtils.convertToEntity(toDo));
         return toDo;
     }
 
@@ -49,7 +49,7 @@ public class ToDoServiceImpl implements ToDoService {
     }
 
     @Override
-    public Optional<ToDoDTO> getById(Long id) {
+    public Optional<ToDo> getById(Long id) {
         return toDoRepo.findById(id)
                 .map(ToDoConventerUtils::convert);
     }

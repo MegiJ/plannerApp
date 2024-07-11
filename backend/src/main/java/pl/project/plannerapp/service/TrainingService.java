@@ -13,5 +13,5 @@ public interface TrainingService  {
 
     boolean deleteExercise(Long id);
 
-    Optional<TrainingDTO> getById(Long id);
+    Optional<Training> getById(Long id);
 }

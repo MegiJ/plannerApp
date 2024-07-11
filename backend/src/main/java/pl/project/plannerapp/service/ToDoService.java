@@ -13,7 +13,7 @@ public interface ToDoService {
 
     boolean deleteTask(Long id);
 
-    Optional<ToDoDTO> getById(Long id);
+    Optional<ToDo> getById(Long id);
 
     ToDo markTaskAsCompleted(Long id);
 }
