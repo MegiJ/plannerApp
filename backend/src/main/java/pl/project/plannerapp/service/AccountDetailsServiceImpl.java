@@ -30,8 +30,8 @@ public class AccountDetailsServiceImpl implements AccountDetailsService {
     }
 
     @Override
-    public Long addAccount(AccountDetails accountDetails) {
-
+    public Long addAccount(AccountDetails accountDetailsToBeAdded) {
+        return accountDetailsRepo.save(AccountDetailsConventerUtils.convertToEntity(accountDetailsToBeAdded)).getId();
     }
 
     @Override
@@ -40,6 +40,12 @@ public class AccountDetailsServiceImpl implements AccountDetailsService {
             .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
         accountDetailsRepo.delete(accountDetailsEntity);
         return true;
+    }
+
+    @Override
+    public List<AccountDetails> getAllExpiredAccounts() {
+        List<AccountDetailsEntity> allExpiredAccount = accountDetailsRepo.findAllExpiredAccount();
+        return allExpiredAccount.stream().map(a -> AccountDetailsConventerUtils.convert(a)).collect(Collectors.toList());
     }
 
 }
