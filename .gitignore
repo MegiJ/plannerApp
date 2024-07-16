@@ -1,13 +1,16 @@
 HELP.md
-.gradle
-.gradle/
-.gradle/*
-build/
-build/*
-build
-!gradle/wrapper/gradle-wrapper.jar
+.mvn
+.maven/
+.maven/*
+target/
+target/*
+target
 !**/src/main/**/build/
+!**/src/main/**/target/
+!**/src/**/target/
+!**/src/target/
 !**/src/test/**/build/
+!**/src/test/**/target/
 
 ### STS ###
 .apt_generated
@@ -43,3 +46,7 @@ out/*
 
 ### VS Code ###
 .vscode/
+frontend/.editorconfig
+frontend/frontend.iml
+*.mwb
+*.bak
