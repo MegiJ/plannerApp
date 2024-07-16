@@ -36,7 +36,5 @@ public class AccountDetailsEntity {
     private boolean isDisabled;
 
     @OneToOne(mappedBy = "accountDetailsEntity")
-    private List<LoggingDataEntity> loggingDataEntities;
-
-
+    private LoggingDataEntity loggingDataEntities;
 }

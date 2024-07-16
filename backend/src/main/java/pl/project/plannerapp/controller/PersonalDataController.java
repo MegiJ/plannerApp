@@ -31,7 +31,7 @@ public class PersonalDataController {
     }
 
     @Transactional
-    @PutMapping("/personalData-id}")
+    @PutMapping("/personalData-id")
     public void put(@PathVariable Long id, @RequestBody PersonalDataDTO personalDataJson) {
 
     }

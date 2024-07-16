@@ -1,6 +1,5 @@
 package pl.project.plannerapp.DTO;
 
-import com.google.common.base.Joiner;
 import lombok.*;
 
 @Builder
@@ -15,7 +14,4 @@ public class PersonalDataDTO {
     private int phone;
     private String email;
 
-    public String nameAndSurname() {
-        return Joiner.on(" ").skipNulls().join(firstname, surname);
-    }
 }
