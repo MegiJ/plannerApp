@@ -25,21 +25,15 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResponseEntity<String> handleConstraintViolationException(MethodArgumentNotValidException ex) {
-        return ResponseEntity.status(HttpStatus.CONFLICT)
-                .body("Invalid data");
-    }
-
-    @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<String> handleMethodArgumentNotValidException(MethodArgumentNotValidException ex) {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                .body("Validation error: " + ex.getMessage());
+                .body("Validation error: ");
     }
 
     @ExceptionHandler(ResponseStatusException.class)
     public ResponseEntity<String> handleResponseStatusException(ResponseStatusException ex) {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                .body("Error: " + ex.getReason());
+                .body("Error: ");
     }
 
 }

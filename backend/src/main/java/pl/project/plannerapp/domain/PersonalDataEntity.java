@@ -42,6 +42,6 @@ public class PersonalDataEntity {
     private List<TrainingEntity> trainingEntities;
 
     @OneToOne(mappedBy = "personalDataEntity")
-    private List<LoggingDataEntity> loggingDataEntities;
+    private LoggingDataEntity loggingDataEntities;
 
 }
