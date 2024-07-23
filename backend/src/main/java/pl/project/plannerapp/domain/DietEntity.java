@@ -20,13 +20,13 @@ public class DietEntity {
     @Column(name = "ID")
     private Long id;
 
-    @Column(name = "DATE")
+    @Column(name = "DATE_OF_DIET")
     private Instant date;
 
     @Column(name = "MEAL")
     private String meal;
 
     @ManyToOne
-    @JoinColumn(name = "PERSONAL_DATA_ID", referencedColumnName = "ID")
+    @JoinColumn(name = "USER_ID", referencedColumnName = "ID")
     private PersonalDataEntity personalDataEntity;
 }

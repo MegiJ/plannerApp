@@ -1,9 +1,6 @@
 package pl.project.plannerapp.DTO;
 
-import com.fasterxml.jackson.annotation.JsonView;
-import jakarta.validation.constraints.NotNull;
 import lombok.*;
-import pl.project.plannerapp.model.PersonalData;
 
 import java.time.Instant;
 

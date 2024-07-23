@@ -1,6 +1,5 @@
 package pl.project.plannerapp.service;
 
-import pl.project.plannerapp.DTO.ToDoDTO;
 import pl.project.plannerapp.model.ToDo;
 
 import java.util.List;

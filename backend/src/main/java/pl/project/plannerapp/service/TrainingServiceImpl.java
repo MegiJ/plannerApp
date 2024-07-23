@@ -4,12 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
-import pl.project.plannerapp.DTO.TrainingDTO;
 import pl.project.plannerapp.domain.TrainingEntity;
 import pl.project.plannerapp.model.Training;
 import pl.project.plannerapp.repo.PersonalDataRepo;
 import pl.project.plannerapp.repo.TrainingRepo;
-import pl.project.plannerapp.utils.ToDoConventerUtils;
 import pl.project.plannerapp.utils.TrainingConventerUtils;
 
 import java.util.List;

@@ -31,7 +31,7 @@ public class DietController {
     }
 
     @GetMapping
-    public List<DietDTO> get() {
+    public List<DietDTO> getAllDiets() {
         return dietService.getAllDiet().stream().map(a-> DietConventerUtils.convert(a)).toList();
     }
 

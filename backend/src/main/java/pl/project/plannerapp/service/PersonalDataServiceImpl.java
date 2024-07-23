@@ -7,10 +7,8 @@ import org.springframework.web.server.ResponseStatusException;
 import pl.project.plannerapp.DTO.PersonalDataDTO;
 import pl.project.plannerapp.domain.PersonalDataEntity;
 import pl.project.plannerapp.exceptions.AccountDetailsException;
-import pl.project.plannerapp.model.AccountDetails;
 import pl.project.plannerapp.model.PersonalData;
 import pl.project.plannerapp.repo.PersonalDataRepo;
-import pl.project.plannerapp.utils.AccountDetailsConventerUtils;
 import pl.project.plannerapp.utils.PersonalDataConventerUtils;
 
 import java.util.List;

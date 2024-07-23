@@ -6,7 +6,6 @@ import lombok.NoArgsConstructor;
 import pl.project.plannerapp.DTO.AccountDetailsDTO;
 
 import pl.project.plannerapp.domain.AccountDetailsEntity;
-import pl.project.plannerapp.domain.PersonalDataEntity;
 import pl.project.plannerapp.model.AccountDetails;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)

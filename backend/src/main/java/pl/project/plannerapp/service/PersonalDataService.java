@@ -1,7 +1,6 @@
 package pl.project.plannerapp.service;
 
 import pl.project.plannerapp.DTO.PersonalDataDTO;
-import pl.project.plannerapp.model.AccountDetails;
 import pl.project.plannerapp.model.PersonalData;
 
 import java.util.List;

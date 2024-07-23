@@ -1,6 +1,5 @@
 package pl.project.plannerapp.service;
 
-import pl.project.plannerapp.DTO.TrainingDTO;
 import pl.project.plannerapp.model.Training;
 
 import java.util.List;

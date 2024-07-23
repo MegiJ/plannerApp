@@ -20,7 +20,7 @@ public class PersonalDataEntity {
     @Column(name = "ID")
     private Long id;
 
-    @Column(name = "FIRSTNAME")
+    @Column(name = "NAME")
     private String firstname;
 
     @Column(name = "SURNAME")
