@@ -43,8 +43,9 @@ public class DietController {
 
     @Transactional
     @PostMapping("/{dietId}")
-    public void addDiet(@PathVariable Long dietId, @RequestBody DietDTO dietJson) {
-
+    public Long addDiet(@PathVariable Long dietId, @RequestBody DietDTO dietJson) {
+        dietService.addDiet(DietConventerUtils.convert(dietJson));
+        return dietId;
     }
 
     @Transactional

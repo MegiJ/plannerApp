@@ -32,7 +32,8 @@ public class DietServiceImpl implements DietService {
 
     @Override
     public Diet addDiet(Diet diet) {
-return null;
+        dietRepo.save(DietConventerUtils.convertToEntity(diet));
+        return diet;
     }
 
     public boolean deleteDiet(Long id) {
