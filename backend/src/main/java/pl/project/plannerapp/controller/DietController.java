@@ -35,21 +35,27 @@ public class DietController {
         return dietService.getAllDiet().stream().map(a-> DietConventerUtils.convert(a)).toList();
     }
 
-    @GetMapping("/{diet-id}")
-    public DietDTO get(@PathVariable Long id) {
-        return dietService.getById(id).map(a->DietConventerUtils.convert(a))
+    @GetMapping("/{dietId}")
+    public DietDTO getDietById(@PathVariable Long dietId) {
+        return dietService.getById(dietId).map(a->DietConventerUtils.convert(a))
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }
 
     @Transactional
-    @PutMapping("/{diet-id}")
-    public void put(@PathVariable Long id, @RequestBody DietDTO dietJson) {
+    @PostMapping("/{dietId}")
+    public void addDiet(@PathVariable Long dietId, @RequestBody DietDTO dietJson) {
 
     }
 
     @Transactional
-    @DeleteMapping("/{diet-id}")
-    public void delete(@PathVariable Long id) {
+    @PutMapping("/{dietId}")
+    public void modifyDiet(@PathVariable Long dietId, @RequestBody DietDTO dietJson) {
+
+    }
+
+    @Transactional
+    @DeleteMapping("/{dietId}")
+    public void delete(@PathVariable Long dietId) {
         
     }
 }
