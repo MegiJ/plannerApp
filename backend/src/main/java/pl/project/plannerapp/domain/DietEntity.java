@@ -15,8 +15,8 @@ import java.time.Instant;
 @Builder
 public class DietEntity {
     @Id
-    @SequenceGenerator(name = "diet_seq", sequenceName = "diet_seq", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "diet_seq")
+    @SequenceGenerator(name = "DIET_ID_SEQ", sequenceName = "DIET_ID_SEQ", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "DIET_ID_SEQ")
     @Column(name = "ID")
     private Long id;
 
@@ -26,7 +26,7 @@ public class DietEntity {
     @Column(name = "MEAL")
     private String meal;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "USER_ID", referencedColumnName = "ID")
     private PersonalDataEntity personalDataEntity;
 }

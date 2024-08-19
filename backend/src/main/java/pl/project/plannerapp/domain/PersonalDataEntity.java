@@ -15,8 +15,8 @@ import java.util.List;
 public class PersonalDataEntity {
 
     @Id
-    @SequenceGenerator(name = "personal_data_seq", sequenceName = "personal_data_seq", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "personal_data_seq")
+    @SequenceGenerator(name = "PERSONAL_DATA_ID_SEQ", sequenceName = "PERSONAL_DATA_ID_SEQ", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "PERSONAL_DATA_ID_SEQ")
     @Column(name = "ID")
     private Long id;
 
@@ -32,16 +32,16 @@ public class PersonalDataEntity {
     @Column(name = "EMAIL")
     private String email;
 
-    @OneToMany(mappedBy = "personalDataEntity")
-    private List<ToDoEntity> toDoList;
-
-    @OneToMany(mappedBy = "personalDataEntity")
-    private List<DietEntity> dietEntities;
-
-    @OneToMany(mappedBy = "personalDataEntity")
-    private List<TrainingEntity> trainingEntities;
-
-    @OneToOne(mappedBy = "personalDataEntity")
-    private LoggingDataEntity loggingDataEntities;
+//    @OneToMany(mappedBy = "personalDataEntity", cascade = CascadeType.MERGE)
+//    private List<ToDoEntity> toDoList;
+//
+//    @OneToMany(mappedBy = "personalDataEntity", cascade = CascadeType.MERGE)
+//    private List<DietEntity> dietEntities;
+//
+//    @OneToMany(mappedBy = "personalDataEntity", cascade = CascadeType.MERGE)
+//    private List<TrainingEntity> trainingEntities;
+//
+//    @OneToOne(mappedBy = "personalDataEntity", cascade = CascadeType.MERGE)
+//    private LoggingDataEntity loggingDataEntities;
 
 }

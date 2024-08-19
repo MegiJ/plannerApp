@@ -41,7 +41,6 @@ public class DietController {
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }
 
-    @Transactional
     @PostMapping("/{dietId}")
     public Long addDiet(@PathVariable Long dietId, @RequestBody DietDTO dietJson) {
         dietService.addDiet(DietConventerUtils.convert(dietJson));
