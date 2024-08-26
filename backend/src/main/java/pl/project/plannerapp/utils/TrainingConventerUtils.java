@@ -26,7 +26,6 @@ public class TrainingConventerUtils {
 
     public static TrainingEntity convertToEntity(Training training) {
         return TrainingEntity.builder()
-                .id(training.getId())
                 .date(training.getDate())
                 .exercise(training.getExercise())
                 .personalDataEntity(PersonalDataConventerUtils.convertToEntity(training.getPersonalData()))

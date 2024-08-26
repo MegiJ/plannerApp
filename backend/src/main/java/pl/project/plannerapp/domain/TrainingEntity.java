@@ -7,7 +7,7 @@ import pl.project.plannerapp.model.PersonalData;
 import java.time.Instant;
 
 @Entity
-@Table(name = "training")
+@Table(name = "TRAINING")
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -17,8 +17,8 @@ import java.time.Instant;
 public class TrainingEntity {
 
     @Id
-    @SequenceGenerator(name = "training_seq", sequenceName = "training_seq", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "training_seq")
+    @SequenceGenerator(name = "TRAINING_ID_SEQ", sequenceName = "TRAINING_ID_SEQ", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "TRAINING_ID_SEQ")
     @Column(name = "ID")
     private Long id;
 

@@ -32,7 +32,6 @@ public class PersonalDataConventerUtils {
 
     public static PersonalDataEntity convertToEntity(PersonalData personalDataToEntity) {
         return PersonalDataEntity.builder()
-                .id(personalDataToEntity.getId())
                 .firstname(personalDataToEntity.getFirstname())
                 .surname(personalDataToEntity.getSurname())
                 .phone(personalDataToEntity.getPhone())

@@ -35,7 +35,6 @@ public class ToDoConventerUtils {
     }
     public static ToDoEntity convertToEntity(ToDo toDo) {
         return ToDoEntity.builder()
-                .id(toDo.getId())
                 .note(toDo.getNote())
                 .date(toDo.getDate())
                 .personalDataEntity(PersonalDataConventerUtils.convertToEntity(toDo.getPersonalData()))

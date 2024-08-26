@@ -6,7 +6,7 @@ import lombok.*;
 import java.util.List;
 
 @Entity
-@Table(name = "personal_data")
+@Table(name = "PERSONAL_DATA")
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -32,16 +32,16 @@ public class PersonalDataEntity {
     @Column(name = "EMAIL")
     private String email;
 
-//    @OneToMany(mappedBy = "personalDataEntity", cascade = CascadeType.MERGE)
+//    @OneToMany(mappedBy = "personalDataEntity", cascade = CascadeType.ALL)
 //    private List<ToDoEntity> toDoList;
 //
-//    @OneToMany(mappedBy = "personalDataEntity", cascade = CascadeType.MERGE)
+//    @OneToMany(mappedBy = "personalDataEntity", cascade = CascadeType.ALL)
 //    private List<DietEntity> dietEntities;
 //
-//    @OneToMany(mappedBy = "personalDataEntity", cascade = CascadeType.MERGE)
+//    @OneToMany(mappedBy = "personalDataEntity", cascade = CascadeType.ALL)
 //    private List<TrainingEntity> trainingEntities;
 //
-//    @OneToOne(mappedBy = "personalDataEntity", cascade = CascadeType.MERGE)
+//    @OneToOne(mappedBy = "personalDataEntity", cascade = CascadeType.ALL)
 //    private LoggingDataEntity loggingDataEntities;
 
 }

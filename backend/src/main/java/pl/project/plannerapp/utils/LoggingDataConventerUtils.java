@@ -26,7 +26,6 @@ public class LoggingDataConventerUtils {
     }
     public static LoggingDataEntity convertToEntity(LoggingData loggingDataToEntity) {
         return LoggingDataEntity.builder()
-                .id(loggingDataToEntity.getId())
                 .login(loggingDataToEntity.getLogin())
                 .password(loggingDataToEntity.getPassword())
                 .personalDataEntity(PersonalDataConventerUtils.convertToEntity(loggingDataToEntity.getPersonalData()))

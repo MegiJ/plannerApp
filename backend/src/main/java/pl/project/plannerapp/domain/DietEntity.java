@@ -7,7 +7,7 @@ import pl.project.plannerapp.model.PersonalData;
 import java.time.Instant;
 
 @Entity
-@Table(name = "diet")
+@Table(name = "DIET")
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -26,7 +26,7 @@ public class DietEntity {
     @Column(name = "MEAL")
     private String meal;
 
-    @ManyToOne(cascade = CascadeType.REMOVE)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "USER_ID", referencedColumnName = "ID")
     private PersonalDataEntity personalDataEntity;
 }

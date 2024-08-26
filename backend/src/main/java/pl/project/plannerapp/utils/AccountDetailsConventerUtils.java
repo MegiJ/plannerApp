@@ -33,7 +33,6 @@ public class AccountDetailsConventerUtils {
 
     public static AccountDetailsEntity convertToEntity(AccountDetails accountDetails) {
         return AccountDetailsEntity.builder()
-                .id(accountDetails.getId())
                 .role(accountDetails.getRole())
                 .isExpired(accountDetails.isExpired())
                 .isLocked(accountDetails.isLocked())

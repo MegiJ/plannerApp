@@ -6,7 +6,7 @@ import jakarta.validation.constraints.Size;
 import lombok.*;
 
 @Entity
-@Table(name = "logging_data")
+@Table(name = "LOGGING_DATA")
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -14,8 +14,8 @@ import lombok.*;
 @Builder
 public class LoggingDataEntity {
     @Id
-    @SequenceGenerator(name = "logging_data_seq", sequenceName = "logging_data_seq", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "logging_data_seq")
+    @SequenceGenerator(name = "LOGGING_DATA_ID_SEQ", sequenceName = "LOGGING_DATA_ID_SEQ", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "LOGGING_DATA_ID_SEQ")
     @Column(name = "ID")
     private Long id;
 
