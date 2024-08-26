@@ -27,6 +27,7 @@ public class PersonalDataConventerUtils {
                 .surname(personalDataDTO.getSurname())
                 .phone(personalDataDTO.getPhone())
                 .email(personalDataDTO.getEmail())
+                .accountDetails(AccountDetailsConventerUtils.convert(personalDataDTO.getAccountDetailsDTO()))
                 .build();
     }
 
@@ -36,6 +37,7 @@ public class PersonalDataConventerUtils {
                 .surname(personalDataToEntity.getSurname())
                 .phone(personalDataToEntity.getPhone())
                 .email(personalDataToEntity.getEmail())
+                .accountDetailsEntity(AccountDetailsConventerUtils.convertToEntity(personalDataToEntity.getAccountDetails()))
 //                .dietEntities(new ArrayList<>())
 //                .loggingDataEntities(LoggingDataEntity.builder().build())
 //                .trainingEntities(new ArrayList<>())
