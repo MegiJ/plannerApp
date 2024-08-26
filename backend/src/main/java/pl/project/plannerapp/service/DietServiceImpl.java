@@ -2,6 +2,7 @@ package pl.project.plannerapp.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import pl.project.plannerapp.model.Diet;
 import pl.project.plannerapp.repo.DietRepo;
 import pl.project.plannerapp.repo.PersonalDataRepo;
@@ -29,10 +30,11 @@ public class DietServiceImpl implements DietService {
                 .map(DietConventerUtils::convert)
                 .collect(Collectors.toList());
     }
-
+    @Transactional
     @Override
     public Diet addDiet(Diet diet) {
-return null;
+        dietRepo.save(DietConventerUtils.convertToEntity(diet));
+        return diet;
     }
 
     public boolean deleteDiet(Long id) {

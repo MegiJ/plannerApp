@@ -6,7 +6,7 @@ import lombok.*;
 import java.util.List;
 
 @Entity
-@Table(name = "account_details")
+@Table(name = "ACCOUNT_DETAILS")
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -15,8 +15,8 @@ import java.util.List;
 public class AccountDetailsEntity {
 
     @Id
-    @SequenceGenerator(name = "account_details_seq", sequenceName = "account_details_seq", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "account_details_seq")
+    @SequenceGenerator(name = "ACCOUNT_DETAILS_ID_SEQ", sequenceName = "ACCOUNT_DETAILS_ID_SEQ", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ACCOUNT_DETAILS_ID_SEQ")
     @Column(name = "ID")
     private Long id;
 

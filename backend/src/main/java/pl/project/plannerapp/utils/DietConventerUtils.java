@@ -25,7 +25,6 @@ public class DietConventerUtils {
     }
     public static DietEntity convertToEntity(Diet dietToEntity) {
         return DietEntity.builder()
-                .id((dietToEntity.getId()))
                 .date(dietToEntity.getDate())
                 .meal(dietToEntity.getMeal())
                 .personalDataEntity(PersonalDataConventerUtils.convertToEntity(dietToEntity.getPersonalData()))

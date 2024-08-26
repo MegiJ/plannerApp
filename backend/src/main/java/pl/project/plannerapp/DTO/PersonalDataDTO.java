@@ -13,5 +13,6 @@ public class PersonalDataDTO {
     private String surname;
     private int phone;
     private String email;
+    private AccountDetailsDTO accountDetailsDTO;
 
 }
