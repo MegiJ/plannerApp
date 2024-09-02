@@ -1,7 +1,9 @@
 package pl.project.plannerapp.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pl.project.plannerapp.DTO.AccountDetailsDTO;
 import pl.project.plannerapp.model.AccountDetails;
@@ -27,8 +29,9 @@ public class AccountDetailsController {
     }
 
     @PostMapping
-    public void createAccountDetails(@RequestBody AccountDetailsDTO accountDetailsJson) {
-        accountDetailsService.addAccount(AccountDetailsConventerUtils.convert(accountDetailsJson));
+    public ResponseEntity<String> createAccountDetails(@RequestBody AccountDetailsDTO accountDetailsJson) {
+        Long accountDetailsId = accountDetailsService.addAccount(AccountDetailsConventerUtils.convert(accountDetailsJson));
+        return new ResponseEntity<>("{\"id\":\"" + accountDetailsId + "\"}", HttpStatus.CREATED);
     }
 
     @DeleteMapping("/{accountDetailsId}")
