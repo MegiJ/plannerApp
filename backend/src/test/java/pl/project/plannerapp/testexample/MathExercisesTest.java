@@ -12,11 +12,25 @@ class MathExercisesTest {
         //given
 
         //when
-        boolean actual = mathExercises.isDivisibleBy2(5);
+        boolean actual = mathExercises.isDivisibleBy2(4);
 
         //then
         Assertions.assertTrue(actual);
        // Assertions.assertEquals(true, actual);
     }
+
+    @Test
+    public void shouldReturnFalse () {
+        //given
+
+        //when
+        boolean actual = mathExercises.isDivisibleBy2(5);
+
+        //then
+        Assertions.assertFalse(actual);
+        // Assertions.assertEquals(true, actual);
+    }
+
+
 
 }
