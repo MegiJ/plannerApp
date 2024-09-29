@@ -4,6 +4,8 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 class CampOrganisationTest {
 
@@ -30,6 +32,17 @@ class CampOrganisationTest {
         //when
         String result = campOrganisation.getStudent(name);
 
+        //then
+        Assertions.assertEquals("", result);
+    }
+
+    @Test
+    public void shouldExist() {
+        //goven
+        List<String> studentList = Arrays.asList("Magda Jot", "Daniel Gie", "Gabrysia Gie");
+
+        //when
+        String result = campOrganisation.getStudent("Daniel Gie");
         //then
         Assertions.assertEquals("", result);
     }
