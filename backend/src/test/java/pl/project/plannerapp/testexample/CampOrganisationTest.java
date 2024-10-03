@@ -8,6 +8,8 @@ import org.junit.jupiter.api.TestInstance;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class CampOrganisationTest {
 
@@ -87,12 +89,14 @@ class CampOrganisationTest {
         //given
         //when
         //then
-        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+        Throwable exception = assertThrows(IllegalArgumentException.class, () -> {
             boolean result = campOrganisation.addStudent("Antoni", "");
             {
                 throw new IllegalArgumentException("names cannot be null!");
             }
         });
+
+        Assertions.assertEquals(exception.getMessage(), "names cannot be null!");
 
     }
 
