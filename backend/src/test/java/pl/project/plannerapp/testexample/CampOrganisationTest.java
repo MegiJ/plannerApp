@@ -71,4 +71,15 @@ class CampOrganisationTest {
         Assertions.assertTrue(result);
     }
 
+    @Test
+    public void shouldStudentNotBeAdded() {
+        //given
+
+        //when
+        boolean result = campOrganisation.addStudent("Daniel", "Gie");
+
+        //then
+        Assertions.assertFalse(result);
+    }
+
 }
