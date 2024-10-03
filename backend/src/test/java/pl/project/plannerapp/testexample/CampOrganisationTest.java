@@ -68,8 +68,7 @@ class CampOrganisationTest {
         boolean result = campOrganisation.addStudent("Ania", "Prog");
 
         //then
-        Assertions.assertTrue(true);
-
+        Assertions.assertTrue(result);
     }
 
 }
