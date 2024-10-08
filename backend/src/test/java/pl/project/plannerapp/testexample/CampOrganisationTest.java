@@ -89,7 +89,7 @@ class CampOrganisationTest {
         //given
         //when
         //then
-        Throwable exception = assertThrows(IllegalArgumentException.class, () -> {
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
             boolean result = campOrganisation.addStudent("Antoni", "");
             {
                 throw new IllegalArgumentException("names cannot be null!");
