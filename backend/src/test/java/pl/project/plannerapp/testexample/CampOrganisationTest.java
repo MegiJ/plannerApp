@@ -85,7 +85,7 @@ class CampOrganisationTest {
     }
 
     @Test
-    public void shouldThrowExceptionWhenOnePartOfNameIsNull() {
+    public void shouldThrowExceptionWhenOnePartOfNameIsEmpty() {
         //given
         //when
         //then
