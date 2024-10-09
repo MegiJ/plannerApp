@@ -85,15 +85,12 @@ class CampOrganisationTest {
     }
 
     @Test
-    public void shouldThrowExceptionWhenOnePartOfNameIsEmpty() {
+    public void shouldThrowExceptionWhenOnePartOfNameIsNull() {
         //given
         //when
         //then
         IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
-            boolean result = campOrganisation.addStudent("Antoni", "");
-            {
-                throw new IllegalArgumentException("names cannot be null!");
-            }
+            campOrganisation.addStudent("Antoni", null);
         });
 
         Assertions.assertEquals(exception.getMessage(), "names cannot be null!");
