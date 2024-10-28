@@ -82,4 +82,29 @@ public class AccountDetailsServiceImplTestMock {
         assertTrue(result);
         verify(accountDetailsRepo).delete(resultFindByIdMethods); // sprawdza czy na mocku accountDetailsRepo została wywołana metoda delete z dokladnie takim parametrem: resultFindByIdMethods
     }
+
+    @Test
+    public void shouldAllExpiredAccounts() {
+        //given
+        List<AccountDetailsEntity> accountDetailsEntities = new ArrayList<>();
+        accountDetailsEntities.add(AccountDetailsEntity.builder()
+                .id(1L)
+                .role("unicorn")
+                .isExpired(true)
+                .isLocked(false)
+                .isCredentialsExpired(false)
+                .isDisabled(false)
+                .build());
+        when(accountDetailsRepo.findAllExpiredAccount()).thenReturn(accountDetailsEntities);
+        //when
+        List<AccountDetails> allExpiredAccounts = adsi.getAllExpiredAccounts();
+        //then
+        Assertions.assertEquals(1, allExpiredAccounts.size());
+        Assertions.assertEquals(1L, allExpiredAccounts.get(0).getId());
+        Assertions.assertEquals("unicorn", allExpiredAccounts.get(0).getRole());
+        assertTrue(allExpiredAccounts.get(0).isExpired());
+        assertFalse(allExpiredAccounts.get(0).isLocked());
+        assertFalse(allExpiredAccounts.get(0).isCredentialsExpired());
+        assertFalse(allExpiredAccounts.get(0).isDisabled());
+    }
 }
