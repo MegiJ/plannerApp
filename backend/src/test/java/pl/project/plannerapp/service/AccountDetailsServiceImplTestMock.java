@@ -11,10 +11,12 @@ import pl.project.plannerapp.repo.AccountDetailsRepo;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.eq;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 public class AccountDetailsServiceImplTestMock {
@@ -65,5 +67,19 @@ public class AccountDetailsServiceImplTestMock {
         assertFalse(allAccounts.get(0).isLocked());
         assertFalse(allAccounts.get(0).isCredentialsExpired());
         assertTrue(allAccounts.get(0).isDisabled());
+    }
+
+    @Test
+    public void shouldDeleteAccount() {
+        //given
+        long accountEntityDetailsId = 123L;
+        AccountDetailsEntity resultFindByIdMethods = new AccountDetailsEntity();
+        when(accountDetailsRepo.findById(accountEntityDetailsId)).thenReturn(Optional.of(resultFindByIdMethods));
+
+        //when
+        boolean result = adsi.deleteAccount(accountEntityDetailsId);
+        //then
+        assertTrue(result);
+        verify(accountDetailsRepo).delete(resultFindByIdMethods); // sprawdza czy na mocku accountDetailsRepo została wywołana metoda delete z dokladnie takim parametrem: resultFindByIdMethods
     }
 }
