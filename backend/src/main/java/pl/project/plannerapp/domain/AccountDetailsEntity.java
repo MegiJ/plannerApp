@@ -3,7 +3,7 @@ package pl.project.plannerapp.domain;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Table(name = "ACCOUNT_DETAILS")
@@ -37,4 +37,17 @@ public class AccountDetailsEntity {
 
     @OneToOne(mappedBy = "accountDetailsEntity")
     private LoggingDataEntity loggingDataEntities;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        AccountDetailsEntity that = (AccountDetailsEntity) o;
+        return isExpired == that.isExpired && isLocked == that.isLocked && isCredentialsExpired == that.isCredentialsExpired && isDisabled == that.isDisabled && Objects.equals(id, that.id) && Objects.equals(role, that.role) && Objects.equals(loggingDataEntities, that.loggingDataEntities);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, role, isExpired, isLocked, isCredentialsExpired, isDisabled, loggingDataEntities);
+    }
 }
