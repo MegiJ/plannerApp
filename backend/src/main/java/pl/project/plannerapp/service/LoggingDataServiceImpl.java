@@ -38,6 +38,12 @@ public class LoggingDataServiceImpl implements LoggingDataService {
     }
 
     @Override
+    public long save(LoggingData loggingData) {
+        LoggingDataEntity savedNewEntity = loggingDataRepo.save(LoggingDataConventerUtils.convertToEntity(loggingData));
+        return savedNewEntity.getId();
+    }
+
+    @Override
     public void put(Long id, LoggingDataDTO loggingDataDTO) {
 
     }

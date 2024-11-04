@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 import pl.project.plannerapp.DTO.LoggingDataDTO;
@@ -38,17 +37,22 @@ public class LoggingDataController {
 
     @GetMapping("/{loggingData-id}")
     public LoggingDataDTO get(@PathVariable Long id) {
-        return loggingDataService.getById(id).map(a-> LoggingDataConventerUtils.convert(a))
+        return loggingDataService.getById(id).map(a -> LoggingDataConventerUtils.convert(a))
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }
 
-    @Transactional
+    @PostMapping
+    public long saveNewAccount(LoggingDataDTO loggingDataDTO) {
+        return loggingDataService.save(LoggingDataConventerUtils.convert(loggingDataDTO));
+    }
+
+
     @PutMapping("/{loggingData-id}")
     public void put(@PathVariable Long id, @RequestBody LoggingDataDTO loggingDataJson) {
 
     }
 
-    @Transactional
+
     @DeleteMapping("/{loggingData-id}")
     public void delete(@PathVariable Long id) {
 
