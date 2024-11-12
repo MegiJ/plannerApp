@@ -7,7 +7,7 @@ import java.util.List;
 public interface AccountDetailsService {
     List<AccountDetails> getAllAccounts(); // lista kont
 
-    Long addAccount(AccountDetails accountDetails);
+    AccountDetails addAccount(AccountDetails accountDetails);
 
     boolean deleteAccount(Long idToBeRemoved);
 

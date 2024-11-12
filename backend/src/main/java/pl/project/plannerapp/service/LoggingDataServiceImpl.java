@@ -5,11 +5,13 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 import pl.project.plannerapp.DTO.LoggingDataDTO;
+import pl.project.plannerapp.domain.AccountDetailsEntity;
 import pl.project.plannerapp.domain.LoggingDataEntity;
+import pl.project.plannerapp.model.AccountDetails;
 import pl.project.plannerapp.model.LoggingData;
-import pl.project.plannerapp.repo.AccountDetailsRepo;
 import pl.project.plannerapp.repo.LoggingDataRepo;
 import pl.project.plannerapp.repo.PersonalDataRepo;
+import pl.project.plannerapp.utils.AccountDetailsConventerUtils;
 import pl.project.plannerapp.utils.LoggingDataConventerUtils;
 
 import java.util.List;
@@ -20,13 +22,13 @@ import java.util.stream.Collectors;
 public class LoggingDataServiceImpl implements LoggingDataService {
     private final LoggingDataRepo loggingDataRepo;
     private final PersonalDataRepo personalDataRepo;
-    private final AccountDetailsRepo accountDetailsRepo;
+    private final AccountDetailsService accountDetailsService;
 
     @Autowired
-    public LoggingDataServiceImpl(LoggingDataRepo loggingDataRepo, PersonalDataRepo personalDataRepo, AccountDetailsRepo accountDetailsRepo) {
+    public LoggingDataServiceImpl(LoggingDataRepo loggingDataRepo, PersonalDataRepo personalDataRepo, AccountDetailsService accountDetailsService) {
         this.loggingDataRepo = loggingDataRepo;
         this.personalDataRepo = personalDataRepo;
-        this.accountDetailsRepo = accountDetailsRepo;
+        this.accountDetailsService = accountDetailsService;
     }
 
     @Override
@@ -39,7 +41,16 @@ public class LoggingDataServiceImpl implements LoggingDataService {
 
     @Override
     public long save(LoggingData loggingData) {
-        LoggingDataEntity savedNewEntity = loggingDataRepo.save(LoggingDataConventerUtils.convertToEntity(loggingData));
+        AccountDetails accountDetails = AccountDetails.builder()
+                .role("user")
+                .isExpired(false)
+                .isLocked(false)
+                .isCredentialsExpired(false)
+                .isDisabled(false)
+                .build();
+        AccountDetails accountDetailsSavedInDB = accountDetailsService.addAccount(accountDetails);
+        AccountDetailsEntity accountDetailsEntity = AccountDetailsConventerUtils.convertToEntity(accountDetailsSavedInDB);
+        LoggingDataEntity savedNewEntity = loggingDataRepo.save(LoggingDataConventerUtils.convertToEntity(loggingData, accountDetailsEntity));
         return savedNewEntity.getId();
     }
 

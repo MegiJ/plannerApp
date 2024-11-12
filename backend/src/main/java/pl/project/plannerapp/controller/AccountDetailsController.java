@@ -30,7 +30,7 @@ public class AccountDetailsController {
 
     @PostMapping
     public ResponseEntity<String> createAccountDetails(@RequestBody AccountDetailsDTO accountDetailsJson) {
-        Long accountDetailsId = accountDetailsService.addAccount(AccountDetailsConventerUtils.convert(accountDetailsJson));
+        Long accountDetailsId = accountDetailsService.addAccount(AccountDetailsConventerUtils.convert(accountDetailsJson)).getId();
         return new ResponseEntity<>("{\"id\":\"" + accountDetailsId + "\"}", HttpStatus.CREATED);
     }
 
