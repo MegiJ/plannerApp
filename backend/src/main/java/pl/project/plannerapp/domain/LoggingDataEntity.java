@@ -27,11 +27,7 @@ public class LoggingDataEntity {
     @Pattern(regexp = "(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).{6,}$")
     private String password;
 
-    @OneToOne
-    @JoinColumn(name = "ACCOUNT_ID", referencedColumnName = "ID")
-    private PersonalDataEntity personalDataEntity;
-
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "ACCOUNT_DETAILS_ID", referencedColumnName = "ID")
     private AccountDetailsEntity accountDetailsEntity;
 

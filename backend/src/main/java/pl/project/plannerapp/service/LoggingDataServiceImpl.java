@@ -5,13 +5,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 import pl.project.plannerapp.DTO.LoggingDataDTO;
-import pl.project.plannerapp.domain.AccountDetailsEntity;
 import pl.project.plannerapp.domain.LoggingDataEntity;
 import pl.project.plannerapp.model.AccountDetails;
 import pl.project.plannerapp.model.LoggingData;
 import pl.project.plannerapp.repo.LoggingDataRepo;
 import pl.project.plannerapp.repo.PersonalDataRepo;
-import pl.project.plannerapp.utils.AccountDetailsConventerUtils;
 import pl.project.plannerapp.utils.LoggingDataConventerUtils;
 
 import java.util.List;
@@ -48,9 +46,9 @@ public class LoggingDataServiceImpl implements LoggingDataService {
                 .isCredentialsExpired(false)
                 .isDisabled(false)
                 .build();
-        AccountDetails accountDetailsSavedInDB = accountDetailsService.addAccount(accountDetails);
-        AccountDetailsEntity accountDetailsEntity = AccountDetailsConventerUtils.convertToEntity(accountDetailsSavedInDB);
-        LoggingDataEntity savedNewEntity = loggingDataRepo.save(LoggingDataConventerUtils.convertToEntity(loggingData, accountDetailsEntity));
+        loggingData.setAccountDetails(accountDetails);
+        LoggingDataEntity loggingDataEntity = LoggingDataConventerUtils.convertToEntity(loggingData);
+        LoggingDataEntity savedNewEntity = loggingDataRepo.save(loggingDataEntity);
         return savedNewEntity.getId();
     }
 

@@ -1,7 +1,6 @@
 package pl.project.plannerapp.utils;
 
 import pl.project.plannerapp.DTO.LoggingDataDTO;
-import pl.project.plannerapp.domain.AccountDetailsEntity;
 import pl.project.plannerapp.domain.LoggingDataEntity;
 import pl.project.plannerapp.model.LoggingData;
 
@@ -21,11 +20,11 @@ public class LoggingDataConventerUtils {
                 .build();
     }
 
-    public static LoggingDataEntity convertToEntity(LoggingData loggingDataToEntity, AccountDetailsEntity accountDetailsEntity) {
+    public static LoggingDataEntity convertToEntity(LoggingData loggingDataToEntity) {
         return LoggingDataEntity.builder()
                 .login(loggingDataToEntity.getLogin())
                 .password(loggingDataToEntity.getPassword())
-                .accountDetailsEntity(accountDetailsEntity)
+                .accountDetailsEntity(AccountDetailsConventerUtils.convertToEntity(loggingDataToEntity.getAccountDetails()))
                 .build();
     }
 
@@ -34,7 +33,6 @@ public class LoggingDataConventerUtils {
                 .id(loggingDataEntity.getId())
                 .login(loggingDataEntity.getLogin())
                 .password(loggingDataEntity.getPassword())
-                .personalData(PersonalDataConventerUtils.convert(loggingDataEntity.getPersonalDataEntity()))
                 .accountDetails(AccountDetailsConventerUtils.convert(loggingDataEntity.getAccountDetailsEntity()))
                 .build();
     }

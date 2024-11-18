@@ -42,7 +42,7 @@ public class LoggingDataController {
     }
 
     @PostMapping
-    public long saveNewAccount(LoggingDataDTO loggingDataDTO) {
+    public long saveNewAccount(@RequestBody LoggingDataDTO loggingDataDTO) {
         return loggingDataService.save(LoggingDataConventerUtils.convert(loggingDataDTO));
     }
 
