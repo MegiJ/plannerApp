@@ -9,7 +9,7 @@ import java.util.Optional;
 public interface LoggingDataService {
     List<LoggingData> getAllLoginData();
 
-    void put(Long id, LoggingDataDTO loggingDataDTO);
+    void update(Long id, LoggingDataDTO loggingDataDTO);
 
     long save(LoggingData loggingData);
 

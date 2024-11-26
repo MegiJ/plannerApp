@@ -32,7 +32,7 @@ public class AccountDetailsServiceImpl implements AccountDetailsService {
     @Transactional
     @Override
     public AccountDetails addAccount(AccountDetails accountDetailsToBeAdded) {
-        AccountDetailsEntity savedNewAccountDetailsEntity = accountDetailsRepo.saveAndFlush(AccountDetailsConventerUtils.convertToEntity(accountDetailsToBeAdded));
+        AccountDetailsEntity savedNewAccountDetailsEntity = accountDetailsRepo.save(AccountDetailsConventerUtils.convertToEntity(accountDetailsToBeAdded));
         AccountDetails accountDetails = AccountDetailsConventerUtils.convert(savedNewAccountDetailsEntity);
         return accountDetails;
     }

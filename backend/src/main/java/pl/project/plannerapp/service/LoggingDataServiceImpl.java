@@ -1,5 +1,6 @@
 package pl.project.plannerapp.service;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -16,8 +17,10 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+@Slf4j
 @Service
 public class LoggingDataServiceImpl implements LoggingDataService {
+    public static final String USER_ROLE = "user";
     private final LoggingDataRepo loggingDataRepo;
     private final PersonalDataRepo personalDataRepo;
     private final AccountDetailsService accountDetailsService;
@@ -39,21 +42,26 @@ public class LoggingDataServiceImpl implements LoggingDataService {
 
     @Override
     public long save(LoggingData loggingData) {
-        AccountDetails accountDetails = AccountDetails.builder()
-                .role("user")
+        AccountDetails accountDetails = createAccountDetails();
+        loggingData.setAccountDetails(accountDetails);
+        LoggingDataEntity loggingDataEntity = LoggingDataConventerUtils.convertToEntity(loggingData);
+        LoggingDataEntity savedNewEntity = loggingDataRepo.save(loggingDataEntity);
+        log.info("Saved new account with id " + savedNewEntity.getId());
+        return savedNewEntity.getId();
+    }
+
+    private static AccountDetails createAccountDetails() {
+        return AccountDetails.builder()
+                .role(USER_ROLE)
                 .isExpired(false)
                 .isLocked(false)
                 .isCredentialsExpired(false)
                 .isDisabled(false)
                 .build();
-        loggingData.setAccountDetails(accountDetails);
-        LoggingDataEntity loggingDataEntity = LoggingDataConventerUtils.convertToEntity(loggingData);
-        LoggingDataEntity savedNewEntity = loggingDataRepo.save(loggingDataEntity);
-        return savedNewEntity.getId();
     }
 
     @Override
-    public void put(Long id, LoggingDataDTO loggingDataDTO) {
+    public void update(Long id, LoggingDataDTO loggingDataDTO) {
 
     }
 
