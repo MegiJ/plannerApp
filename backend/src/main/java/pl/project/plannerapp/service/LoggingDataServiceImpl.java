@@ -1,13 +1,14 @@
 package pl.project.plannerapp.service;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 import pl.project.plannerapp.DTO.LoggingDataDTO;
 import pl.project.plannerapp.domain.LoggingDataEntity;
+import pl.project.plannerapp.model.AccountDetails;
 import pl.project.plannerapp.model.LoggingData;
-import pl.project.plannerapp.repo.AccountDetailsRepo;
 import pl.project.plannerapp.repo.LoggingDataRepo;
 import pl.project.plannerapp.repo.PersonalDataRepo;
 import pl.project.plannerapp.utils.LoggingDataConventerUtils;
@@ -16,17 +17,19 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+@Slf4j
 @Service
 public class LoggingDataServiceImpl implements LoggingDataService {
+    public static final String USER_ROLE = "user";
     private final LoggingDataRepo loggingDataRepo;
     private final PersonalDataRepo personalDataRepo;
-    private final AccountDetailsRepo accountDetailsRepo;
+    private final AccountDetailsService accountDetailsService;
 
     @Autowired
-    public LoggingDataServiceImpl(LoggingDataRepo loggingDataRepo, PersonalDataRepo personalDataRepo, AccountDetailsRepo accountDetailsRepo) {
+    public LoggingDataServiceImpl(LoggingDataRepo loggingDataRepo, PersonalDataRepo personalDataRepo, AccountDetailsService accountDetailsService) {
         this.loggingDataRepo = loggingDataRepo;
         this.personalDataRepo = personalDataRepo;
-        this.accountDetailsRepo = accountDetailsRepo;
+        this.accountDetailsService = accountDetailsService;
     }
 
     @Override
@@ -38,7 +41,27 @@ public class LoggingDataServiceImpl implements LoggingDataService {
     }
 
     @Override
-    public void put(Long id, LoggingDataDTO loggingDataDTO) {
+    public long save(LoggingData loggingData) {
+        AccountDetails accountDetails = createAccountDetails();
+        loggingData.setAccountDetails(accountDetails);
+        LoggingDataEntity loggingDataEntity = LoggingDataConventerUtils.convertToEntity(loggingData);
+        LoggingDataEntity savedNewEntity = loggingDataRepo.save(loggingDataEntity);
+        log.info("Saved new account with id " + savedNewEntity.getId());
+        return savedNewEntity.getId();
+    }
+
+    private static AccountDetails createAccountDetails() {
+        return AccountDetails.builder()
+                .role(USER_ROLE)
+                .isExpired(false)
+                .isLocked(false)
+                .isCredentialsExpired(false)
+                .isDisabled(false)
+                .build();
+    }
+
+    @Override
+    public void update(Long id, LoggingDataDTO loggingDataDTO) {
 
     }
 

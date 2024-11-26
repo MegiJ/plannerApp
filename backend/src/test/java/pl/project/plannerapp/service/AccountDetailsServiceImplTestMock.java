@@ -39,7 +39,7 @@ public class AccountDetailsServiceImplTestMock {
         when(accountDetailsRepo.save(eq(accountDetailsEntityTransformed))).thenReturn(accountDetailsEntity);
         AccountDetails accountDetails = AccountDetails.builder().isDisabled(true).build();
         //when
-        Long result = adsi.addAccount(accountDetails);
+        Long result = adsi.addAccount(accountDetails).getId();
         //then
         Assertions.assertEquals(accountEntityDetailsId, result);
     }

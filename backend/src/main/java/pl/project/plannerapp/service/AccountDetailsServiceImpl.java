@@ -1,5 +1,6 @@
 package pl.project.plannerapp.service;
 
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -28,10 +29,12 @@ public class AccountDetailsServiceImpl implements AccountDetailsService {
                 .collect(Collectors.toList());
     }
 
+    @Transactional
     @Override
-    public Long addAccount(AccountDetails accountDetailsToBeAdded) {
-        return accountDetailsRepo.save(AccountDetailsConventerUtils.convertToEntity(accountDetailsToBeAdded))
-                .getId();
+    public AccountDetails addAccount(AccountDetails accountDetailsToBeAdded) {
+        AccountDetailsEntity savedNewAccountDetailsEntity = accountDetailsRepo.save(AccountDetailsConventerUtils.convertToEntity(accountDetailsToBeAdded));
+        AccountDetails accountDetails = AccountDetailsConventerUtils.convert(savedNewAccountDetailsEntity);
+        return accountDetails;
     }
 
     @Override
