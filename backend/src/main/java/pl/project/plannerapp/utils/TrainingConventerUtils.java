@@ -1,6 +1,7 @@
 package pl.project.plannerapp.utils;
 
 import pl.project.plannerapp.DTO.TrainingDTO;
+import pl.project.plannerapp.domain.AccountDetailsEntity;
 import pl.project.plannerapp.domain.TrainingEntity;
 import pl.project.plannerapp.model.Training;
 
@@ -24,11 +25,11 @@ public class TrainingConventerUtils {
                 .build();
     }
 
-    public static TrainingEntity convertToEntity(Training training) {
+    public static TrainingEntity convertToEntity(Training training, AccountDetailsEntity accountDetailsEntity) {
         return TrainingEntity.builder()
                 .date(training.getDate())
                 .exercise(training.getExercise())
-                .personalDataEntity(PersonalDataConventerUtils.convertToEntity(training.getPersonalData()))
+                .personalDataEntity(PersonalDataConventerUtils.convertToEntity(training.getPersonalData(), accountDetailsEntity))
                 .build();
     }
 

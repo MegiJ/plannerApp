@@ -9,7 +9,9 @@ import java.util.Optional;
 public interface PersonalDataService {
     List<PersonalData> getAllPersonalData();
 
-    void put (Long id, PersonalDataDTO personalDataDTO);
+    PersonalData addPersonalData(PersonalData personalData);
+
+    void put(Long id, PersonalDataDTO personalDataDTO);
     PersonalData getBySurname(String surname);
 
     void delete(Long id);

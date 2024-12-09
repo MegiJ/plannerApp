@@ -6,10 +6,10 @@ import lombok.Getter;
 @Builder
 @Getter
 public class PersonalData {
-    private Long id;
+    private Long personalDataId;
     private String firstname;
     private String surname;
     private int phone;
     private String email;
-    private AccountDetails accountDetails;
+    private Long accountDetailsId;
 }

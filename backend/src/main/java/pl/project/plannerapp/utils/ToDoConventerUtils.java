@@ -3,6 +3,7 @@ package pl.project.plannerapp.utils;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import pl.project.plannerapp.DTO.ToDoDTO;
+import pl.project.plannerapp.domain.AccountDetailsEntity;
 import pl.project.plannerapp.domain.ToDoEntity;
 import pl.project.plannerapp.model.ToDo;
 
@@ -25,7 +26,8 @@ public class ToDoConventerUtils {
                 .personalData(PersonalDataConventerUtils.convert(toDoDTO.getPersonalDataDTO()))
                 .build();
     }
-    public static ToDo convert (ToDoEntity toDoEntity) {
+
+    public static ToDo convert(ToDoEntity toDoEntity) {
         return ToDo.builder()
                 .id(toDoEntity.getId())
                 .note(toDoEntity.getNote())
@@ -33,11 +35,12 @@ public class ToDoConventerUtils {
                 .personalData(PersonalDataConventerUtils.convert(toDoEntity.getPersonalDataEntity()))
                 .build();
     }
-    public static ToDoEntity convertToEntity(ToDo toDo) {
+
+    public static ToDoEntity convertToEntity(ToDo toDo, AccountDetailsEntity accountDetailsEntity) {
         return ToDoEntity.builder()
                 .note(toDo.getNote())
                 .date(toDo.getDate())
-                .personalDataEntity(PersonalDataConventerUtils.convertToEntity(toDo.getPersonalData()))
+                .personalDataEntity(PersonalDataConventerUtils.convertToEntity(toDo.getPersonalData(), accountDetailsEntity))
                 .build();
     }
 }

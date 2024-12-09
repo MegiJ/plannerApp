@@ -2,6 +2,7 @@ package pl.project.plannerapp.utils;
 
 
 import pl.project.plannerapp.DTO.DietDTO;
+import pl.project.plannerapp.domain.AccountDetailsEntity;
 import pl.project.plannerapp.domain.DietEntity;
 import pl.project.plannerapp.model.Diet;
 
@@ -15,7 +16,8 @@ public class DietConventerUtils {
                 .personalDataDTO(PersonalDataConventerUtils.convert(diet.getPersonalData()))
                 .build();
     }
-    public static Diet convert (DietDTO dietDTO) {
+
+    public static Diet convert(DietDTO dietDTO) {
         return Diet.builder()
                 .id(dietDTO.getId())
                 .date(dietDTO.getDate())
@@ -23,14 +25,16 @@ public class DietConventerUtils {
                 .personalData(PersonalDataConventerUtils.convert(dietDTO.getPersonalDataDTO()))
                 .build();
     }
-    public static DietEntity convertToEntity(Diet dietToEntity) {
+
+    public static DietEntity convertToEntity(Diet dietToEntity, AccountDetailsEntity accountDetailsEntity) {
         return DietEntity.builder()
                 .date(dietToEntity.getDate())
                 .meal(dietToEntity.getMeal())
-                .personalDataEntity(PersonalDataConventerUtils.convertToEntity(dietToEntity.getPersonalData()))
+                .personalDataEntity(PersonalDataConventerUtils.convertToEntity(dietToEntity.getPersonalData(), accountDetailsEntity))
                 .build();
     }
-    public static Diet convert (DietEntity dietEntity) {
+
+    public static Diet convert(DietEntity dietEntity) {
         return Diet.builder()
                 .id(dietEntity.getId())
                 .date(dietEntity.getDate())
