@@ -22,13 +22,11 @@ public class PersonalDataServiceImpl implements PersonalDataService {
     private final PersonalDataRepo personalDataRepo;
     private final AccountDetailsRepo accountDetailsRepo;
 
+    @Autowired
     public PersonalDataServiceImpl(PersonalDataRepo personalDataRepo, AccountDetailsRepo accountDetailsRepo) {
         this.personalDataRepo = personalDataRepo;
         this.accountDetailsRepo = accountDetailsRepo;
     }
-
-    @Autowired
-
 
     @Override
     public List<PersonalData> getAllPersonalData() {
