@@ -1,15 +1,17 @@
 package pl.project.plannerapp.utils;
 
 
-import pl.project.plannerapp.DTO.DietDTO;
+import pl.project.plannerapp.DTO.DietDTORequest;
+import pl.project.plannerapp.DTO.DietDTOResponse;
 import pl.project.plannerapp.domain.AccountDetailsEntity;
 import pl.project.plannerapp.domain.DietEntity;
 import pl.project.plannerapp.model.Diet;
+import pl.project.plannerapp.model.PersonalData;
 
 
 public class DietConventerUtils {
-    public static DietDTO convert (Diet diet) {
-        return DietDTO.builder()
+    public static DietDTOResponse convert(Diet diet) {
+        return DietDTOResponse.builder()
                 .id(diet.getId())
                 .date(diet.getDate())
                 .meal(diet.getMeal())
@@ -17,12 +19,20 @@ public class DietConventerUtils {
                 .build();
     }
 
-    public static Diet convert(DietDTO dietDTO) {
+    public static Diet convert(DietDTOResponse dietDTOResponse) {
         return Diet.builder()
-                .id(dietDTO.getId())
-                .date(dietDTO.getDate())
-                .meal(dietDTO.getMeal())
-                .personalData(PersonalDataConventerUtils.convert(dietDTO.getPersonalDataDTO()))
+                .id(dietDTOResponse.getId())
+                .date(dietDTOResponse.getDate())
+                .meal(dietDTOResponse.getMeal())
+                .personalData(PersonalDataConventerUtils.convert(dietDTOResponse.getPersonalDataDTO()))
+                .build();
+    }
+
+    public static Diet convert(DietDTORequest dietDTORequest) {
+        return Diet.builder()
+                .date(dietDTORequest.getDate())
+                .meal(dietDTORequest.getMeal())
+                .personalData(PersonalData.builder().personalDataId(dietDTORequest.getPersonalDataId()).build())
                 .build();
     }
 
@@ -42,4 +52,6 @@ public class DietConventerUtils {
                 .personalData(PersonalDataConventerUtils.convert(dietEntity.getPersonalDataEntity()))
                 .build();
     }
+
+
 }

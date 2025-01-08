@@ -6,7 +6,7 @@ import lombok.Getter;
 @Builder
 @Getter
 public class PersonalData {
-    private Long personalDataId;
+    private long personalDataId;
     private String firstname;
     private String surname;
     private int phone;

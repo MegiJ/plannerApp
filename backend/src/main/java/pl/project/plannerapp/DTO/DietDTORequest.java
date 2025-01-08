@@ -9,9 +9,8 @@ import java.time.Instant;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class DietDTO {
-    private Long id;
+public class DietDTORequest {
     private Instant date;
     private String meal;
-    private PersonalDataDTO personalDataDTO;
+    private int personalDataId;
 }

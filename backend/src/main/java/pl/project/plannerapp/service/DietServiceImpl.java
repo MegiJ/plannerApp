@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import pl.project.plannerapp.domain.AccountDetailsEntity;
+import pl.project.plannerapp.domain.DietEntity;
 import pl.project.plannerapp.model.Diet;
 import pl.project.plannerapp.repo.AccountDetailsRepo;
 import pl.project.plannerapp.repo.DietRepo;
@@ -38,8 +39,10 @@ public class DietServiceImpl implements DietService {
     @Override
     public Diet addDiet(Diet diet) {
         AccountDetailsEntity accountDetailsEntity = accountDetailsRepo.findById(diet.getPersonalData().getPersonalDataId()).get();
-        dietRepo.save(DietConventerUtils.convertToEntity(diet, accountDetailsEntity));
-        return diet;
+        DietEntity dietEntity = DietConventerUtils.convertToEntity(diet, accountDetailsEntity);
+        DietEntity savedNewDiet = dietRepo.save(dietEntity);
+        Diet dietWithId = DietConventerUtils.convert(savedNewDiet);
+        return dietWithId;
     }
 
     public boolean deleteDiet(Long id) {

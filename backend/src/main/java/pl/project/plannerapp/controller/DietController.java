@@ -8,7 +8,9 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
-import pl.project.plannerapp.DTO.DietDTO;
+import pl.project.plannerapp.DTO.DietDTORequest;
+import pl.project.plannerapp.DTO.DietDTOResponse;
+import pl.project.plannerapp.model.Diet;
 import pl.project.plannerapp.service.DietService;
 import pl.project.plannerapp.service.PersonalDataService;
 import pl.project.plannerapp.utils.DietConventerUtils;
@@ -31,25 +33,25 @@ public class DietController {
     }
 
     @GetMapping
-    public List<DietDTO> getAllDiets() {
-        return dietService.getAllDiet().stream().map(a-> DietConventerUtils.convert(a)).toList();
+    public List<DietDTOResponse> getAllDiets() {
+        return dietService.getAllDiet().stream().map(a -> DietConventerUtils.convert(a)).toList();
     }
 
     @GetMapping("/{dietId}")
-    public DietDTO getDietById(@PathVariable Long dietId) {
-        return dietService.getById(dietId).map(a->DietConventerUtils.convert(a))
+    public DietDTOResponse getDietById(@PathVariable Long dietId) {
+        return dietService.getById(dietId).map(a -> DietConventerUtils.convert(a))
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }
 
-    @PostMapping("/{dietId}")
-    public Long addDiet(@PathVariable Long dietId, @RequestBody DietDTO dietJson) {
-        dietService.addDiet(DietConventerUtils.convert(dietJson));
-        return dietId;
+    @PostMapping
+    public Long addDiet(@RequestBody DietDTORequest dietJson) {
+        Diet dietWithId = dietService.addDiet(DietConventerUtils.convert(dietJson));
+        return dietWithId.getId();
     }
 
     @Transactional
     @PutMapping("/{dietId}")
-    public void modifyDiet(@PathVariable Long dietId, @RequestBody DietDTO dietJson) {
+    public void modifyDiet(@PathVariable Long dietId, @RequestBody DietDTOResponse dietJson) {
 
     }
 
