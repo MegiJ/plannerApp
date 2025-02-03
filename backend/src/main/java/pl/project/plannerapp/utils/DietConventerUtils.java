@@ -52,6 +52,4 @@ public class DietConventerUtils {
                 .personalData(PersonalDataConventerUtils.convert(dietEntity.getPersonalDataEntity()))
                 .build();
     }
-
-
 }
