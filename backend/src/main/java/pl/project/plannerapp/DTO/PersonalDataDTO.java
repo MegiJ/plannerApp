@@ -1,6 +1,7 @@
 package pl.project.plannerapp.DTO;
 
 import lombok.*;
+import pl.project.plannerapp.model.LoggingData;
 
 @Builder
 @Getter
@@ -13,5 +14,5 @@ public class PersonalDataDTO {
     private int phone;
     private String email;
     //    private Long accountDetailsId;
-    private Long loggingDataId;
+    private LoggingData loggingDataId;
 }

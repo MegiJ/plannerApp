@@ -17,9 +17,6 @@ import java.util.stream.Collectors;
 @Service
 public class DietServiceImpl implements DietService {
     private final DietRepo dietRepo;
-//    private final PersonalDataRepo personalDataRepo;
-//    private final AccountDetailsRepo accountDetailsRepo;
-
     private final LoggingDataRepo loggingDataRepo;
 
     @Autowired

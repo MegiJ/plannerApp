@@ -4,10 +4,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
-import pl.project.plannerapp.domain.AccountDetailsEntity;
+import pl.project.plannerapp.domain.LoggingDataEntity;
 import pl.project.plannerapp.domain.TrainingEntity;
 import pl.project.plannerapp.model.Training;
 import pl.project.plannerapp.repo.AccountDetailsRepo;
+import pl.project.plannerapp.repo.LoggingDataRepo;
 import pl.project.plannerapp.repo.PersonalDataRepo;
 import pl.project.plannerapp.repo.TrainingRepo;
 import pl.project.plannerapp.utils.TrainingConventerUtils;
@@ -19,14 +20,12 @@ import java.util.stream.Collectors;
 @Service
 public class TrainingServiceImpl implements TrainingService {
     private final TrainingRepo trainingRepo;
-    private final PersonalDataRepo personalDataRepo;
-    private final AccountDetailsRepo accountDetailsRepo;
+    private final LoggingDataRepo loggingDataRepo;
 
     @Autowired
-    public TrainingServiceImpl(TrainingRepo trainingRepo, PersonalDataRepo personalDataRepo, AccountDetailsRepo accountDetailsRepo) {
+    public TrainingServiceImpl(TrainingRepo trainingRepo, PersonalDataRepo personalDataRepo, AccountDetailsRepo accountDetailsRepo, LoggingDataRepo loggingDataRepo) {
         this.trainingRepo = trainingRepo;
-        this.personalDataRepo = personalDataRepo;
-        this.accountDetailsRepo = accountDetailsRepo;
+        this.loggingDataRepo = loggingDataRepo;
     }
 
     @Override
@@ -40,9 +39,11 @@ public class TrainingServiceImpl implements TrainingService {
 
     @Override
     public Training addExercise(Training training) {
-        AccountDetailsEntity accountDetailsEntity = accountDetailsRepo.findById(training.getPersonalData().getPersonalDataId()).get();
-        trainingRepo.save(TrainingConventerUtils.convertToEntity(training, accountDetailsEntity));
-        return training;
+        LoggingDataEntity loggingDataEntity = loggingDataRepo.findById(training.getLoggingData().getId()).get();
+        TrainingEntity trainingEntity = TrainingConventerUtils.convertToEntity(training);
+        TrainingEntity savedNewTraining = trainingRepo.save(trainingEntity);
+        Training trainingWithId = TrainingConventerUtils.convert(savedNewTraining);
+        return trainingWithId;
     }
     @Override
     public boolean deleteExercise(Long id) {

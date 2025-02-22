@@ -5,11 +5,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 import pl.project.plannerapp.DTO.PersonalDataDTO;
-import pl.project.plannerapp.domain.AccountDetailsEntity;
+import pl.project.plannerapp.domain.LoggingDataEntity;
 import pl.project.plannerapp.domain.PersonalDataEntity;
 import pl.project.plannerapp.exceptions.AccountDetailsException;
 import pl.project.plannerapp.model.PersonalData;
-import pl.project.plannerapp.repo.AccountDetailsRepo;
+import pl.project.plannerapp.repo.LoggingDataRepo;
 import pl.project.plannerapp.repo.PersonalDataRepo;
 import pl.project.plannerapp.utils.PersonalDataConventerUtils;
 
@@ -20,12 +20,13 @@ import java.util.stream.Collectors;
 @Service
 public class PersonalDataServiceImpl implements PersonalDataService {
     private final PersonalDataRepo personalDataRepo;
-    private final AccountDetailsRepo accountDetailsRepo;
+    private final LoggingDataRepo loggingDataRepo;
 
     @Autowired
-    public PersonalDataServiceImpl(PersonalDataRepo personalDataRepo, AccountDetailsRepo accountDetailsRepo) {
+    public PersonalDataServiceImpl(PersonalDataRepo personalDataRepo, LoggingDataRepo loggingDataRepo) {
         this.personalDataRepo = personalDataRepo;
-        this.accountDetailsRepo = accountDetailsRepo;
+//        this.accountDetailsRepo = accountDetailsRepo;
+        this.loggingDataRepo = loggingDataRepo;
     }
 
     public PersonalData getPersonalDataByAccountDetailsId(long accountDetailsId) {
@@ -46,8 +47,8 @@ public class PersonalDataServiceImpl implements PersonalDataService {
 
     @Override
     public PersonalData addPersonalData(PersonalData personalDataToBeAdded) {
-        AccountDetailsEntity accountDetailsEntity = accountDetailsRepo.findById(personalDataToBeAdded.getLoggingDataId()).get();
-        PersonalDataEntity savedNewPersonalDataEntity = personalDataRepo.save(PersonalDataConventerUtils.convertToEntity(personalDataToBeAdded, accountDetailsEntity));
+        LoggingDataEntity loggingDataEntity = loggingDataRepo.findById(personalDataToBeAdded.getLoggingDataId().getId()).get();
+        PersonalDataEntity savedNewPersonalDataEntity = personalDataRepo.save(PersonalDataConventerUtils.convertToEntity(personalDataToBeAdded));
         PersonalData personalData = PersonalDataConventerUtils.convert(savedNewPersonalDataEntity);
         return personalData;
     }

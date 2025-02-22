@@ -14,5 +14,5 @@ public class ToDoDTO {
     private String note;
     private Instant date;
     private boolean isCompleted;
-    private PersonalDataDTO personalDataDTO;
+    private LoggingDataDTO loggingDataDTO;
 }

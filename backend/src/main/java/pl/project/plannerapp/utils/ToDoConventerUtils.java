@@ -1,13 +1,9 @@
 package pl.project.plannerapp.utils;
 
-import lombok.AccessLevel;
-import lombok.NoArgsConstructor;
 import pl.project.plannerapp.DTO.ToDoDTO;
-import pl.project.plannerapp.domain.AccountDetailsEntity;
 import pl.project.plannerapp.domain.ToDoEntity;
 import pl.project.plannerapp.model.ToDo;
 
-@NoArgsConstructor(access = AccessLevel.PRIVATE)  // private oznacza ze konstruktor bedzie miec mod dost prywatny
 public class ToDoConventerUtils {
     public static ToDoDTO convert (ToDo toDo) {
         return ToDoDTO.builder()
@@ -15,32 +11,32 @@ public class ToDoConventerUtils {
                 .note(toDo.getNote())
                 .date(toDo.getDate())
                 .isCompleted(toDo.isCompleted())
-                .personalDataDTO(PersonalDataConventerUtils.convert(toDo.getPersonalData()))
+                .loggingDataDTO(LoggingDataConventerUtils.convert(toDo.getLoggingData()))
                 .build();
     }
-    public static ToDo convert (ToDoDTO toDoDTO) {
+
+    public static ToDo convert(ToDoDTO toDoDTO) {
         return ToDo.builder()
                 .id(toDoDTO.getId())
                 .note(toDoDTO.getNote())
                 .date(toDoDTO.getDate())
-                .personalData(PersonalDataConventerUtils.convert(toDoDTO.getPersonalDataDTO()))
+                .loggingData(LoggingDataConventerUtils.convert(toDoDTO.getLoggingDataDTO()))
+                .build();
+    }
+
+    public static ToDoEntity convertToEntity(ToDo toToEntity) {
+        return ToDoEntity.builder()
+                .note(toToEntity.getNote())
+                .date(toToEntity.getDate())
+                .loggingDataEntity(LoggingDataConventerUtils.convertToEntity(toToEntity.getLoggingData()))
                 .build();
     }
 
     public static ToDo convert(ToDoEntity toDoEntity) {
         return ToDo.builder()
-                .id(toDoEntity.getId())
                 .note(toDoEntity.getNote())
                 .date(toDoEntity.getDate())
-                .personalData(PersonalDataConventerUtils.convert(toDoEntity.getPersonalDataEntity()))
-                .build();
-    }
-
-    public static ToDoEntity convertToEntity(ToDo toDo, AccountDetailsEntity accountDetailsEntity) {
-        return ToDoEntity.builder()
-                .note(toDo.getNote())
-                .date(toDo.getDate())
-                .personalDataEntity(PersonalDataConventerUtils.convertToEntity(toDo.getPersonalData(), accountDetailsEntity))
+                .loggingData(LoggingDataConventerUtils.convert(toDoEntity.getLoggingDataEntity()))
                 .build();
     }
 }

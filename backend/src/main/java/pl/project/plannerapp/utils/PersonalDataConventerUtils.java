@@ -2,7 +2,6 @@ package pl.project.plannerapp.utils;
 
 
 import pl.project.plannerapp.DTO.PersonalDataDTO;
-import pl.project.plannerapp.domain.AccountDetailsEntity;
 import pl.project.plannerapp.domain.LoggingDataEntity;
 import pl.project.plannerapp.domain.PersonalDataEntity;
 import pl.project.plannerapp.model.PersonalData;
@@ -29,7 +28,7 @@ public class PersonalDataConventerUtils {
                 .build();
     }
 
-    public static PersonalDataEntity convertToEntity(PersonalData personalDataToEntity, AccountDetailsEntity accountDetailsEntity) {
+    public static PersonalDataEntity convertToEntity(PersonalData personalDataToEntity) {
         return PersonalDataEntity.builder()
                 .firstname(personalDataToEntity.getFirstname())
                 .surname(personalDataToEntity.getSurname())

@@ -4,11 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
-import pl.project.plannerapp.domain.AccountDetailsEntity;
+import pl.project.plannerapp.domain.LoggingDataEntity;
 import pl.project.plannerapp.domain.ToDoEntity;
 import pl.project.plannerapp.model.ToDo;
-import pl.project.plannerapp.repo.AccountDetailsRepo;
-import pl.project.plannerapp.repo.PersonalDataRepo;
+import pl.project.plannerapp.repo.LoggingDataRepo;
 import pl.project.plannerapp.repo.ToDoRepo;
 import pl.project.plannerapp.utils.ToDoConventerUtils;
 
@@ -19,14 +18,16 @@ import java.util.stream.Collectors;
 @Service
 public class ToDoServiceImpl implements ToDoService {
     private final ToDoRepo toDoRepo;
-    private final PersonalDataRepo personalDataRepo;
-    private final AccountDetailsRepo accountDetailsRepo;
+    //    private final PersonalDataRepo personalDataRepo;
+//    private final AccountDetailsRepo accountDetailsRepo;
+    private final LoggingDataRepo loggingDataRepo;
 
     @Autowired
-    public ToDoServiceImpl(ToDoRepo toDoRepo, PersonalDataRepo personalDataRepo, AccountDetailsRepo accountDetailsRepo) {
+    public ToDoServiceImpl(ToDoRepo toDoRepo, LoggingDataRepo loggingDataRepo) {
         this.toDoRepo = toDoRepo;
-        this.personalDataRepo = personalDataRepo;
-        this.accountDetailsRepo = accountDetailsRepo;
+        this.loggingDataRepo = loggingDataRepo;
+//        this.personalDataRepo = personalDataRepo;
+//        this.accountDetailsRepo = accountDetailsRepo;
     }
 
     @Override
@@ -39,8 +40,9 @@ public class ToDoServiceImpl implements ToDoService {
 
     @Override
     public ToDo addTask(ToDo toDo) {
-        AccountDetailsEntity accountDetailsEntity = accountDetailsRepo.findById(toDo.getPersonalData().getPersonalDataId()).get();
-        toDoRepo.save(ToDoConventerUtils.convertToEntity(toDo, accountDetailsEntity));
+//        AccountDetailsEntity accountDetailsEntity = accountDetailsRepo.findById(toDo.getPersonalData().getPersonalDataId()).get();
+        LoggingDataEntity loggingDataEntity = loggingDataRepo.findById(toDo.getLoggingData().getId()).get();
+        toDoRepo.save(ToDoConventerUtils.convertToEntity(toDo));
         return toDo;
     }
 

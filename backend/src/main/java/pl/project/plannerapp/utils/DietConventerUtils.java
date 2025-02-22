@@ -15,7 +15,6 @@ public class DietConventerUtils {
                 .date(diet.getDate())
                 .meal(diet.getMeal())
                 .loggingDataDTO(LoggingDataConventerUtils.convert(diet.getLoggingData()))
-//                .personalDataDTO(PersonalDataConventerUtils.convert(diet.getPersonalData()))
                 .build();
     }
 
@@ -25,7 +24,6 @@ public class DietConventerUtils {
                 .date(dietDTOResponse.getDate())
                 .meal(dietDTOResponse.getMeal())
                 .loggingData(LoggingDataConventerUtils.convert(dietDTOResponse.getLoggingDataDTO()))
-//                .personalData(PersonalDataConventerUtils.convert(dietDTOResponse.getPersonalDataDTO()))
                 .build();
     }
 
@@ -35,7 +33,6 @@ public class DietConventerUtils {
                 .meal(dietDTORequest.getMeal())
                 .loggingData(LoggingData.builder().build())
                 .loggingData(LoggingData.builder().id(dietDTORequest.getLoggingDataId()).build())
-//                .personalData(PersonalData.builder().personalDataId(dietDTORequest.getPersonalDataId()).build())
                 .build();
     }
 
@@ -43,7 +40,6 @@ public class DietConventerUtils {
         return DietEntity.builder()
                 .date(dietToEntity.getDate())
                 .meal(dietToEntity.getMeal())
-//                .personalDataEntity(PersonalDataConventerUtils.convertToEntity(dietToEntity.getPersonalData(), accountDetailsEntity))
                 .loggingDataEntity(LoggingDataConventerUtils.convertToEntity(dietToEntity.getLoggingData()))
                 .build();
     }
@@ -54,7 +50,6 @@ public class DietConventerUtils {
                 .date(dietEntity.getDate())
                 .meal(dietEntity.getMeal())
                 .loggingData(LoggingDataConventerUtils.convert(dietEntity.getLoggingDataEntity()))
-//                .personalData(PersonalDataConventerUtils.convert(dietEntity.getPersonalDataEntity()))
                 .build();
     }
 }

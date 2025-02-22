@@ -1,7 +1,6 @@
 package pl.project.plannerapp.utils;
 
 import pl.project.plannerapp.DTO.TrainingDTO;
-import pl.project.plannerapp.domain.AccountDetailsEntity;
 import pl.project.plannerapp.domain.TrainingEntity;
 import pl.project.plannerapp.model.Training;
 
@@ -12,7 +11,7 @@ public class TrainingConventerUtils {
                 .id(training.getId())
                 .date(training.getDate())
                 .exercise(training.getExercise())
-                .personalDataDTO(PersonalDataConventerUtils.convert(training.getPersonalData()))
+                .loggingDataDTO(LoggingDataConventerUtils.convert(training.getLoggingData()))
                 .build();
     }
 
@@ -21,15 +20,15 @@ public class TrainingConventerUtils {
                 .id(trainingDTO.getId())
                 .date(trainingDTO.getDate())
                 .exercise(trainingDTO.getExercise())
-                .personalData(PersonalDataConventerUtils.convert(trainingDTO.getPersonalDataDTO()))
+                .loggingData(LoggingDataConventerUtils.convert(trainingDTO.getLoggingDataDTO()))
                 .build();
     }
 
-    public static TrainingEntity convertToEntity(Training training, AccountDetailsEntity accountDetailsEntity) {
+    public static TrainingEntity convertToEntity(Training trainingToEntity) {
         return TrainingEntity.builder()
-                .date(training.getDate())
-                .exercise(training.getExercise())
-                .personalDataEntity(PersonalDataConventerUtils.convertToEntity(training.getPersonalData(), accountDetailsEntity))
+                .date(trainingToEntity.getDate())
+                .exercise(trainingToEntity.getExercise())
+                .loggingDataEntity(LoggingDataConventerUtils.convertToEntity(trainingToEntity.getLoggingData()))
                 .build();
     }
 
@@ -38,7 +37,7 @@ public class TrainingConventerUtils {
                 .id(trainingEntity.getId())
                 .date(trainingEntity.getDate())
                 .exercise(trainingEntity.getExercise())
-                .personalData(PersonalDataConventerUtils.convert(trainingEntity.getPersonalDataEntity()))
+                .loggingData(LoggingDataConventerUtils.convert(trainingEntity.getLoggingDataEntity()))
                 .build();
     }
 }

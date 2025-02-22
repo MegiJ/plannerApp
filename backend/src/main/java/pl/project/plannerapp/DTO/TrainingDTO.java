@@ -13,5 +13,6 @@ public class TrainingDTO {
     private Long id;
     private Instant date;
     private String exercise;
-    private PersonalDataDTO personalDataDTO;
+    private LoggingDataDTO loggingDataDTO;
+//    private PersonalDataDTO personalDataDTO;
 }
