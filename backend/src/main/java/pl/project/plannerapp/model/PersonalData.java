@@ -11,6 +11,6 @@ public class PersonalData {
     private String surname;
     private int phone;
     private String email;
-    private Long loggingDataId;
+    private LoggingData loggingDataId;
 //    private Long accountDetailsId;
 }
