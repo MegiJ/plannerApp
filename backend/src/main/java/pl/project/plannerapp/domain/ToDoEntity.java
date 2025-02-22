@@ -2,7 +2,6 @@ package pl.project.plannerapp.domain;
 
 import jakarta.persistence.*;
 import lombok.*;
-import pl.project.plannerapp.model.PersonalData;
 
 import java.time.Instant;
 
@@ -29,8 +28,12 @@ public class ToDoEntity {
     @Column(name = "IS_COMPLETED")
     private boolean isCompleted;
 
-    @ManyToOne
-    @JoinColumn(name = "USER_ID", referencedColumnName = "ID")
-    private PersonalDataEntity personalDataEntity;
+//    @ManyToOne
+//    @JoinColumn(name = "USER_ID", referencedColumnName = "ID")
+//    private PersonalDataEntity personalDataEntity;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "LOGGING_DATA_ID", referencedColumnName = "ID")
+    private LoggingDataEntity loggingDataEntity;
 
 }
