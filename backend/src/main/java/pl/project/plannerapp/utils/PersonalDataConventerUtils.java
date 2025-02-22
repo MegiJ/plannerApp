@@ -3,6 +3,7 @@ package pl.project.plannerapp.utils;
 
 import pl.project.plannerapp.DTO.PersonalDataDTO;
 import pl.project.plannerapp.domain.AccountDetailsEntity;
+import pl.project.plannerapp.domain.LoggingDataEntity;
 import pl.project.plannerapp.domain.PersonalDataEntity;
 import pl.project.plannerapp.model.PersonalData;
 
@@ -23,7 +24,8 @@ public class PersonalDataConventerUtils {
                 .surname(personalDataDTO.getSurname())
                 .phone(personalDataDTO.getPhone())
                 .email(personalDataDTO.getEmail())
-                .accountDetailsId(personalDataDTO.getAccountDetailsId())
+                .loggingDataId(personalDataDTO.getLoggingDataId())
+//                .accountDetailsId(personalDataDTO.getAccountDetailsId())
                 .build();
     }
 
@@ -33,9 +35,9 @@ public class PersonalDataConventerUtils {
                 .surname(personalDataToEntity.getSurname())
                 .phone(personalDataToEntity.getPhone())
                 .email(personalDataToEntity.getEmail())
-                .accountDetailsEntity(accountDetailsEntity)
+//                .accountDetailsEntity(accountDetailsEntity)
+                .loggingDataEntity(LoggingDataEntity.builder().build())
 //                .dietEntities(new ArrayList<>())
-//                .loggingDataEntities(LoggingDataEntity.builder().build())
 //                .trainingEntities(new ArrayList<>())
 //                .toDoList(new ArrayList<>())
                 .build();

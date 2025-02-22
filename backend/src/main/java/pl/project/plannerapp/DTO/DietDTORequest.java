@@ -17,6 +17,6 @@ public class DietDTORequest {
     private Instant date;
     @Schema(requiredMode = REQUIRED, name = "meal", description = "meal in diet")
     private String meal;
-    @Schema(requiredMode = REQUIRED, name = "personalDataId", description = "id for personal data for diet")
-    private int personalDataId;
+    @Schema(requiredMode = REQUIRED, name = "accountDetailsId", description = "id for personal data for diet")
+    private int accountDetailsId;
 }

@@ -8,9 +8,10 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 public class PersonalDataDTO {
-    private Long accountDetailsId;
     private String firstname;
     private String surname;
     private int phone;
     private String email;
+    //    private Long accountDetailsId;
+    private Long loggingDataId;
 }

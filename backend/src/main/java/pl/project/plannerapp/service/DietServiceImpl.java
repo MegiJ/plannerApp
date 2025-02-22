@@ -38,7 +38,7 @@ public class DietServiceImpl implements DietService {
     @Transactional
     @Override
     public Diet addDiet(Diet diet) {
-        AccountDetailsEntity accountDetailsEntity = accountDetailsRepo.findById(diet.getPersonalData().getPersonalDataId()).get();
+        AccountDetailsEntity accountDetailsEntity = accountDetailsRepo.findById(diet.getPersonalData().getAccountDetailsId()).get();
         DietEntity dietEntity = DietConventerUtils.convertToEntity(diet, accountDetailsEntity);
         DietEntity savedNewDiet = dietRepo.save(dietEntity);
         Diet dietWithId = DietConventerUtils.convert(savedNewDiet);

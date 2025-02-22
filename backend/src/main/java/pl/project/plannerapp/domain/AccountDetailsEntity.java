@@ -36,18 +36,18 @@ public class AccountDetailsEntity {
     private boolean isDisabled;
 
     @OneToOne(mappedBy = "accountDetailsEntity")
-    private LoggingDataEntity loggingDataEntities;
+    private LoggingDataEntity loggingDataEntity;
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         AccountDetailsEntity that = (AccountDetailsEntity) o;
-        return isExpired == that.isExpired && isLocked == that.isLocked && isCredentialsExpired == that.isCredentialsExpired && isDisabled == that.isDisabled && Objects.equals(id, that.id) && Objects.equals(role, that.role) && Objects.equals(loggingDataEntities, that.loggingDataEntities);
+        return isExpired == that.isExpired && isLocked == that.isLocked && isCredentialsExpired == that.isCredentialsExpired && isDisabled == that.isDisabled && Objects.equals(id, that.id) && Objects.equals(role, that.role) && Objects.equals(loggingDataEntity, that.loggingDataEntity);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, role, isExpired, isLocked, isCredentialsExpired, isDisabled, loggingDataEntities);
+        return Objects.hash(id, role, isExpired, isLocked, isCredentialsExpired, isDisabled, loggingDataEntity);
     }
 }
