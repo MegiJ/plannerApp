@@ -10,10 +10,10 @@ import java.time.Instant;
 @Getter
 @Setter
 public class Diet {
-
-    private Long id;
+    private long dietId;
     private Instant date;
     private String meal;
-    private PersonalData personalData;
+    //    private PersonalData personalData;
+    private LoggingData loggingData;
 
 }
