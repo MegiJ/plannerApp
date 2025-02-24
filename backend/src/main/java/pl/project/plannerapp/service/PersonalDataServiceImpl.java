@@ -25,17 +25,8 @@ public class PersonalDataServiceImpl implements PersonalDataService {
     @Autowired
     public PersonalDataServiceImpl(PersonalDataRepo personalDataRepo, LoggingDataRepo loggingDataRepo) {
         this.personalDataRepo = personalDataRepo;
-//        this.accountDetailsRepo = accountDetailsRepo;
         this.loggingDataRepo = loggingDataRepo;
     }
-
-    public PersonalData getPersonalDataByAccountDetailsId(long accountDetailsId) {
-        return personalDataRepo.findByPersonalDataByLoggingDataId(accountDetailsId)
-                .map(PersonalDataConventerUtils::convert)
-                .orElseThrow(() -> new AccountDetailsException("Not found account details for accountDetailsId: " + accountDetailsId));
-        //wyciagnij takie personal data z repo (db) ktorego account details id jest rowne temu co przychopdzi z parametru
-    }
-
 
     @Override
     public List<PersonalData> getAllPersonalData() {
@@ -47,7 +38,7 @@ public class PersonalDataServiceImpl implements PersonalDataService {
 
     @Override
     public PersonalData addPersonalData(PersonalData personalDataToBeAdded) {
-        LoggingDataEntity loggingDataEntity = loggingDataRepo.findById(personalDataToBeAdded.getLoggingDataId().getId()).get();
+        LoggingDataEntity loggingDataEntity = loggingDataRepo.findById(personalDataToBeAdded.getLoggingDataId()).get();
         PersonalDataEntity savedNewPersonalDataEntity = personalDataRepo.save(PersonalDataConventerUtils.convertToEntity(personalDataToBeAdded, loggingDataEntity));
         PersonalData personalData = PersonalDataConventerUtils.convert(savedNewPersonalDataEntity);
         return personalData;

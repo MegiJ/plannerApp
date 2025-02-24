@@ -23,8 +23,6 @@ public class PersonalDataConventerUtils {
                 .surname(personalDataDTO.getSurname())
                 .phone(personalDataDTO.getPhone())
                 .email(personalDataDTO.getEmail())
-                .loggingDataId(personalDataDTO.getLoggingDataId())
-//                .accountDetailsId(personalDataDTO.getAccountDetailsId())
                 .build();
     }
 
@@ -45,6 +43,7 @@ public class PersonalDataConventerUtils {
                 .surname(personalDataEntity.getSurname())
                 .phone(personalDataEntity.getPhone())
                 .email(personalDataEntity.getEmail())
+                .loggingDataId(personalDataEntity.getLoggingDataEntity().getId())
                 .build();
     }
 }
