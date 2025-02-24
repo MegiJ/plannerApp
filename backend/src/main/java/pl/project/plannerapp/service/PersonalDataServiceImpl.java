@@ -9,7 +9,6 @@ import pl.project.plannerapp.domain.LoggingDataEntity;
 import pl.project.plannerapp.domain.PersonalDataEntity;
 import pl.project.plannerapp.exceptions.AccountDetailsException;
 import pl.project.plannerapp.model.PersonalData;
-import pl.project.plannerapp.repo.LoggingDataRepo;
 import pl.project.plannerapp.repo.PersonalDataRepo;
 import pl.project.plannerapp.utils.PersonalDataConventerUtils;
 
@@ -20,13 +19,12 @@ import java.util.stream.Collectors;
 @Service
 public class PersonalDataServiceImpl implements PersonalDataService {
     private final PersonalDataRepo personalDataRepo;
-    private final LoggingDataRepo loggingDataRepo;
+    private final LoggingDataEntity loggingDataEntity;
 
     @Autowired
-    public PersonalDataServiceImpl(PersonalDataRepo personalDataRepo, LoggingDataRepo loggingDataRepo) {
+    public PersonalDataServiceImpl(PersonalDataRepo personalDataRepo, LoggingDataEntity loggingDataEntity) {
         this.personalDataRepo = personalDataRepo;
-//        this.accountDetailsRepo = accountDetailsRepo;
-        this.loggingDataRepo = loggingDataRepo;
+        this.loggingDataEntity = loggingDataEntity;
     }
 
     public PersonalData getPersonalDataByAccountDetailsId(long accountDetailsId) {
@@ -47,7 +45,7 @@ public class PersonalDataServiceImpl implements PersonalDataService {
 
     @Override
     public PersonalData addPersonalData(PersonalData personalDataToBeAdded) {
-        LoggingDataEntity loggingDataEntity = loggingDataRepo.findById(personalDataToBeAdded.getLoggingDataId().getId()).get();
+        loggingDataEntity.getAccountDetailsEntity().getLoggingDataEntity();
         PersonalDataEntity savedNewPersonalDataEntity = personalDataRepo.save(PersonalDataConventerUtils.convertToEntity(personalDataToBeAdded));
         PersonalData personalData = PersonalDataConventerUtils.convert(savedNewPersonalDataEntity);
         return personalData;
