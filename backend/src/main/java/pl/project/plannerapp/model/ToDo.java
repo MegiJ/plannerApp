@@ -12,6 +12,5 @@ public class ToDo {
     private String note;
     private Instant date;
     private boolean isCompleted;
-    //    private PersonalData personalData;
     private LoggingData loggingData;
 }

@@ -18,16 +18,12 @@ import java.util.stream.Collectors;
 @Service
 public class ToDoServiceImpl implements ToDoService {
     private final ToDoRepo toDoRepo;
-    //    private final PersonalDataRepo personalDataRepo;
-//    private final AccountDetailsRepo accountDetailsRepo;
     private final LoggingDataRepo loggingDataRepo;
 
     @Autowired
     public ToDoServiceImpl(ToDoRepo toDoRepo, LoggingDataRepo loggingDataRepo) {
         this.toDoRepo = toDoRepo;
         this.loggingDataRepo = loggingDataRepo;
-//        this.personalDataRepo = personalDataRepo;
-//        this.accountDetailsRepo = accountDetailsRepo;
     }
 
     @Override

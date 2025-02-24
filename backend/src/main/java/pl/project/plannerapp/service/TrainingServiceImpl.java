@@ -7,9 +7,7 @@ import org.springframework.web.server.ResponseStatusException;
 import pl.project.plannerapp.domain.LoggingDataEntity;
 import pl.project.plannerapp.domain.TrainingEntity;
 import pl.project.plannerapp.model.Training;
-import pl.project.plannerapp.repo.AccountDetailsRepo;
 import pl.project.plannerapp.repo.LoggingDataRepo;
-import pl.project.plannerapp.repo.PersonalDataRepo;
 import pl.project.plannerapp.repo.TrainingRepo;
 import pl.project.plannerapp.utils.TrainingConventerUtils;
 
@@ -23,7 +21,7 @@ public class TrainingServiceImpl implements TrainingService {
     private final LoggingDataRepo loggingDataRepo;
 
     @Autowired
-    public TrainingServiceImpl(TrainingRepo trainingRepo, PersonalDataRepo personalDataRepo, AccountDetailsRepo accountDetailsRepo, LoggingDataRepo loggingDataRepo) {
+    public TrainingServiceImpl(TrainingRepo trainingRepo, LoggingDataRepo loggingDataRepo) {
         this.trainingRepo = trainingRepo;
         this.loggingDataRepo = loggingDataRepo;
     }
@@ -34,7 +32,6 @@ public class TrainingServiceImpl implements TrainingService {
                 .stream()
                 .map(TrainingConventerUtils::convert)
                 .collect(Collectors.toList());
-
     }
 
     @Override
@@ -45,6 +42,7 @@ public class TrainingServiceImpl implements TrainingService {
         Training trainingWithId = TrainingConventerUtils.convert(savedNewTraining);
         return trainingWithId;
     }
+
     @Override
     public boolean deleteExercise(Long id) {
         TrainingEntity trainingEntity = trainingRepo.findById(id)

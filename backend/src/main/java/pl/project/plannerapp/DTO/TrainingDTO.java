@@ -14,5 +14,4 @@ public class TrainingDTO {
     private Instant date;
     private String exercise;
     private LoggingDataDTO loggingDataDTO;
-//    private PersonalDataDTO personalDataDTO;
 }

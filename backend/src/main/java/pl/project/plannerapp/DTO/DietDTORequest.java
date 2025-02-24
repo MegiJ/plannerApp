@@ -19,6 +19,4 @@ public class DietDTORequest {
     private String meal;
     @Schema(requiredMode = REQUIRED, name = "loggingDataId", description = "id for logging data fod diet")
     private long loggingDataId;
-//    @Schema(requiredMode = REQUIRED, name = "accountDetailsId", description = "id for personal data for diet")
-//    private int accountDetailsId;
 }

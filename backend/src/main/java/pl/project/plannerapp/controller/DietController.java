@@ -22,14 +22,12 @@ import java.util.List;
 @RequestMapping(path = "/api/diets", produces = MediaType.APPLICATION_JSON_VALUE)
 public class DietController {
     private final DietService dietService;
-    //    private final PersonalDataService personalDataService;
     private final LoggingDataService loggingDataService;
     private final ApplicationEventPublisher applicationEventPublisher;
 
     @Autowired
     public DietController(DietService dietService, LoggingDataService loggingDataService, ApplicationEventPublisher applicationEventPublisher) {
         this.dietService = dietService;
-//        this.personalDataService = personalDataService;
         this.loggingDataService = loggingDataService;
         this.applicationEventPublisher = applicationEventPublisher;
     }
@@ -60,6 +58,5 @@ public class DietController {
     @Transactional
     @DeleteMapping("/{dietId}")
     public void delete(@PathVariable Long dietId) {
-        
     }
 }

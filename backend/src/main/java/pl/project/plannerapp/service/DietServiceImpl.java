@@ -22,8 +22,6 @@ public class DietServiceImpl implements DietService {
     @Autowired
     public DietServiceImpl(DietRepo dietRepo, LoggingDataRepo loggingDataRepo) {
         this.dietRepo = dietRepo;
-//        this.personalDataRepo = personalDataRepo;
-//        this.accountDetailsRepo = accountDetailsRepo;
         this.loggingDataRepo = loggingDataRepo;
     }
 

@@ -13,7 +13,6 @@ public class Diet {
     private long dietId;
     private Instant date;
     private String meal;
-    //    private PersonalData personalData;
     private LoggingData loggingData;
 
 }

@@ -27,10 +27,6 @@ public class TrainingEntity {
     @Column(name = "EXERCISE")
     private String exercise;
 
-//    @ManyToOne
-//    @JoinColumn(name = "USER_ID", referencedColumnName = "ID")
-//    private PersonalDataEntity personalDataEntity;
-
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "LOGGING_DATA_ID", referencedColumnName = "ID")
     private LoggingDataEntity loggingDataEntity;

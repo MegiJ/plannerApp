@@ -28,10 +28,6 @@ public class ToDoEntity {
     @Column(name = "IS_COMPLETED")
     private boolean isCompleted;
 
-//    @ManyToOne
-//    @JoinColumn(name = "USER_ID", referencedColumnName = "ID")
-//    private PersonalDataEntity personalDataEntity;
-
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "LOGGING_DATA_ID", referencedColumnName = "ID")
     private LoggingDataEntity loggingDataEntity;

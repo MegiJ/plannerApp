@@ -25,10 +25,6 @@ public class DietEntity {
     @Column(name = "MEAL")
     private String meal;
 
-//    @ManyToOne(cascade = CascadeType.ALL)
-//    @JoinColumn(name = "USER_ID", referencedColumnName = "ID")
-//    private PersonalDataEntity personalDataEntity;
-
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "LOGGING_DATA_ID", referencedColumnName = "ID")
     private LoggingDataEntity loggingDataEntity;
