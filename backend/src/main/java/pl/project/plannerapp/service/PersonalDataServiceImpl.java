@@ -9,6 +9,7 @@ import pl.project.plannerapp.domain.LoggingDataEntity;
 import pl.project.plannerapp.domain.PersonalDataEntity;
 import pl.project.plannerapp.exceptions.AccountDetailsException;
 import pl.project.plannerapp.model.PersonalData;
+import pl.project.plannerapp.repo.LoggingDataRepo;
 import pl.project.plannerapp.repo.PersonalDataRepo;
 import pl.project.plannerapp.utils.PersonalDataConventerUtils;
 
@@ -19,12 +20,13 @@ import java.util.stream.Collectors;
 @Service
 public class PersonalDataServiceImpl implements PersonalDataService {
     private final PersonalDataRepo personalDataRepo;
-    private final LoggingDataEntity loggingDataEntity;
+    private final LoggingDataRepo loggingDataRepo;
 
     @Autowired
-    public PersonalDataServiceImpl(PersonalDataRepo personalDataRepo, LoggingDataEntity loggingDataEntity) {
+    public PersonalDataServiceImpl(PersonalDataRepo personalDataRepo, LoggingDataRepo loggingDataRepo) {
         this.personalDataRepo = personalDataRepo;
-        this.loggingDataEntity = loggingDataEntity;
+//        this.accountDetailsRepo = accountDetailsRepo;
+        this.loggingDataRepo = loggingDataRepo;
     }
 
     public PersonalData getPersonalDataByAccountDetailsId(long accountDetailsId) {
@@ -45,8 +47,8 @@ public class PersonalDataServiceImpl implements PersonalDataService {
 
     @Override
     public PersonalData addPersonalData(PersonalData personalDataToBeAdded) {
-        loggingDataEntity.getAccountDetailsEntity().getLoggingDataEntity();
-        PersonalDataEntity savedNewPersonalDataEntity = personalDataRepo.save(PersonalDataConventerUtils.convertToEntity(personalDataToBeAdded));
+        LoggingDataEntity loggingDataEntity = loggingDataRepo.findById(personalDataToBeAdded.getLoggingDataId().getId()).get();
+        PersonalDataEntity savedNewPersonalDataEntity = personalDataRepo.save(PersonalDataConventerUtils.convertToEntity(personalDataToBeAdded, loggingDataEntity));
         PersonalData personalData = PersonalDataConventerUtils.convert(savedNewPersonalDataEntity);
         return personalData;
     }

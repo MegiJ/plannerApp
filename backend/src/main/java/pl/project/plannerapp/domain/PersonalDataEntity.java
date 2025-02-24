@@ -30,19 +30,6 @@ public class PersonalDataEntity {
     @Column(name = "EMAIL")
     private String email;
 
-//    @OneToOne(cascade = CascadeType.ALL)
-//    @JoinColumn(name = "ACCOUNT_ID", referencedColumnName = "ID")
-//    private AccountDetailsEntity accountDetailsEntity;
-
-    //    @OneToMany(mappedBy = "personalDataEntity", cascade = CascadeType.ALL)
-//    private List<ToDoEntity> toDoList;
-//
-//    @OneToMany(mappedBy = "personalDataEntity", cascade = CascadeType.ALL)
-//    private List<DietEntity> dietEntities;
-//
-//    @OneToMany(mappedBy = "personalDataEntity", cascade = CascadeType.ALL)
-//    private List<TrainingEntity> trainingEntities;
-//
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "LOGGING_DATA_ID", referencedColumnName = "ID")
     private LoggingDataEntity loggingDataEntity;

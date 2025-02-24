@@ -28,20 +28,17 @@ public class PersonalDataConventerUtils {
                 .build();
     }
 
-    public static PersonalDataEntity convertToEntity(PersonalData personalDataToEntity) {
+    public static PersonalDataEntity convertToEntity(PersonalData personalDataToEntity, LoggingDataEntity loggingDataEntity) {
         return PersonalDataEntity.builder()
                 .firstname(personalDataToEntity.getFirstname())
                 .surname(personalDataToEntity.getSurname())
                 .phone(personalDataToEntity.getPhone())
                 .email(personalDataToEntity.getEmail())
-//                .accountDetailsEntity(accountDetailsEntity)
-                .loggingDataEntity(LoggingDataEntity.builder().build())
-//                .dietEntities(new ArrayList<>())
-//                .trainingEntities(new ArrayList<>())
-//                .toDoList(new ArrayList<>())
+                .loggingDataEntity(loggingDataEntity)
                 .build();
     }
-    public static PersonalData convert (PersonalDataEntity personalDataEntity) {
+
+    public static PersonalData convert(PersonalDataEntity personalDataEntity) {
         return PersonalData.builder()
                 .personalDataId(personalDataEntity.getId())
                 .firstname(personalDataEntity.getFirstname())
