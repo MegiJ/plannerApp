@@ -1,6 +1,7 @@
 package pl.project.plannerapp.utils;
 
 import pl.project.plannerapp.DTO.ToDoDTO;
+import pl.project.plannerapp.domain.LoggingDataEntity;
 import pl.project.plannerapp.domain.ToDoEntity;
 import pl.project.plannerapp.model.ToDo;
 
@@ -11,7 +12,6 @@ public class ToDoConventerUtils {
                 .note(toDo.getNote())
                 .date(toDo.getDate())
                 .isCompleted(toDo.isCompleted())
-                .loggingDataDTO(LoggingDataConventerUtils.convert(toDo.getLoggingData()))
                 .build();
     }
 
@@ -20,15 +20,14 @@ public class ToDoConventerUtils {
                 .id(toDoDTO.getId())
                 .note(toDoDTO.getNote())
                 .date(toDoDTO.getDate())
-                .loggingData(LoggingDataConventerUtils.convert(toDoDTO.getLoggingDataDTO()))
                 .build();
     }
 
-    public static ToDoEntity convertToEntity(ToDo toToEntity) {
+    public static ToDoEntity convertToEntity(ToDo toDoToEntity, LoggingDataEntity loggingDataEntity) {
         return ToDoEntity.builder()
-                .note(toToEntity.getNote())
-                .date(toToEntity.getDate())
-                .loggingDataEntity(LoggingDataConventerUtils.convertToEntity(toToEntity.getLoggingData()))
+                .note(toDoToEntity.getNote())
+                .date(toDoToEntity.getDate())
+                .loggingDataEntity(loggingDataEntity)
                 .build();
     }
 
@@ -36,7 +35,7 @@ public class ToDoConventerUtils {
         return ToDo.builder()
                 .note(toDoEntity.getNote())
                 .date(toDoEntity.getDate())
-                .loggingData(LoggingDataConventerUtils.convert(toDoEntity.getLoggingDataEntity()))
+                .loggingDataId(toDoEntity.getLoggingDataEntity().getId())
                 .build();
     }
 }

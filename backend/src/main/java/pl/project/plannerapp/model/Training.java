@@ -11,5 +11,5 @@ public class Training {
     private Long id;
     private Instant date;
     private String exercise;
-    private LoggingData loggingData;
+    private long loggingDataId;
 }

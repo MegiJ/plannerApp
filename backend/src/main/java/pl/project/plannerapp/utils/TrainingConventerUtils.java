@@ -1,6 +1,7 @@
 package pl.project.plannerapp.utils;
 
 import pl.project.plannerapp.DTO.TrainingDTO;
+import pl.project.plannerapp.domain.LoggingDataEntity;
 import pl.project.plannerapp.domain.TrainingEntity;
 import pl.project.plannerapp.model.Training;
 
@@ -11,7 +12,6 @@ public class TrainingConventerUtils {
                 .id(training.getId())
                 .date(training.getDate())
                 .exercise(training.getExercise())
-                .loggingDataDTO(LoggingDataConventerUtils.convert(training.getLoggingData()))
                 .build();
     }
 
@@ -20,15 +20,14 @@ public class TrainingConventerUtils {
                 .id(trainingDTO.getId())
                 .date(trainingDTO.getDate())
                 .exercise(trainingDTO.getExercise())
-                .loggingData(LoggingDataConventerUtils.convert(trainingDTO.getLoggingDataDTO()))
                 .build();
     }
 
-    public static TrainingEntity convertToEntity(Training trainingToEntity) {
+    public static TrainingEntity convertToEntity(Training trainingToEntity, LoggingDataEntity loggingDataEntity) {
         return TrainingEntity.builder()
                 .date(trainingToEntity.getDate())
                 .exercise(trainingToEntity.getExercise())
-                .loggingDataEntity(LoggingDataConventerUtils.convertToEntity(trainingToEntity.getLoggingData()))
+                .loggingDataEntity(loggingDataEntity)
                 .build();
     }
 
@@ -37,7 +36,7 @@ public class TrainingConventerUtils {
                 .id(trainingEntity.getId())
                 .date(trainingEntity.getDate())
                 .exercise(trainingEntity.getExercise())
-                .loggingData(LoggingDataConventerUtils.convert(trainingEntity.getLoggingDataEntity()))
+                .loggingDataId(trainingEntity.getLoggingDataEntity().getId())
                 .build();
     }
 }

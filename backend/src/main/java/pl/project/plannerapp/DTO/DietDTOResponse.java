@@ -19,6 +19,6 @@ public class DietDTOResponse {
     private Instant date;
     @Schema(requiredMode = REQUIRED, name = "meal", description = "meal in diet")
     private String meal;
-    @Schema(requiredMode = REQUIRED, name = "loggingDataId", description = "logging's data who have diet")
-    private LoggingDataDTO loggingDataDTO;
+    @Schema(requiredMode = REQUIRED, name = "loggingDataId", description = "diet's owner logging id")
+    private long loggingDataDTO;
 }

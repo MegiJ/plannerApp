@@ -1,7 +1,6 @@
 package pl.project.plannerapp.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.transaction.annotation.Transactional;
@@ -23,13 +22,11 @@ import java.util.List;
 public class DietController {
     private final DietService dietService;
     private final LoggingDataService loggingDataService;
-    private final ApplicationEventPublisher applicationEventPublisher;
 
     @Autowired
-    public DietController(DietService dietService, LoggingDataService loggingDataService, ApplicationEventPublisher applicationEventPublisher) {
+    public DietController(DietService dietService, LoggingDataService loggingDataService) {
         this.dietService = dietService;
         this.loggingDataService = loggingDataService;
-        this.applicationEventPublisher = applicationEventPublisher;
     }
 
     @GetMapping

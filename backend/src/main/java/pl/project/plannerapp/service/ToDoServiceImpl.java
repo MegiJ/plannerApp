@@ -35,11 +35,11 @@ public class ToDoServiceImpl implements ToDoService {
     }
 
     @Override
-    public ToDo addTask(ToDo toDo) {
-//        AccountDetailsEntity accountDetailsEntity = accountDetailsRepo.findById(toDo.getPersonalData().getPersonalDataId()).get();
-        LoggingDataEntity loggingDataEntity = loggingDataRepo.findById(toDo.getLoggingData().getId()).get();
-        toDoRepo.save(ToDoConventerUtils.convertToEntity(toDo));
-        return toDo;
+    public ToDo addTask(ToDo toDoToBeAdded) {
+        LoggingDataEntity loggingDataEntity = loggingDataRepo.findById(toDoToBeAdded.getLoggingDataId()).get();
+        ToDoEntity saveNewTaskToDoEntity = toDoRepo.save(ToDoConventerUtils.convertToEntity(toDoToBeAdded, loggingDataEntity));
+        ToDo toDoWithId = ToDoConventerUtils.convert(saveNewTaskToDoEntity);
+        return toDoWithId;
     }
 
     @Override

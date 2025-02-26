@@ -35,11 +35,10 @@ public class TrainingServiceImpl implements TrainingService {
     }
 
     @Override
-    public Training addExercise(Training training) {
-        LoggingDataEntity loggingDataEntity = loggingDataRepo.findById(training.getLoggingData().getId()).get();
-        TrainingEntity trainingEntity = TrainingConventerUtils.convertToEntity(training);
-        TrainingEntity savedNewTraining = trainingRepo.save(trainingEntity);
-        Training trainingWithId = TrainingConventerUtils.convert(savedNewTraining);
+    public Training addExercise(Training trainingToBeAdded) {
+        LoggingDataEntity loggingDataEntity = loggingDataRepo.findById(trainingToBeAdded.getLoggingDataId()).get();
+        TrainingEntity savedNewExercise = trainingRepo.save(TrainingConventerUtils.convertToEntity(trainingToBeAdded, loggingDataEntity));
+        Training trainingWithId = TrainingConventerUtils.convert(savedNewExercise);
         return trainingWithId;
     }
 

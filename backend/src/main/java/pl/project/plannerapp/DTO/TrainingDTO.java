@@ -13,5 +13,5 @@ public class TrainingDTO {
     private Long id;
     private Instant date;
     private String exercise;
-    private LoggingDataDTO loggingDataDTO;
+    private long loggingDataDTO;
 }

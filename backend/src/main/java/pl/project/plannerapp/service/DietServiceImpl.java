@@ -32,14 +32,13 @@ public class DietServiceImpl implements DietService {
                 .map(DietConventerUtils::convert)
                 .collect(Collectors.toList());
     }
+
     @Transactional
     @Override
-    public Diet addDiet(Diet diet) {
-//        AccountDetailsEntity accountDetailsEntity = accountDetailsRepo.findById(diet.getPersonalData().getAccountDetailsId()).get();
-        LoggingDataEntity loggingDataEntity = loggingDataRepo.findById(diet.getLoggingData().getId()).get();
-        DietEntity dietEntity = DietConventerUtils.convertToEntity(diet);
-        DietEntity savedNewDiet = dietRepo.save(dietEntity);
-        Diet dietWithId = DietConventerUtils.convert(savedNewDiet);
+    public Diet addDiet(Diet dietToBeAdded) {
+        LoggingDataEntity loggingDataEntity = loggingDataRepo.findById(dietToBeAdded.getLoggingDataId()).get();
+        DietEntity savedNewDietEntity = dietRepo.save(DietConventerUtils.convertToEntity(dietToBeAdded, loggingDataEntity));
+        Diet dietWithId = DietConventerUtils.convert(savedNewDietEntity);
         return dietWithId;
     }
 
