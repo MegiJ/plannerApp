@@ -20,5 +20,5 @@ public class DietDTOResponse {
     @Schema(requiredMode = REQUIRED, name = "meal", description = "meal in diet")
     private String meal;
     @Schema(requiredMode = REQUIRED, name = "loggingDataId", description = "diet's owner logging id")
-    private long loggingDataDTO;
+    private long loggingDataId;
 }
