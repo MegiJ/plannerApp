@@ -35,7 +35,8 @@ public class AccountDetailsEntity {
     @Column(name = "IS_DISABLED")
     private boolean isDisabled;
 
-    @OneToOne(mappedBy = "accountDetailsEntity")
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "LOGGING_DATA_ID", referencedColumnName = "ID")
     private LoggingDataEntity loggingDataEntity;
 
     @Override
