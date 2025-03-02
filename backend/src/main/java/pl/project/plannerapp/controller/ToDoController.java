@@ -1,14 +1,13 @@
 package pl.project.plannerapp.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pl.project.plannerapp.DTO.ToDoDTO;
 import pl.project.plannerapp.model.ToDo;
-import pl.project.plannerapp.service.PersonalDataService;
+import pl.project.plannerapp.service.LoggingDataService;
 import pl.project.plannerapp.service.ToDoService;
 import pl.project.plannerapp.utils.ToDoConventerUtils;
 
@@ -18,20 +17,24 @@ import java.util.List;
 @RequestMapping(path = "/api/todos", produces = MediaType.APPLICATION_JSON_VALUE)
 public class ToDoController {
     private final ToDoService toDoService;
-    private final PersonalDataService personalDataService;
-    private final ApplicationEventPublisher applicationEventPublisher;
+    private final LoggingDataService loggingDataService;
 
     @Autowired
-    public ToDoController(ToDoService toDoService, PersonalDataService personalDataService, ApplicationEventPublisher applicationEventPublisher) {
+    public ToDoController(ToDoService toDoService, LoggingDataService loggingDataService) {
         this.toDoService = toDoService;
-        this.personalDataService = personalDataService;
-        this.applicationEventPublisher = applicationEventPublisher;
+        this.loggingDataService = loggingDataService;
+    }
+
+    @GetMapping
+    public List<ToDoDTO> getAllTasks() {
+        return toDoService.getAllTasks().stream().map(a -> ToDoConventerUtils.convert(a)).toList();
     }
 
     @DeleteMapping("/{todoId}")
     public void deleteToDo(@PathVariable Long todoId) {
         toDoService.deleteTask(todoId);
     }
+
     @PostMapping
     public ResponseEntity<ToDo> addTask(@RequestBody ToDoDTO toDoDTO) {
         ToDo newToDo = toDoService.addTask(ToDoConventerUtils.convert(toDoDTO));
@@ -42,12 +45,6 @@ public class ToDoController {
     public ResponseEntity<ToDo> markTaskAsCompleted(@PathVariable Long toDoId) { // zaznacz zadanie jako ukonczone
         ToDo completedTask = toDoService.markTaskAsCompleted(toDoId);
         return ResponseEntity.ok(completedTask);
-    }
-
-    @GetMapping
-    public List<ToDoDTO> getAllTasks() {
-        List<ToDo> tasks = toDoService.getAllTasks();
-        return tasks.stream().map(ToDoConventerUtils::convert).toList();
     }
 
     @DeleteMapping("/{todo-id}")
