@@ -7,7 +7,7 @@ import lombok.Getter;
 @Getter
 public class AccountDetails {
 
-    private Long id;
+    private long id;
     private String role;
     private boolean isExpired;
     private boolean isLocked;

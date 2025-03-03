@@ -11,5 +11,5 @@ public class PersonalData {
     private String surname;
     private int phone;
     private String email;
-    private Long accountDetailsId;
+    private long loggingDataId; //nie moze tu byc typ Loggin Data bo przekazesz wszystkie dane (HASLA)
 }

@@ -2,7 +2,6 @@ package pl.project.plannerapp.domain;
 
 import jakarta.persistence.*;
 import lombok.*;
-import pl.project.plannerapp.model.PersonalData;
 
 import java.time.Instant;
 
@@ -28,8 +27,8 @@ public class TrainingEntity {
     @Column(name = "EXERCISE")
     private String exercise;
 
-    @ManyToOne
-    @JoinColumn(name = "USER_ID", referencedColumnName = "ID")
-    private PersonalDataEntity personalDataEntity;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "LOGGING_DATA_ID", referencedColumnName = "ID")
+    private LoggingDataEntity loggingDataEntity;
 
 }

@@ -1,7 +1,6 @@
 package pl.project.plannerapp.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.transaction.annotation.Transactional;
@@ -12,7 +11,7 @@ import pl.project.plannerapp.DTO.DietDTORequest;
 import pl.project.plannerapp.DTO.DietDTOResponse;
 import pl.project.plannerapp.model.Diet;
 import pl.project.plannerapp.service.DietService;
-import pl.project.plannerapp.service.PersonalDataService;
+import pl.project.plannerapp.service.LoggingDataService;
 import pl.project.plannerapp.utils.DietConventerUtils;
 
 import java.util.List;
@@ -22,14 +21,12 @@ import java.util.List;
 @RequestMapping(path = "/api/diets", produces = MediaType.APPLICATION_JSON_VALUE)
 public class DietController {
     private final DietService dietService;
-    private final PersonalDataService personalDataService;
-    private final ApplicationEventPublisher applicationEventPublisher;
+    private final LoggingDataService loggingDataService;
 
     @Autowired
-    public DietController(DietService dietService, PersonalDataService personalDataService, ApplicationEventPublisher applicationEventPublisher) {
+    public DietController(DietService dietService, LoggingDataService loggingDataService) {
         this.dietService = dietService;
-        this.personalDataService = personalDataService;
-        this.applicationEventPublisher = applicationEventPublisher;
+        this.loggingDataService = loggingDataService;
     }
 
     @GetMapping
@@ -46,7 +43,7 @@ public class DietController {
     @PostMapping
     public Long addDiet(@RequestBody DietDTORequest dietJson) {
         Diet dietWithId = dietService.addDiet(DietConventerUtils.convert(dietJson));
-        return dietWithId.getId();
+        return dietWithId.getDietId();
     }
 
     @Transactional
@@ -58,6 +55,5 @@ public class DietController {
     @Transactional
     @DeleteMapping("/{dietId}")
     public void delete(@PathVariable Long dietId) {
-        
     }
 }

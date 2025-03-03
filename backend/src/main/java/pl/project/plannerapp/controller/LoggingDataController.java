@@ -1,7 +1,6 @@
 package pl.project.plannerapp.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -9,7 +8,6 @@ import org.springframework.web.server.ResponseStatusException;
 import pl.project.plannerapp.DTO.LoggingDataDTO;
 import pl.project.plannerapp.service.AccountDetailsService;
 import pl.project.plannerapp.service.LoggingDataService;
-import pl.project.plannerapp.service.PersonalDataService;
 import pl.project.plannerapp.utils.LoggingDataConventerUtils;
 
 import java.util.List;
@@ -18,21 +16,18 @@ import java.util.List;
 @RequestMapping(path = "/api/loggingData", produces = MediaType.APPLICATION_JSON_VALUE)
 public class LoggingDataController {
     private final LoggingDataService loggingDataService;
-    private final PersonalDataService personalDataService;
     private final AccountDetailsService accountDetailsService;
-    private final ApplicationEventPublisher applicationEventPublisher;
+
 
     @Autowired
-    public LoggingDataController(LoggingDataService loggingDataService, PersonalDataService personalDataService, AccountDetailsService accountDetailsService, ApplicationEventPublisher applicationEventPublisher) {
+    public LoggingDataController(LoggingDataService loggingDataService, AccountDetailsService accountDetailsService) {
         this.loggingDataService = loggingDataService;
-        this.personalDataService = personalDataService;
         this.accountDetailsService = accountDetailsService;
-        this.applicationEventPublisher = applicationEventPublisher;
     }
 
     @GetMapping
-    public List<LoggingDataDTO> get() {
-        return null;
+    public List<LoggingDataDTO> getAllLoggingDatas() {
+        return loggingDataService.getAllLoginData().stream().map(a -> LoggingDataConventerUtils.convert(a)).toList();
     }
 
     @GetMapping("/{loggingData-id}")

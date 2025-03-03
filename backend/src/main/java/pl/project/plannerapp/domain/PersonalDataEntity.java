@@ -3,8 +3,6 @@ package pl.project.plannerapp.domain;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.util.List;
-
 @Entity
 @Table(name = "PERSONAL_DATA")
 @AllArgsConstructor
@@ -33,19 +31,7 @@ public class PersonalDataEntity {
     private String email;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "ACCOUNT_ID", referencedColumnName = "ID")
-    private AccountDetailsEntity accountDetailsEntity;
-
-//    @OneToMany(mappedBy = "personalDataEntity", cascade = CascadeType.ALL)
-//    private List<ToDoEntity> toDoList;
-//
-//    @OneToMany(mappedBy = "personalDataEntity", cascade = CascadeType.ALL)
-//    private List<DietEntity> dietEntities;
-//
-//    @OneToMany(mappedBy = "personalDataEntity", cascade = CascadeType.ALL)
-//    private List<TrainingEntity> trainingEntities;
-//
-//    @OneToOne(mappedBy = "personalDataEntity", cascade = CascadeType.ALL)
-//    private LoggingDataEntity loggingDataEntities;
+    @JoinColumn(name = "LOGGING_DATA_ID", referencedColumnName = "ID")
+    private LoggingDataEntity loggingDataEntity;
 
 }

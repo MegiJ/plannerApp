@@ -50,5 +50,4 @@ public class AccountDetailsServiceImpl implements AccountDetailsService {
         List<AccountDetailsEntity> allExpiredAccount = accountDetailsRepo.findAllExpiredAccount();
         return allExpiredAccount.stream().map(a -> AccountDetailsConventerUtils.convert(a)).collect(Collectors.toList());
     }
-
 }

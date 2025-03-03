@@ -25,7 +25,10 @@ public class PersonalDataController {
 
     @GetMapping
     public List<PersonalDataDTO> get() {
-        return null;
+        List<PersonalDataDTO> personalDataDTOs = personalDataService.getAllPersonalData().stream()
+                .map(personalData -> PersonalDataConventerUtils.convert(personalData))
+                .toList();
+        return personalDataDTOs;
     }
 
     @PostMapping
