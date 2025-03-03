@@ -31,6 +31,7 @@ public class DietConventerUtils {
         return Diet.builder()
                 .date(dietDTORequest.getDate())
                 .meal(dietDTORequest.getMeal())
+                .loggingDataId(dietDTORequest.getLoggingDataId())
                 .build();
     }
 
