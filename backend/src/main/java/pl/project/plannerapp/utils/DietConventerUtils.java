@@ -14,6 +14,7 @@ public class DietConventerUtils {
                 .id(diet.getDietId())
                 .date(diet.getDate())
                 .meal(diet.getMeal())
+                .loggingDataId(diet.getLoggingDataId())
                 .build();
     }
 
@@ -22,6 +23,7 @@ public class DietConventerUtils {
                 .dietId(dietDTOResponse.getId())
                 .date(dietDTOResponse.getDate())
                 .meal(dietDTOResponse.getMeal())
+                .loggingDataId(dietDTOResponse.getLoggingDataId())
                 .build();
     }
 
