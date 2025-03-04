@@ -1,13 +1,14 @@
 package pl.project.plannerapp.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.http.MediaType;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
-import pl.project.plannerapp.DTO.TrainingDTO;
-import pl.project.plannerapp.service.PersonalDataService;
+import pl.project.plannerapp.DTO.TrainingDTORequest;
+import pl.project.plannerapp.DTO.TrainingDTOResposne;
+import pl.project.plannerapp.model.Training;
 import pl.project.plannerapp.service.TrainingService;
+import pl.project.plannerapp.utils.TrainingConventerUtils;
 
 import java.util.List;
 
@@ -15,29 +16,32 @@ import java.util.List;
 @RequestMapping(path = "/api/trainings", produces = MediaType.APPLICATION_JSON_VALUE)
 public class TrainingController {
     private final TrainingService trainingService;
-    private final PersonalDataService personalDataService;
-    private final ApplicationEventPublisher applicationEventPublisher;
 
     @Autowired
-    public TrainingController(TrainingService trainingService, PersonalDataService personalDataService, ApplicationEventPublisher applicationEventPublisher) {
+    public TrainingController(TrainingService trainingService) {
         this.trainingService = trainingService;
-        this.personalDataService = personalDataService;
-        this.applicationEventPublisher = applicationEventPublisher;
     }
 
     @GetMapping
-    public List<TrainingDTO> get() {
-        return null;
+    public List<TrainingDTOResposne> getAllTrainings() {
+        return trainingService.getAllTraining().stream().map(a -> TrainingConventerUtils.convert(a)).toList();
+
     }
 
     @GetMapping("/{training-id}")
-    public TrainingDTO get(@PathVariable Long id) {
+    public TrainingDTOResposne get(@PathVariable Long id) {
         return null;
+    }
+
+    @PostMapping
+    public Long addExercise(@RequestBody TrainingDTORequest trainingJson) {
+        Training trainigWithId = trainingService.addExercise(TrainingConventerUtils.convert(trainingJson));
+        return trainigWithId.getId();
     }
 
     @Transactional
     @PutMapping("/{training-id}")
-    public void put(@PathVariable Long id, @RequestBody TrainingDTO trainingJson) {
+    public void put(@PathVariable Long id, @RequestBody TrainingDTOResposne trainingJson) {
 
     }
 
