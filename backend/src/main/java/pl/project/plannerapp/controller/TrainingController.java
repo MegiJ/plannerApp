@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.*;
 import pl.project.plannerapp.DTO.TrainingDTORequest;
 import pl.project.plannerapp.DTO.TrainingDTOResposne;
 import pl.project.plannerapp.model.Training;
-import pl.project.plannerapp.service.LoggingDataService;
 import pl.project.plannerapp.service.TrainingService;
 import pl.project.plannerapp.utils.TrainingConventerUtils;
 
@@ -17,12 +16,10 @@ import java.util.List;
 @RequestMapping(path = "/api/trainings", produces = MediaType.APPLICATION_JSON_VALUE)
 public class TrainingController {
     private final TrainingService trainingService;
-    private final LoggingDataService loggingDataService;
 
     @Autowired
-    public TrainingController(TrainingService trainingService, LoggingDataService loggingDataService) {
+    public TrainingController(TrainingService trainingService) {
         this.trainingService = trainingService;
-        this.loggingDataService = loggingDataService;
     }
 
     @GetMapping
