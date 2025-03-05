@@ -25,12 +25,6 @@ public class TrainingController {
     @GetMapping
     public List<TrainingDTOResposne> getAllTrainings() {
         return trainingService.getAllTraining().stream().map(a -> TrainingConventerUtils.convert(a)).toList();
-
-    }
-
-    @GetMapping("/{training-id}")
-    public TrainingDTOResposne get(@PathVariable Long id) {
-        return null;
     }
 
     @PostMapping
@@ -43,6 +37,12 @@ public class TrainingController {
     @PutMapping("/{training-id}")
     public void put(@PathVariable Long id, @RequestBody TrainingDTOResposne trainingJson) {
 
+    }
+
+
+    @GetMapping("/{training-id}")
+    public TrainingDTOResposne get(@PathVariable Long id) {
+        return null;
     }
 
     @Transactional
