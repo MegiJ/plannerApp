@@ -9,8 +9,8 @@ import java.time.Instant;
 @Getter
 public class ToDo {
     private Long id;
-    private String note;
     private Instant date;
+    private String note;
     private boolean isCompleted;
     private long loggingDataId;
 }
