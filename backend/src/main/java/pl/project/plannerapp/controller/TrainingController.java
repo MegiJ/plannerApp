@@ -1,9 +1,11 @@
 package pl.project.plannerapp.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 import pl.project.plannerapp.DTO.TrainingDTORequest;
 import pl.project.plannerapp.DTO.TrainingDTOResposne;
 import pl.project.plannerapp.model.Training;
@@ -34,19 +36,19 @@ public class TrainingController {
     }
 
     @Transactional
-    @PutMapping("/{training-id}")
+    @PutMapping("/{trainingId}")
     public void put(@PathVariable Long id, @RequestBody TrainingDTOResposne trainingJson) {
 
     }
 
-
-    @GetMapping("/{training-id}")
-    public TrainingDTOResposne get(@PathVariable Long id) {
-        return null;
+    @GetMapping("/{trainingId}")
+    public TrainingDTOResposne getTrainingById(@PathVariable Long trainingId) {
+        return trainingService.getById(trainingId).map(a -> TrainingConventerUtils.convert(a))
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }
 
     @Transactional
-    @DeleteMapping("/{training-id}")
+    @DeleteMapping("/{trainingId}")
     public void delete(@PathVariable Long id) {
 
     }
