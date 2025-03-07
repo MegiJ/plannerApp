@@ -17,7 +17,7 @@ public class LoggingDataEntity {
     @SequenceGenerator(name = "LOGGING_DATA_ID_SEQ", sequenceName = "LOGGING_DATA_ID_SEQ", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "LOGGING_DATA_ID_SEQ")
     @Column(name = "ID")
-    private Long id;
+    private long id;
 
     @Column(name = "LOGIN", unique = true)
     @Size(min = 5)

@@ -30,9 +30,9 @@ public class LoggingDataController {
         return loggingDataService.getAllLoginData().stream().map(a -> LoggingDataConventerUtils.convert(a)).toList();
     }
 
-    @GetMapping("/{loggingData-id}")
-    public LoggingDataDTO get(@PathVariable Long id) {
-        return loggingDataService.getById(id).map(a -> LoggingDataConventerUtils.convert(a))
+    @GetMapping("/{loggingDataId}")
+    public LoggingDataDTO getLoggingDataById(@PathVariable Long loggingDataId) {
+        return loggingDataService.getById(loggingDataId).map(a -> LoggingDataConventerUtils.convert(a))
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }
 
@@ -42,13 +42,13 @@ public class LoggingDataController {
     }
 
 
-    @PutMapping("/{loggingData-id}")
+    @PutMapping("/{loggingDataId}")
     public void put(@PathVariable Long id, @RequestBody LoggingDataDTO loggingDataJson) {
 
     }
 
 
-    @DeleteMapping("/{loggingData-id}")
+    @DeleteMapping("/{loggingDataId}")
     public void delete(@PathVariable Long id) {
 
     }

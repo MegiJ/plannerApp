@@ -8,7 +8,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class LoggingData {
-    private Long id;
+    private long id;
     private String login;
     private String password;
     private AccountDetails accountDetails;
