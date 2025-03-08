@@ -1,8 +1,10 @@
 package pl.project.plannerapp.service;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.server.ResponseStatusException;
 import pl.project.plannerapp.DTO.PersonalDataDTO;
 import pl.project.plannerapp.domain.LoggingDataEntity;
@@ -17,6 +19,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+@Slf4j
 @Service
 public class PersonalDataServiceImpl implements PersonalDataService {
     private final PersonalDataRepo personalDataRepo;
@@ -28,7 +31,7 @@ public class PersonalDataServiceImpl implements PersonalDataService {
         this.loggingDataRepo = loggingDataRepo;
     }
 
-    @Override
+    @GetMapping
     public List<PersonalData> getAllPersonalData() {
         return personalDataRepo.findAll()
                 .stream()
@@ -39,9 +42,9 @@ public class PersonalDataServiceImpl implements PersonalDataService {
     @Override
     public PersonalData addPersonalData(PersonalData personalDataToBeAdded) {
         LoggingDataEntity loggingDataEntity = loggingDataRepo.findById(personalDataToBeAdded.getLoggingDataId()).get();
-        PersonalDataEntity savedNewPersonalDataEntity = personalDataRepo.save(PersonalDataConventerUtils.convertToEntity(personalDataToBeAdded, loggingDataEntity));
-        PersonalData personalData = PersonalDataConventerUtils.convert(savedNewPersonalDataEntity);
-        return personalData;
+        PersonalDataEntity savedNewPersonalData = personalDataRepo.save(PersonalDataConventerUtils.convertToEntity(personalDataToBeAdded, loggingDataEntity));
+        PersonalData personalDataWithId = PersonalDataConventerUtils.convert(savedNewPersonalData);
+        return personalDataWithId;
     }
 
     public void put(Long id, PersonalDataDTO personalDataDTO) {
