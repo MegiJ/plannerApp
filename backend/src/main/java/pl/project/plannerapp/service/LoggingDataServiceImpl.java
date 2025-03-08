@@ -10,7 +10,6 @@ import pl.project.plannerapp.domain.LoggingDataEntity;
 import pl.project.plannerapp.model.AccountDetails;
 import pl.project.plannerapp.model.LoggingData;
 import pl.project.plannerapp.repo.LoggingDataRepo;
-import pl.project.plannerapp.repo.PersonalDataRepo;
 import pl.project.plannerapp.utils.LoggingDataConventerUtils;
 
 import java.util.List;
@@ -22,14 +21,10 @@ import java.util.stream.Collectors;
 public class LoggingDataServiceImpl implements LoggingDataService {
     public static final String USER_ROLE = "user";
     private final LoggingDataRepo loggingDataRepo;
-    private final PersonalDataRepo personalDataRepo;
-    private final AccountDetailsService accountDetailsService;
 
     @Autowired
-    public LoggingDataServiceImpl(LoggingDataRepo loggingDataRepo, PersonalDataRepo personalDataRepo, AccountDetailsService accountDetailsService) {
+    public LoggingDataServiceImpl(LoggingDataRepo loggingDataRepo) {
         this.loggingDataRepo = loggingDataRepo;
-        this.personalDataRepo = personalDataRepo;
-        this.accountDetailsService = accountDetailsService;
     }
 
     @Override

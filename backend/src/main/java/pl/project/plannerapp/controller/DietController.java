@@ -11,7 +11,6 @@ import pl.project.plannerapp.DTO.DietDTORequest;
 import pl.project.plannerapp.DTO.DietDTOResponse;
 import pl.project.plannerapp.model.Diet;
 import pl.project.plannerapp.service.DietService;
-import pl.project.plannerapp.service.LoggingDataService;
 import pl.project.plannerapp.utils.DietConventerUtils;
 
 import java.util.List;
@@ -21,12 +20,10 @@ import java.util.List;
 @RequestMapping(path = "/api/diets", produces = MediaType.APPLICATION_JSON_VALUE)
 public class DietController {
     private final DietService dietService;
-    private final LoggingDataService loggingDataService;
 
     @Autowired
-    public DietController(DietService dietService, LoggingDataService loggingDataService) {
+    public DietController(DietService dietService) {
         this.dietService = dietService;
-        this.loggingDataService = loggingDataService;
     }
 
     @GetMapping

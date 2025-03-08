@@ -11,14 +11,13 @@ import lombok.*;
 @Setter
 @Builder
 public class PersonalDataEntity {
-
     @Id
     @SequenceGenerator(name = "PERSONAL_DATA_ID_SEQ", sequenceName = "PERSONAL_DATA_ID_SEQ", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "PERSONAL_DATA_ID_SEQ")
     @Column(name = "ID")
-    private Long id;
+    private long id;
 
-    @Column(name = "NAME")
+    @Column(name = "FIRSTNAME")
     private String firstname;
 
     @Column(name = "SURNAME")
