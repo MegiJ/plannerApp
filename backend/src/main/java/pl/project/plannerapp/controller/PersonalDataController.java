@@ -3,6 +3,7 @@ package pl.project.plannerapp.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -35,6 +36,15 @@ public class PersonalDataController {
     public PersonalDataDTO getPersonalDataById(@PathVariable Long personalDataId) {
         return personalDataService.getById(personalDataId).map(a -> PersonalDataConventerUtils.convert(a))
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+    }
+
+    @GetMapping("/{personalDataBySurname}")
+    public ResponseEntity<List<PersonalData>> getPersonalDataBySurname(@RequestParam String surname) {
+        List<PersonalData> persons = personalDataService.getBySurname(surname);
+        if (persons.isEmpty()) {
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.ok(persons);
     }
 
     @PostMapping

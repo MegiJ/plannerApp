@@ -47,6 +47,31 @@ public class PersonalDataServiceImpl implements PersonalDataService {
         return personalDataWithId;
     }
 
+    @Override
+    public Optional<PersonalData> getById(Long id) {
+        return personalDataRepo.findById(id)
+                .map(PersonalDataConventerUtils::convert);
+    }
+
+    @Override
+    public List<PersonalData> getBySurname(String surname) {
+        List<PersonalData> personalDataList = personalDataRepo.findBySurname(surname)
+                .stream()
+                .map(PersonalDataConventerUtils::convert)
+                .collect(Collectors.toList());
+        if (personalDataList.isEmpty()) {
+            throw new AccountDetailsException("Not found account details for surname: " + surname);
+        }
+        return personalDataList;
+    }
+
+//    @Override
+//    public PersonalData getBySurname(String surname) {
+//        return personalDataRepo.findBySurname(surname)
+//                .map(PersonalDataConventerUtils::convert)
+//                .orElseThrow(()->new AccountDetailsException("Not found account details for surname: " + surname));
+//    }
+
     public void put(Long id, PersonalDataDTO personalDataDTO) {
 
     }
@@ -56,18 +81,5 @@ public class PersonalDataServiceImpl implements PersonalDataService {
         PersonalDataEntity personalDataEntity = personalDataRepo.findById(id)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
         personalDataRepo.delete(personalDataEntity);
-    }
-
-    @Override
-    public Optional<PersonalData> getById(Long id) {
-        return personalDataRepo.findById(id)
-                .map(PersonalDataConventerUtils::convert);
-    }
-
-    @Override
-    public PersonalData getBySurname(String surname) {
-        return personalDataRepo.findBySurname(surname)
-                .map(PersonalDataConventerUtils::convert)
-                .orElseThrow(()->new AccountDetailsException("Not found account details for surname: " + surname));
     }
 }
