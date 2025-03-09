@@ -38,7 +38,7 @@ public class PersonalDataController {
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }
 
-    @GetMapping("/{personalDataBySurname}")
+    @GetMapping("/bySurname")
     public ResponseEntity<List<PersonalData>> getPersonalDataBySurname(@RequestParam String surname) {
         List<PersonalData> persons = personalDataService.getBySurname(surname);
         if (persons.isEmpty()) {
