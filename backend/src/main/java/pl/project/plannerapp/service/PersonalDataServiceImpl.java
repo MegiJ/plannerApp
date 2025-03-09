@@ -1,8 +1,10 @@
 package pl.project.plannerapp.service;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.server.ResponseStatusException;
 import pl.project.plannerapp.DTO.PersonalDataDTO;
 import pl.project.plannerapp.domain.LoggingDataEntity;
@@ -17,6 +19,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+@Slf4j
 @Service
 public class PersonalDataServiceImpl implements PersonalDataService {
     private final PersonalDataRepo personalDataRepo;
@@ -28,7 +31,7 @@ public class PersonalDataServiceImpl implements PersonalDataService {
         this.loggingDataRepo = loggingDataRepo;
     }
 
-    @Override
+    @GetMapping
     public List<PersonalData> getAllPersonalData() {
         return personalDataRepo.findAll()
                 .stream()
@@ -39,10 +42,35 @@ public class PersonalDataServiceImpl implements PersonalDataService {
     @Override
     public PersonalData addPersonalData(PersonalData personalDataToBeAdded) {
         LoggingDataEntity loggingDataEntity = loggingDataRepo.findById(personalDataToBeAdded.getLoggingDataId()).get();
-        PersonalDataEntity savedNewPersonalDataEntity = personalDataRepo.save(PersonalDataConventerUtils.convertToEntity(personalDataToBeAdded, loggingDataEntity));
-        PersonalData personalData = PersonalDataConventerUtils.convert(savedNewPersonalDataEntity);
-        return personalData;
+        PersonalDataEntity savedNewPersonalData = personalDataRepo.save(PersonalDataConventerUtils.convertToEntity(personalDataToBeAdded, loggingDataEntity));
+        PersonalData personalDataWithId = PersonalDataConventerUtils.convert(savedNewPersonalData);
+        return personalDataWithId;
     }
+
+    @Override
+    public Optional<PersonalData> getById(Long id) {
+        return personalDataRepo.findById(id)
+                .map(PersonalDataConventerUtils::convert);
+    }
+
+    @Override
+    public List<PersonalData> getBySurname(String surname) {
+        List<PersonalData> personalDataList = personalDataRepo.findBySurname(surname)
+                .stream()
+                .map(PersonalDataConventerUtils::convert)
+                .collect(Collectors.toList());
+        if (personalDataList.isEmpty()) {
+            throw new AccountDetailsException("Not found account details for surname: " + surname);
+        }
+        return personalDataList;
+    }
+
+//    @Override
+//    public PersonalData getBySurname(String surname) {
+//        return personalDataRepo.findBySurname(surname)
+//                .map(PersonalDataConventerUtils::convert)
+//                .orElseThrow(()->new AccountDetailsException("Not found account details for surname: " + surname));
+//    }
 
     public void put(Long id, PersonalDataDTO personalDataDTO) {
 
@@ -53,18 +81,5 @@ public class PersonalDataServiceImpl implements PersonalDataService {
         PersonalDataEntity personalDataEntity = personalDataRepo.findById(id)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
         personalDataRepo.delete(personalDataEntity);
-    }
-
-    @Override
-    public Optional<PersonalData> getById(Long id) {
-        return personalDataRepo.findById(id)
-                .map(PersonalDataConventerUtils::convert);
-    }
-
-    @Override
-    public PersonalData getBySurname(String surname) {
-        return personalDataRepo.findBySurname(surname)
-                .map(PersonalDataConventerUtils::convert)
-                .orElseThrow(()->new AccountDetailsException("Not found account details for surname: " + surname));
     }
 }

@@ -6,7 +6,6 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 import pl.project.plannerapp.DTO.LoggingDataDTO;
-import pl.project.plannerapp.service.AccountDetailsService;
 import pl.project.plannerapp.service.LoggingDataService;
 import pl.project.plannerapp.utils.LoggingDataConventerUtils;
 
@@ -16,13 +15,11 @@ import java.util.List;
 @RequestMapping(path = "/api/loggingData", produces = MediaType.APPLICATION_JSON_VALUE)
 public class LoggingDataController {
     private final LoggingDataService loggingDataService;
-    private final AccountDetailsService accountDetailsService;
 
 
     @Autowired
-    public LoggingDataController(LoggingDataService loggingDataService, AccountDetailsService accountDetailsService) {
+    public LoggingDataController(LoggingDataService loggingDataService) {
         this.loggingDataService = loggingDataService;
-        this.accountDetailsService = accountDetailsService;
     }
 
     @GetMapping
@@ -30,7 +27,7 @@ public class LoggingDataController {
         return loggingDataService.getAllLoginData().stream().map(a -> LoggingDataConventerUtils.convert(a)).toList();
     }
 
-    @GetMapping("/{loggingData-id}")
+    @GetMapping("/{loggingDataId}")
     public LoggingDataDTO get(@PathVariable Long id) {
         return loggingDataService.getById(id).map(a -> LoggingDataConventerUtils.convert(a))
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
@@ -42,13 +39,13 @@ public class LoggingDataController {
     }
 
 
-    @PutMapping("/{loggingData-id}")
+    @PutMapping("/{loggingDataId}")
     public void put(@PathVariable Long id, @RequestBody LoggingDataDTO loggingDataJson) {
 
     }
 
 
-    @DeleteMapping("/{loggingData-id}")
+    @DeleteMapping("/{loggingDataId}")
     public void delete(@PathVariable Long id) {
 
     }
