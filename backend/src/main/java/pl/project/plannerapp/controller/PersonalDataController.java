@@ -14,6 +14,7 @@ import pl.project.plannerapp.service.PersonalDataService;
 import pl.project.plannerapp.utils.PersonalDataConventerUtils;
 
 import java.util.List;
+import java.util.Optional;
 
 @Validated
 @RestController
@@ -54,9 +55,17 @@ public class PersonalDataController {
     }
 
     @Transactional
-    @PutMapping("/personalDataId")
-    public void put(@PathVariable Long id, @RequestBody PersonalDataDTO personalDataJson) {
+    @PutMapping("/{personalDataId}/surname")
+    public ResponseEntity<PersonalData> updateSurname(@PathVariable Long id, @RequestBody String newSurname) {
+        Optional<PersonalData> personalDataOptional = personalDataService.getById(id);
+        if (!personalDataOptional.isPresent()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+        PersonalData personalData1 = personalDataOptional.get();
+        personalData1.setSurname(newSurname);
+        // personalDataService.save(personalData1);
 
+        return ResponseEntity.ok(personalData1);
     }
 
     @Transactional

@@ -65,6 +65,11 @@ public class PersonalDataServiceImpl implements PersonalDataService {
         return personalDataList;
     }
 
+    @Override
+    public Optional<PersonalData> modifySurname(String surname) {
+        return Optional.empty();
+    }
+
 //    @Override
 //    public PersonalData getBySurname(String surname) {
 //        return personalDataRepo.findBySurname(surname)

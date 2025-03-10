@@ -13,6 +13,8 @@ public interface PersonalDataService {
 
     List<PersonalData> getBySurname(String surname);
 
+    Optional<PersonalData> modifySurname(String surname);
+
     void delete(Long id);
     Optional<PersonalData> getById(Long id);
 }
