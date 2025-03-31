@@ -9,7 +9,7 @@ import org.springframework.web.server.ResponseStatusException;
 import pl.project.plannerapp.DTO.PersonalDataDTO;
 import pl.project.plannerapp.domain.LoggingDataEntity;
 import pl.project.plannerapp.domain.PersonalDataEntity;
-import pl.project.plannerapp.exceptions.AccountDetailsException;
+import pl.project.plannerapp.exceptions.PersonalDataException;
 import pl.project.plannerapp.model.PersonalData;
 import pl.project.plannerapp.repo.LoggingDataRepo;
 import pl.project.plannerapp.repo.PersonalDataRepo;
@@ -55,27 +55,24 @@ public class PersonalDataServiceImpl implements PersonalDataService {
 
     @Override
     public List<PersonalData> getBySurname(String surname) {
-        List<PersonalData> personalDataList = personalDataRepo.findBySurname(surname)
+        return personalDataRepo.findBySurname(surname)
                 .stream()
                 .map(PersonalDataConventerUtils::convert)
                 .collect(Collectors.toList());
-        if (personalDataList.isEmpty()) {
-            throw new AccountDetailsException("Not found account details for surname: " + surname);
-        }
-        return personalDataList;
     }
 
     @Override
-    public Optional<PersonalData> modifySurname(String surname) {
-        return Optional.empty();
+    public PersonalData modifySurname(Long personalDataId, String newSurname) {
+        Optional<PersonalDataEntity> personalDataOptional = personalDataRepo.findById(personalDataId); // krok 1a: szukanie w bazie danych po id
+        if (personalDataOptional.isEmpty()) { // 1b: sprawdz czy czlwieik istnieje
+            log.warn("Personal data " + personalDataId + " not found");
+            throw new PersonalDataException("Personal data not found");
+        }
+        PersonalDataEntity currentData = personalDataOptional.get(); // krok 1c:  pokaz te dane
+        currentData.setSurname(newSurname); //krok 2: podmień nazwisko
+        PersonalDataEntity personalDataEntity = personalDataRepo.save(currentData); //krok 3: zapis do bazy
+        return PersonalDataConventerUtils.convert(personalDataEntity);
     }
-
-//    @Override
-//    public PersonalData getBySurname(String surname) {
-//        return personalDataRepo.findBySurname(surname)
-//                .map(PersonalDataConventerUtils::convert)
-//                .orElseThrow(()->new AccountDetailsException("Not found account details for surname: " + surname));
-//    }
 
     public void put(Long id, PersonalDataDTO personalDataDTO) {
 

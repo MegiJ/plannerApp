@@ -5,7 +5,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 import pl.project.plannerapp.DTO.PersonalDataDTO;
@@ -14,9 +13,7 @@ import pl.project.plannerapp.service.PersonalDataService;
 import pl.project.plannerapp.utils.PersonalDataConventerUtils;
 
 import java.util.List;
-import java.util.Optional;
 
-@Validated
 @RestController
 @RequestMapping(path = "/api/personalData", produces = MediaType.APPLICATION_JSON_VALUE)
 public class PersonalDataController {
@@ -30,22 +27,26 @@ public class PersonalDataController {
 
     @GetMapping
     public List<PersonalDataDTO> getAllPersonalDatas() {
-        return personalDataService.getAllPersonalData().stream().map(a -> PersonalDataConventerUtils.convert(a)).toList();
+        return personalDataService.getAllPersonalData().stream()
+                .map(pd -> PersonalDataConventerUtils.convert(pd))
+                .toList();
     }
 
     @GetMapping("/{personalDataId}")
     public PersonalDataDTO getPersonalDataById(@PathVariable Long personalDataId) {
-        return personalDataService.getById(personalDataId).map(a -> PersonalDataConventerUtils.convert(a))
+        return personalDataService.getById(personalDataId)
+                .map(pd -> PersonalDataConventerUtils.convert(pd))
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }
 
     @GetMapping("/bySurname")
-    public ResponseEntity<List<PersonalData>> getPersonalDataBySurname(@RequestParam String surname) {
-        List<PersonalData> persons = personalDataService.getBySurname(surname);
-        if (persons.isEmpty()) {
-            return ResponseEntity.noContent().build();
+    public ResponseEntity<?> getPersonalDataBySurname(@RequestParam String surname) {
+        List<PersonalData> personsWithSurname = personalDataService.getBySurname(surname);
+        if (personsWithSurname.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Nie znaleziono nazwiska: " + surname);
+        } else {
+            return ResponseEntity.ok(personsWithSurname);
         }
-        return ResponseEntity.ok(persons);
     }
 
     @PostMapping
@@ -54,18 +55,10 @@ public class PersonalDataController {
         return personalDataWithId.getPersonalDataId();
     }
 
-    @Transactional
     @PutMapping("/{personalDataId}/surname")
-    public ResponseEntity<PersonalData> updateSurname(@PathVariable Long id, @RequestBody String newSurname) {
-        Optional<PersonalData> personalDataOptional = personalDataService.getById(id);
-        if (!personalDataOptional.isPresent()) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-        }
-        PersonalData personalData1 = personalDataOptional.get();
-        personalData1.setSurname(newSurname);
-        // personalDataService.save(personalData1);
-
-        return ResponseEntity.ok(personalData1);
+    public ResponseEntity<?> updateSurname(@PathVariable Long personalDataId, @RequestBody String newSurname) {
+        PersonalData findSurname = personalDataService.modifySurname(personalDataId, newSurname);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT); // tym dodajesz status kodu bledu albo inf 200 lub 204 itp
     }
 
     @Transactional

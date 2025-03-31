@@ -8,6 +8,7 @@ import pl.project.plannerapp.model.LoggingData;
 public class LoggingDataConventerUtils {
     public static LoggingDataDTO convert(LoggingData loggingData) {
         return LoggingDataDTO.builder()
+                .id(loggingData.getId())
                 .login(loggingData.getLogin())
                 .password(loggingData.getPassword())
                 .build();

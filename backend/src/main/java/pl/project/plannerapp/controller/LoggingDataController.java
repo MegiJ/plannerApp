@@ -16,7 +16,6 @@ import java.util.List;
 public class LoggingDataController {
     private final LoggingDataService loggingDataService;
 
-
     @Autowired
     public LoggingDataController(LoggingDataService loggingDataService) {
         this.loggingDataService = loggingDataService;
@@ -28,8 +27,8 @@ public class LoggingDataController {
     }
 
     @GetMapping("/{loggingDataId}")
-    public LoggingDataDTO get(@PathVariable Long id) {
-        return loggingDataService.getById(id).map(a -> LoggingDataConventerUtils.convert(a))
+    public LoggingDataDTO get(@PathVariable Long loggingDataId) {
+        return loggingDataService.getById(loggingDataId).map(a -> LoggingDataConventerUtils.convert(a))
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }
 
@@ -38,15 +37,13 @@ public class LoggingDataController {
         return loggingDataService.save(LoggingDataConventerUtils.convert(loggingDataDTO));
     }
 
-
     @PutMapping("/{loggingDataId}")
-    public void put(@PathVariable Long id, @RequestBody LoggingDataDTO loggingDataJson) {
+    public void put(@PathVariable Long loggingDataId, @RequestBody LoggingDataDTO loggingDataJson) {
 
     }
 
-
     @DeleteMapping("/{loggingDataId}")
-    public void delete(@PathVariable Long id) {
+    public void delete(@PathVariable Long loggingDataId) {
 
     }
 }

@@ -7,13 +7,14 @@ import java.util.List;
 import java.util.Optional;
 
 public interface PersonalDataService {
-    List<PersonalData> getAllPersonalData();
+    List<PersonalData> getAllPersonalData(); // GET - zwracanie
+
     PersonalData addPersonalData(PersonalData personalData);
     void put(Long id, PersonalDataDTO personalDataDTO);
 
     List<PersonalData> getBySurname(String surname);
 
-    Optional<PersonalData> modifySurname(String surname);
+    PersonalData modifySurname(Long personalDataId, String newSurname);
 
     void delete(Long id);
     Optional<PersonalData> getById(Long id);

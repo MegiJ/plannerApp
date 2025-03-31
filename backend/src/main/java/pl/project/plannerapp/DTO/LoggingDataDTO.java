@@ -11,6 +11,8 @@ import static io.swagger.v3.oas.annotations.media.Schema.RequiredMode.REQUIRED;
 @AllArgsConstructor
 @NoArgsConstructor
 public class LoggingDataDTO {
+    @Schema(requiredMode = REQUIRED, name = "id", description = "id of logging data")
+    private long id;
     @Schema(requiredMode = REQUIRED, name = "login", description = "login for user")
     private String login;
     @Schema(requiredMode = REQUIRED, name = "password", description = "password for user",
