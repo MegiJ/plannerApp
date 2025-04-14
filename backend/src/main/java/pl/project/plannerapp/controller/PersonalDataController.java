@@ -1,5 +1,7 @@
 package pl.project.plannerapp.controller;
 
+import jakarta.servlet.http.HttpServletRequest;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -14,6 +16,7 @@ import pl.project.plannerapp.utils.PersonalDataConventerUtils;
 
 import java.util.List;
 
+@Slf4j
 @RestController
 @RequestMapping(path = "/api/personalData", produces = MediaType.APPLICATION_JSON_VALUE)
 public class PersonalDataController {
@@ -81,7 +84,19 @@ public class PersonalDataController {
 
     @Transactional
     @DeleteMapping("/{personalDataId}")
-    public void delete(@PathVariable Long id) {
+    public void delete(@PathVariable Long personalDataId) {
 
+    }
+
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<String> handleException(
+        Exception exception, HttpServletRequest httpServletRequest
+    ) {
+        log.warn(
+            "Something bad. Exception: {}",
+            httpServletRequest.getRequestURI(),
+            exception.getMessage()
+        );
+        return new ResponseEntity<>("Something bad", HttpStatus.BAD_REQUEST);
     }
 }
