@@ -6,7 +6,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.server.ResponseStatusException;
-import pl.project.plannerapp.DTO.PersonalDataDTO;
 import pl.project.plannerapp.domain.LoggingDataEntity;
 import pl.project.plannerapp.domain.PersonalDataEntity;
 import pl.project.plannerapp.exceptions.PersonalDataException;
@@ -40,14 +39,6 @@ public class PersonalDataServiceImpl implements PersonalDataService {
     }
 
     @Override
-    public PersonalData addPersonalData(PersonalData personalDataToBeAdded) {
-        LoggingDataEntity loggingDataEntity = loggingDataRepo.findById(personalDataToBeAdded.getLoggingDataId()).get();
-        PersonalDataEntity savedNewPersonalData = personalDataRepo.save(PersonalDataConventerUtils.convertToEntity(personalDataToBeAdded, loggingDataEntity));
-        PersonalData personalDataWithId = PersonalDataConventerUtils.convert(savedNewPersonalData);
-        return personalDataWithId;
-    }
-
-    @Override
     public Optional<PersonalData> getById(Long id) {
         return personalDataRepo.findById(id)
                 .map(PersonalDataConventerUtils::convert);
@@ -59,6 +50,22 @@ public class PersonalDataServiceImpl implements PersonalDataService {
                 .stream()
                 .map(PersonalDataConventerUtils::convert)
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<PersonalData> getByEmail(String email) {
+        return personalDataRepo.findByEmail(email)
+                .stream()
+                .map(PersonalDataConventerUtils::convert)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public PersonalData addPersonalData(PersonalData personalDataToBeAdded) {
+        LoggingDataEntity loggingDataEntity = loggingDataRepo.findById(personalDataToBeAdded.getLoggingDataId()).get();
+        PersonalDataEntity savedNewPersonalData = personalDataRepo.save(PersonalDataConventerUtils.convertToEntity(personalDataToBeAdded, loggingDataEntity));
+        PersonalData personalDataWithId = PersonalDataConventerUtils.convert(savedNewPersonalData);
+        return personalDataWithId;
     }
 
     @Override
@@ -74,8 +81,48 @@ public class PersonalDataServiceImpl implements PersonalDataService {
         return PersonalDataConventerUtils.convert(personalDataEntity);
     }
 
-    public void put(Long id, PersonalDataDTO personalDataDTO) {
+    @Override
+    public PersonalData modifyFirstname(Long personalDataId, String newFirstname) {
+        Optional<PersonalDataEntity> personalDataOptional = personalDataRepo.findById(personalDataId); // krok 1a: szukanie w bazie danych po id
+        if (personalDataOptional.isEmpty()) { // 1b: sprawdz czy czlwieik istnieje
+            log.warn("Personal data " + personalDataId + " not found");
+            throw new PersonalDataException("Personal data not found");
+        }
+        PersonalDataEntity currentData = personalDataOptional.get(); // krok 1c:  pokaz te dane
+        currentData.setFirstname(newFirstname); //krok 2: podmień nazwisko
+        PersonalDataEntity personalDataEntity = personalDataRepo.save(currentData); //krok 3: zapis do bazy
+        return PersonalDataConventerUtils.convert(personalDataEntity);
+    }
 
+    @Override
+    public PersonalData modifyPhone(Long personalDataId, int newPhone) {
+        Optional<PersonalDataEntity> personalDataOptional = personalDataRepo.findById(personalDataId);
+        if (personalDataOptional.isEmpty()) {
+            log.warn("Personal data " + personalDataId + " not found");
+            throw new PersonalDataException("Personal data not found");
+        }
+        PersonalDataEntity currentData = personalDataOptional.get();
+        currentData.setPhone(newPhone);
+        PersonalDataEntity personalDataEntity = personalDataRepo.save(currentData);
+        return PersonalDataConventerUtils.convert(personalDataEntity);
+    }
+
+    @Override
+    public PersonalData modifyEmail(Long personalDataId, String newEmail) {
+        Optional<PersonalDataEntity> personalDataOptional = personalDataRepo.findById(personalDataId);
+        if (personalDataOptional.isEmpty()) {
+            log.warn("Personal data " + personalDataId + " not found");
+            throw new PersonalDataException("Personal data not found");
+        }
+        List<PersonalDataEntity> allPersonalData = personalDataRepo.findAll();
+        if (allPersonalData.contains(newEmail)) {
+            log.warn("Email: " + newEmail + " already exist");
+            throw new PersonalDataException("Email already exist");
+        }
+        PersonalDataEntity currentData = personalDataOptional.get();
+        currentData.setEmail(newEmail);
+        PersonalDataEntity personalDataEntity = personalDataRepo.save(currentData); //krok 3: zapis do bazy
+        return PersonalDataConventerUtils.convert(personalDataEntity);
     }
 
     @Override

@@ -61,6 +61,24 @@ public class PersonalDataController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT); // tym dodajesz status kodu bledu albo inf 200 lub 204 itp
     }
 
+    @PutMapping("/{personalDataId}/firstname")
+    public ResponseEntity<?> updateFirstname(@PathVariable Long personalDataId, @RequestBody String newFirstname) {
+        PersonalData findFirstname = personalDataService.modifyFirstname(personalDataId, newFirstname);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT); // tym dodajesz status kodu bledu albo inf 200 lub 204 itp
+    }
+
+    @PutMapping("/{personalDataId}/phone")
+    public ResponseEntity<?> updatePhone(@PathVariable Long personalDataId, @RequestBody int newPhone) {
+        PersonalData findPhone = personalDataService.modifyPhone(personalDataId, newPhone);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT); // tym dodajesz status kodu bledu albo inf 200 lub 204 itp
+    }
+
+    @PutMapping("/{personalDataId}/email")
+    public ResponseEntity<?> updateEmail(@PathVariable Long personalDataId, @RequestBody String newEmail) {
+        PersonalData findPhone = personalDataService.modifyEmail(personalDataId, newEmail);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT); // tym dodajesz status kodu bledu albo inf 200 lub 204 itp
+    }
+
     @Transactional
     @DeleteMapping("/{personalDataId}")
     public void delete(@PathVariable Long id) {

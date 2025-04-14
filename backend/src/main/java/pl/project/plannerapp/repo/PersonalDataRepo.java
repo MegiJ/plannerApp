@@ -10,4 +10,6 @@ import java.util.Optional;
 public interface PersonalDataRepo extends JpaRepository<PersonalDataEntity, Long> {
     Optional<PersonalDataEntity> findById(Long id);
     Optional<PersonalDataEntity> findBySurname(String surname);
+
+    Optional<PersonalDataEntity> findByEmail(String email);
 }
