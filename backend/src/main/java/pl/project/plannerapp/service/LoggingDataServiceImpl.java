@@ -22,7 +22,6 @@ public class LoggingDataServiceImpl implements LoggingDataService {
     public static final String USER_ROLE = "user";
     private final LoggingDataRepo loggingDataRepo;
 
-
     @Autowired
     public LoggingDataServiceImpl(LoggingDataRepo loggingDataRepo) {
         this.loggingDataRepo = loggingDataRepo;

@@ -6,7 +6,6 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 import pl.project.plannerapp.DTO.LoggingDataDTO;
-import pl.project.plannerapp.service.AccountDetailsService;
 import pl.project.plannerapp.service.LoggingDataService;
 import pl.project.plannerapp.utils.LoggingDataConventerUtils;
 
@@ -16,13 +15,10 @@ import java.util.List;
 @RequestMapping(path = "/api/loggingData", produces = MediaType.APPLICATION_JSON_VALUE)
 public class LoggingDataController {
     private final LoggingDataService loggingDataService;
-    private final AccountDetailsService accountDetailsService;
-
 
     @Autowired
-    public LoggingDataController(LoggingDataService loggingDataService, AccountDetailsService accountDetailsService) {
+    public LoggingDataController(LoggingDataService loggingDataService) {
         this.loggingDataService = loggingDataService;
-        this.accountDetailsService = accountDetailsService;
     }
 
     @GetMapping
@@ -31,7 +27,7 @@ public class LoggingDataController {
     }
 
     @GetMapping("/{loggingDataId}")
-    public LoggingDataDTO getLoggingDataById(@PathVariable Long loggingDataId) {
+    public LoggingDataDTO get(@PathVariable Long loggingDataId) {
         return loggingDataService.getById(loggingDataId).map(a -> LoggingDataConventerUtils.convert(a))
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }
@@ -41,15 +37,13 @@ public class LoggingDataController {
         return loggingDataService.save(LoggingDataConventerUtils.convert(loggingDataDTO));
     }
 
-
     @PutMapping("/{loggingDataId}")
-    public void put(@PathVariable Long id, @RequestBody LoggingDataDTO loggingDataJson) {
+    public void put(@PathVariable Long loggingDataId, @RequestBody LoggingDataDTO loggingDataJson) {
 
     }
 
-
     @DeleteMapping("/{loggingDataId}")
-    public void delete(@PathVariable Long id) {
+    public void delete(@PathVariable Long loggingDataId) {
 
     }
 }
