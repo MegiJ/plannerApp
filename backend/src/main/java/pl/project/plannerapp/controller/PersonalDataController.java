@@ -78,14 +78,14 @@ public class PersonalDataController {
 
     @PutMapping("/{personalDataId}/email")
     public ResponseEntity<?> updateEmail(@PathVariable Long personalDataId, @RequestBody String newEmail) {
-        PersonalData findPhone = personalDataService.modifyEmail(personalDataId, newEmail);
+        PersonalData findEmail = personalDataService.modifyEmail(personalDataId, newEmail);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT); // tym dodajesz status kodu bledu albo inf 200 lub 204 itp
     }
 
     @Transactional
     @DeleteMapping("/{personalDataId}")
     public void delete(@PathVariable Long personalDataId) {
-
+        personalDataService.delete(personalDataId);
     }
 
     @ExceptionHandler(Exception.class)
@@ -93,9 +93,9 @@ public class PersonalDataController {
         Exception exception, HttpServletRequest httpServletRequest
     ) {
         log.warn(
-            "Something bad. Exception: {}",
-            httpServletRequest.getRequestURI(),
-            exception.getMessage()
+                "Something bad. Exception: {}, error message: {}",
+                httpServletRequest.getRequestURI(),
+                exception.getMessage()
         );
         return new ResponseEntity<>("Something bad", HttpStatus.BAD_REQUEST);
     }

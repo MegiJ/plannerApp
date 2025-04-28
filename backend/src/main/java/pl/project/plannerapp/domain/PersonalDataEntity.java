@@ -26,7 +26,7 @@ public class PersonalDataEntity {
     @Column(name = "PHONE")
     private int phone;
 
-    @Column(name = "EMAIL")
+    @Column(name = "EMAIL", unique = true)
     private String email;
 
     @OneToOne(cascade = CascadeType.ALL)
