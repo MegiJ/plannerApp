@@ -40,12 +40,6 @@ public class LoggingDataServiceImpl implements LoggingDataService {
 
     @Override
     public LoggingData saveNewLoggingData(LoggingData loggingDataToBeAdded) {
-//        AccountDetails accountDetails = createAccountDetails();
-//        loggingDataToBeAdded.setAccountDetails(accountDetails);
-//        LoggingDataEntity loggingDataEntity = LoggingDataConventerUtils.convertToEntity(loggingDataToBeAdded);
-//        LoggingDataEntity savedNewEntity = loggingDataRepo.save(loggingDataEntity);
-//        log.info("Saved new account with id " + savedNewEntity.getId());
-//        return savedNewEntity.getId();
         AccountDetailsEntity accountDetailsEntity = AccountDetailsEntity.builder()
                 .role(USER_ROLE)
                 .isExpired(false)
@@ -71,16 +65,6 @@ public class LoggingDataServiceImpl implements LoggingDataService {
         LoggingDataEntity loggingDataEntity = loggingDataRepo.save(currentPassword);
         return LoggingDataConventerUtils.convert(loggingDataEntity);
     }
-
-//    private static AccountDetails createAccountDetails() {
-//        return AccountDetails.builder()
-//                .role(USER_ROLE)
-//                .isExpired(false)
-//                .isLocked(false)
-//                .isCredentialsExpired(false)
-//                .isDisabled(false)
-//                .build();
-//    }
 
     @Override
     public void delete(Long id) {
