@@ -5,10 +5,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
-import pl.project.plannerapp.DTO.LoggingDataDTO;
+import pl.project.plannerapp.domain.AccountDetailsEntity;
 import pl.project.plannerapp.domain.LoggingDataEntity;
-import pl.project.plannerapp.model.AccountDetails;
+import pl.project.plannerapp.exceptions.LoggingDataException;
 import pl.project.plannerapp.model.LoggingData;
+import pl.project.plannerapp.repo.AccountDetailsRepo;
 import pl.project.plannerapp.repo.LoggingDataRepo;
 import pl.project.plannerapp.utils.LoggingDataConventerUtils;
 
@@ -21,10 +22,12 @@ import java.util.stream.Collectors;
 public class LoggingDataServiceImpl implements LoggingDataService {
     public static final String USER_ROLE = "user";
     private final LoggingDataRepo loggingDataRepo;
+    private final AccountDetailsRepo accountDetailsRepo;
 
     @Autowired
-    public LoggingDataServiceImpl(LoggingDataRepo loggingDataRepo) {
+    public LoggingDataServiceImpl(LoggingDataRepo loggingDataRepo, AccountDetailsRepo accountDetailsRepo) {
         this.loggingDataRepo = loggingDataRepo;
+        this.accountDetailsRepo = accountDetailsRepo;
     }
 
     @Override
@@ -36,28 +39,31 @@ public class LoggingDataServiceImpl implements LoggingDataService {
     }
 
     @Override
-    public long save(LoggingData loggingData) {
-        AccountDetails accountDetails = createAccountDetails();
-        loggingData.setAccountDetails(accountDetails);
-        LoggingDataEntity loggingDataEntity = LoggingDataConventerUtils.convertToEntity(loggingData);
-        LoggingDataEntity savedNewEntity = loggingDataRepo.save(loggingDataEntity);
-        log.info("Saved new account with id " + savedNewEntity.getId());
-        return savedNewEntity.getId();
-    }
-
-    private static AccountDetails createAccountDetails() {
-        return AccountDetails.builder()
+    public LoggingData saveNewLoggingData(LoggingData loggingDataToBeAdded) {
+        AccountDetailsEntity accountDetailsEntity = AccountDetailsEntity.builder()
                 .role(USER_ROLE)
                 .isExpired(false)
                 .isLocked(false)
                 .isCredentialsExpired(false)
                 .isDisabled(false)
                 .build();
+        LoggingDataEntity loggingDataToBeSaved = LoggingDataConventerUtils.convertToEntity(loggingDataToBeAdded, accountDetailsEntity);
+        LoggingDataEntity savedNewLoggingData = loggingDataRepo.save(loggingDataToBeSaved);
+        LoggingData loggingDataWithId = LoggingDataConventerUtils.convert(savedNewLoggingData);
+        return loggingDataWithId;
     }
 
     @Override
-    public void update(Long id, LoggingDataDTO loggingDataDTO) {
-
+    public LoggingData modifyPassword(Long loggingDataId, String newPassword) {
+        Optional<LoggingDataEntity> loggingDataOptional = loggingDataRepo.findById(loggingDataId);
+        if (loggingDataOptional.isEmpty()) {
+            log.warn("Logging data " + loggingDataId + " not found");
+            throw new LoggingDataException("Logging data not found");
+        }
+        LoggingDataEntity currentPassword = loggingDataOptional.get();
+        currentPassword.setPassword(newPassword);
+        LoggingDataEntity loggingDataEntity = loggingDataRepo.save(currentPassword);
+        return LoggingDataConventerUtils.convert(loggingDataEntity);
     }
 
     @Override

@@ -1,16 +1,23 @@
 package pl.project.plannerapp.controller;
 
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.validation.ConstraintViolationException;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.server.ResponseStatusException;
-import pl.project.plannerapp.DTO.LoggingDataDTO;
+import pl.project.plannerapp.DTO.LoggingDataDTORequest;
+import pl.project.plannerapp.DTO.LoggingDataDTOResponse;
+import pl.project.plannerapp.model.LoggingData;
 import pl.project.plannerapp.service.LoggingDataService;
 import pl.project.plannerapp.utils.LoggingDataConventerUtils;
 
 import java.util.List;
+import java.util.Optional;
 
+@Slf4j
 @RestController
 @RequestMapping(path = "/api/loggingData", produces = MediaType.APPLICATION_JSON_VALUE)
 public class LoggingDataController {
@@ -22,28 +29,49 @@ public class LoggingDataController {
     }
 
     @GetMapping
-    public List<LoggingDataDTO> getAllLoggingDatas() {
-        return loggingDataService.getAllLoginData().stream().map(a -> LoggingDataConventerUtils.convert(a)).toList();
+    public List<LoggingDataDTOResponse> getAllLoggingDatas() {
+        return loggingDataService.getAllLoginData().stream()
+                .map(a -> LoggingDataConventerUtils.convert(a))
+                .toList();
     }
 
     @GetMapping("/{loggingDataId}")
-    public LoggingDataDTO get(@PathVariable Long loggingDataId) {
-        return loggingDataService.getById(loggingDataId).map(a -> LoggingDataConventerUtils.convert(a))
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+    public ResponseEntity<LoggingDataDTOResponse> getLoggingDataById(@PathVariable Long loggingDataId) {
+        Optional<LoggingDataDTOResponse> loggingDataDTOResponse = loggingDataService.getById(loggingDataId)
+                .map(a -> LoggingDataConventerUtils.convert(a));
+        if (loggingDataDTOResponse.isPresent()) {
+            return new ResponseEntity<>(loggingDataDTOResponse.get(), HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
 
     @PostMapping
-    public long saveNewAccount(@RequestBody LoggingDataDTO loggingDataDTO) {
-        return loggingDataService.save(LoggingDataConventerUtils.convert(loggingDataDTO));
+    public long saveNewAccount(@RequestBody LoggingDataDTORequest loggingDataJson) {
+        LoggingData loggingDataWithId = loggingDataService.saveNewLoggingData(LoggingDataConventerUtils.convert(loggingDataJson));
+        return loggingDataWithId.getLoggingDataId();
     }
 
-    @PutMapping("/{loggingDataId}")
-    public void put(@PathVariable Long loggingDataId, @RequestBody LoggingDataDTO loggingDataJson) {
-
+    @PutMapping("/{loggingDataId}/password")
+    public ResponseEntity<?> updatePassword(@PathVariable Long loggingDataId, @RequestBody String newPassword) {
+        LoggingData oldPassword = loggingDataService.modifyPassword(loggingDataId, newPassword);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
     @DeleteMapping("/{loggingDataId}")
     public void delete(@PathVariable Long loggingDataId) {
+        loggingDataService.delete(loggingDataId);
+    }
 
+    @ExceptionHandler(ConstraintViolationException.class)
+    public ResponseEntity<String> handleException(
+            ConstraintViolationException exception, HttpServletRequest httpServletRequest
+    ) {
+        log.warn(
+                "Hasło nie spełnia wymagań. Exception: {}, error message: {}",
+                httpServletRequest.getRequestURI(),
+                exception.getMessage()
+        );
+        return new ResponseEntity<>("Something bad", HttpStatus.BAD_REQUEST);
     }
 }
