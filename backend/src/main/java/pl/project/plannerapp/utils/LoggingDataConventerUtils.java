@@ -1,40 +1,42 @@
 package pl.project.plannerapp.utils;
 
-import pl.project.plannerapp.DTO.LoggingDataDTO;
+import pl.project.plannerapp.DTO.LoggingDataDTORequest;
+import pl.project.plannerapp.DTO.LoggingDataDTOResponse;
+import pl.project.plannerapp.domain.AccountDetailsEntity;
 import pl.project.plannerapp.domain.LoggingDataEntity;
 import pl.project.plannerapp.model.LoggingData;
 
 
 public class LoggingDataConventerUtils {
-    public static LoggingDataDTO convert(LoggingData loggingData) {
-        return LoggingDataDTO.builder()
-                .id(loggingData.getId())
+    public static LoggingDataDTOResponse convert(LoggingData loggingData) {
+        return LoggingDataDTOResponse.builder()
                 .login(loggingData.getLogin())
                 .password(loggingData.getPassword())
+                .accountDetailsId(loggingData.getAccountDetailsId())
                 .build();
     }
 
-    public static LoggingData convert(LoggingDataDTO loggingDataDTO) {
+    public static LoggingData convert(LoggingDataDTORequest loggingDataDTO) {
         return LoggingData.builder()
                 .login(loggingDataDTO.getLogin())
                 .password(loggingDataDTO.getPassword())
                 .build();
     }
 
-    public static LoggingDataEntity convertToEntity(LoggingData loggingDataToEntity) {
+    public static LoggingDataEntity convertToEntity(LoggingData loggingDataToEntity, AccountDetailsEntity accountDetailsEntity) {
         return LoggingDataEntity.builder()
                 .login(loggingDataToEntity.getLogin())
                 .password(loggingDataToEntity.getPassword())
-                .accountDetailsEntity(AccountDetailsConventerUtils.convertToEntity(loggingDataToEntity.getAccountDetails()))
+                .accountDetailsEntity(accountDetailsEntity)
                 .build();
     }
 
     public static LoggingData convert(LoggingDataEntity loggingDataEntity) {
         return LoggingData.builder()
-                .id(loggingDataEntity.getId())
+                .loggingDataId(loggingDataEntity.getId())
                 .login(loggingDataEntity.getLogin())
                 .password(loggingDataEntity.getPassword())
-                .accountDetails(AccountDetailsConventerUtils.convert(loggingDataEntity.getAccountDetailsEntity()))
+                .accountDetailsId(loggingDataEntity.getAccountDetailsEntity().getId())
                 .build();
     }
 }

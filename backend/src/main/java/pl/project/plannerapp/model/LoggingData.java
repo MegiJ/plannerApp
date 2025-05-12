@@ -8,8 +8,8 @@ import lombok.Setter;
 @Getter
 @Setter
 public class LoggingData {
-    private long id;
+    private long loggingDataId;
     private String login;
     private String password;
-    private AccountDetails accountDetails;
+    private long accountDetailsId;
 }
