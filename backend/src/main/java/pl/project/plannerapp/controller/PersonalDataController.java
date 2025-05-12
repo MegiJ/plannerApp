@@ -8,13 +8,13 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.server.ResponseStatusException;
 import pl.project.plannerapp.DTO.PersonalDataDTO;
 import pl.project.plannerapp.model.PersonalData;
 import pl.project.plannerapp.service.PersonalDataService;
 import pl.project.plannerapp.utils.PersonalDataConventerUtils;
 
 import java.util.List;
+import java.util.Optional;
 
 @Slf4j
 @RestController
@@ -36,10 +36,14 @@ public class PersonalDataController {
     }
 
     @GetMapping("/{personalDataId}")
-    public PersonalDataDTO getPersonalDataById(@PathVariable Long personalDataId) {
-        return personalDataService.getById(personalDataId)
-                .map(pd -> PersonalDataConventerUtils.convert(pd))
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+    public ResponseEntity<PersonalDataDTO> getPersonalDataById(@PathVariable Long personalDataId) {
+        Optional<PersonalDataDTO> personalDataDTO = personalDataService.getById(personalDataId)
+                .map(a -> PersonalDataConventerUtils.convert(a));
+        if (personalDataDTO.isPresent()) {
+            return new ResponseEntity<>(personalDataDTO.get(), HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
 
     @GetMapping("/bySurname")
