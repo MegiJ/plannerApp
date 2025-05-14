@@ -31,19 +31,15 @@ public class LoggingDataController {
     @GetMapping
     public List<LoggingDataDTOResponse> getAllLoggingDatas() {
         return loggingDataService.getAllLoginData().stream()
-                .map(a -> LoggingDataConventerUtils.convert(a))
+                .map(LoggingDataConventerUtils::convert)
                 .toList();
     }
 
     @GetMapping("/{loggingDataId}")
     public ResponseEntity<LoggingDataDTOResponse> getLoggingDataById(@PathVariable Long loggingDataId) {
         Optional<LoggingDataDTOResponse> loggingDataDTOResponse = loggingDataService.getById(loggingDataId)
-                .map(a -> LoggingDataConventerUtils.convert(a));
-        if (loggingDataDTOResponse.isPresent()) {
-            return new ResponseEntity<>(loggingDataDTOResponse.get(), HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
+                .map(LoggingDataConventerUtils::convert);
+        return loggingDataDTOResponse.map(dataDTOResponse -> new ResponseEntity<>(dataDTOResponse, HttpStatus.OK)).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
     @PostMapping
@@ -53,7 +49,7 @@ public class LoggingDataController {
     }
 
     @PutMapping("/{loggingDataId}/password")
-    public ResponseEntity<?> updatePassword(@PathVariable Long loggingDataId, @RequestBody String newPassword) {
+    public ResponseEntity<LoggingDataDTOResponse> updatePassword(@PathVariable Long loggingDataId, @RequestBody String newPassword) {
         LoggingData oldPassword = loggingDataService.modifyPassword(loggingDataId, newPassword);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
