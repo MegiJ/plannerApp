@@ -31,28 +31,27 @@ public class PersonalDataController {
     @GetMapping
     public List<PersonalDataDTO> getAllPersonalDatas() {
         return personalDataService.getAllPersonalData().stream()
-                .map(pd -> PersonalDataConventerUtils.convert(pd))
+                .map(PersonalDataConventerUtils::convert)
                 .toList();
     }
 
     @GetMapping("/{personalDataId}")
     public ResponseEntity<PersonalDataDTO> getPersonalDataById(@PathVariable Long personalDataId) {
         Optional<PersonalDataDTO> personalDataDTO = personalDataService.getById(personalDataId)
-                .map(a -> PersonalDataConventerUtils.convert(a));
-        if (personalDataDTO.isPresent()) {
-            return new ResponseEntity<>(personalDataDTO.get(), HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
+                .map(PersonalDataConventerUtils::convert);
+        return personalDataDTO.map(dataDTO -> new ResponseEntity<>(dataDTO, HttpStatus.OK)).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
     @GetMapping("/bySurname")
-    public ResponseEntity<?> getPersonalDataBySurname(@RequestParam String surname) {
+    public ResponseEntity<List<PersonalDataDTO>> getPersonalDataBySurname(@RequestParam String surname) {
         List<PersonalData> personsWithSurname = personalDataService.getBySurname(surname);
         if (personsWithSurname.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Nie znaleziono nazwiska: " + surname);
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         } else {
-            return ResponseEntity.ok(personsWithSurname);
+            List<PersonalDataDTO> dtos = personsWithSurname.stream()
+                    .map(PersonalDataConventerUtils::convert)
+                    .toList();
+            return new ResponseEntity<>(dtos, HttpStatus.OK);
         }
     }
 
@@ -69,19 +68,19 @@ public class PersonalDataController {
     }
 
     @PutMapping("/{personalDataId}/firstname")
-    public ResponseEntity<?> updateFirstname(@PathVariable Long personalDataId, @RequestBody String newFirstname) {
+    public ResponseEntity<PersonalDataDTO> updateFirstname(@PathVariable Long personalDataId, @RequestBody String newFirstname) {
         PersonalData findFirstname = personalDataService.modifyFirstname(personalDataId, newFirstname);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT); // tym dodajesz status kodu bledu albo inf 200 lub 204 itp
     }
 
     @PutMapping("/{personalDataId}/phone")
-    public ResponseEntity<?> updatePhone(@PathVariable Long personalDataId, @RequestBody int newPhone) {
+    public ResponseEntity<PersonalDataDTO> updatePhone(@PathVariable Long personalDataId, @RequestBody int newPhone) {
         PersonalData findPhone = personalDataService.modifyPhone(personalDataId, newPhone);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT); // tym dodajesz status kodu bledu albo inf 200 lub 204 itp
     }
 
     @PutMapping("/{personalDataId}/email")
-    public ResponseEntity<?> updateEmail(@PathVariable Long personalDataId, @RequestBody String newEmail) {
+    public ResponseEntity<PersonalDataDTO> updateEmail(@PathVariable Long personalDataId, @RequestBody String newEmail) {
         PersonalData findEmail = personalDataService.modifyEmail(personalDataId, newEmail);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT); // tym dodajesz status kodu bledu albo inf 200 lub 204 itp
     }
