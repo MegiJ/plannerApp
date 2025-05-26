@@ -7,7 +7,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.server.ResponseStatusException;
 import pl.project.plannerapp.DTO.DietDTORequest;
 import pl.project.plannerapp.DTO.DietDTOResponse;
 import pl.project.plannerapp.model.Diet;
@@ -15,6 +14,7 @@ import pl.project.plannerapp.service.DietService;
 import pl.project.plannerapp.utils.DietConventerUtils;
 
 import java.util.List;
+import java.util.Optional;
 
 @Validated
 @RestController
@@ -29,13 +29,17 @@ public class DietController {
 
     @GetMapping
     public List<DietDTOResponse> getAllDiets() {
-        return dietService.getAllDiet().stream().map(a -> DietConventerUtils.convert(a)).toList();
+        return dietService.getAllDiet().stream()
+                .map(DietConventerUtils::convert)
+                .toList();
     }
 
     @GetMapping("/{dietId}")
-    public DietDTOResponse getDietById(@PathVariable Long dietId) {
-        return dietService.getById(dietId).map(a -> DietConventerUtils.convert(a))
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+    public ResponseEntity<DietDTOResponse> getDietById(@PathVariable Long dietId) {
+        Optional<DietDTOResponse> dietDTOResponse = dietService.getById(dietId)
+                .map(DietConventerUtils::convert);
+        return dietDTOResponse.map(dietDTO -> new ResponseEntity<>(dietDTO, HttpStatus.OK))
+                .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
     @PostMapping
