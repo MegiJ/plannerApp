@@ -18,15 +18,6 @@ public class DietConventerUtils {
                 .build();
     }
 
-    public static Diet convert(DietDTOResponse dietDTOResponse) {
-        return Diet.builder()
-                .dietId(dietDTOResponse.getId())
-                .date(dietDTOResponse.getDate())
-                .meal(dietDTOResponse.getMeal())
-                .loggingDataId(dietDTOResponse.getLoggingDataId())
-                .build();
-    }
-
     public static Diet convert(DietDTORequest dietDTORequest) {
         return Diet.builder()
                 .date(dietDTORequest.getDate())

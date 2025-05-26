@@ -17,7 +17,7 @@ public class DietEntity {
     @SequenceGenerator(name = "DIET_ID_SEQ", sequenceName = "DIET_ID_SEQ", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "DIET_ID_SEQ")
     @Column(name = "ID")
-    private Long id;
+    private long id;
 
     @Column(name = "DATE_OF_DIET")
     private Instant date;

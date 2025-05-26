@@ -3,6 +3,7 @@ package pl.project.plannerapp.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -43,10 +44,10 @@ public class DietController {
         return dietWithId.getDietId();
     }
 
-    @Transactional
-    @PutMapping("/{dietId}")
-    public void modifyDiet(@PathVariable Long dietId, @RequestBody DietDTOResponse dietJson) {
-
+    @PutMapping("/{dietId}/diet")
+    public ResponseEntity<DietDTOResponse> modifyDiet(@PathVariable Long dietId, @RequestBody String newDiet) {
+        Diet findDiet = dietService.modifyDiet(dietId, newDiet);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
     @Transactional
