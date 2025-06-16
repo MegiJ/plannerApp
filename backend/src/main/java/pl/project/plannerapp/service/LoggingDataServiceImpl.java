@@ -1,15 +1,18 @@
 package pl.project.plannerapp.service;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 import pl.project.plannerapp.domain.AccountDetailsEntity;
 import pl.project.plannerapp.domain.LoggingDataEntity;
 import pl.project.plannerapp.exceptions.LoggingDataException;
+import pl.project.plannerapp.model.Diet;
 import pl.project.plannerapp.model.LoggingData;
-import pl.project.plannerapp.repo.AccountDetailsRepo;
 import pl.project.plannerapp.repo.LoggingDataRepo;
 import pl.project.plannerapp.utils.LoggingDataConventerUtils;
 
@@ -22,13 +25,38 @@ import java.util.stream.Collectors;
 public class LoggingDataServiceImpl implements LoggingDataService {
     public static final String USER_ROLE = "user";
     private final LoggingDataRepo loggingDataRepo;
-    private final AccountDetailsRepo accountDetailsRepo;
 
     @Autowired
-    public LoggingDataServiceImpl(LoggingDataRepo loggingDataRepo, AccountDetailsRepo accountDetailsRepo) {
+    private ObjectMapper objectMapper ;
+
+
+    public LoggingDataServiceImpl(@Autowired @Qualifier("repositoryLoggingData") LoggingDataRepo loggingDataRepo) {
         this.loggingDataRepo = loggingDataRepo;
-        this.accountDetailsRepo = accountDetailsRepo;
+  }
+
+  //   private long dietId;
+  //    private Instant date;
+  //    private String meal;
+  //    private long loggingDataId;
+
+    // String json = """
+//          {
+//              "dietId" : 1,
+//              "date" : "06-06-2025T00:00:00Z",
+//              "meal" : "tofu",
+//              "loggingDataId" : 1
+//        }
+    // """;
+    // transform(json)
+  public Diet transform(String json){
+    try {
+      return objectMapper.readValue(json, Diet.class);
+    } catch (JsonProcessingException e) {
+      e.printStackTrace();
     }
+    return null;
+  }
+
 
     @Override
     public List<LoggingData> getAllLoginData() {

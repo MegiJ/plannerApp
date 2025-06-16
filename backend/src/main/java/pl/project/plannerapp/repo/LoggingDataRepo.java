@@ -7,7 +7,7 @@ import pl.project.plannerapp.model.LoggingData;
 
 import java.util.Optional;
 
-@Repository
+@Repository("repositoryLoggingData")
 public interface LoggingDataRepo extends JpaRepository<LoggingDataEntity, Long> {
     Optional<LoggingDataEntity> findById(Long id);
 }

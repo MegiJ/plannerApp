@@ -39,7 +39,8 @@ public class LoggingDataController {
     public ResponseEntity<LoggingDataDTOResponse> getLoggingDataById(@PathVariable Long loggingDataId) {
         Optional<LoggingDataDTOResponse> loggingDataDTOResponse = loggingDataService.getById(loggingDataId)
                 .map(LoggingDataConventerUtils::convert);
-        return loggingDataDTOResponse.map(dataDTOResponse -> new ResponseEntity<>(dataDTOResponse, HttpStatus.OK)).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
+        return loggingDataDTOResponse.map(dataDTOResponse -> new ResponseEntity<>(dataDTOResponse, HttpStatus.OK))
+                                     .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
     @PostMapping
