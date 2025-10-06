@@ -2,8 +2,10 @@ package pl.project.plannerapp.service;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.server.ResponseStatusException;
 import pl.project.plannerapp.domain.DietEntity;
 import pl.project.plannerapp.domain.LoggingDataEntity;
 import pl.project.plannerapp.exceptions.DietException;
@@ -58,8 +60,10 @@ public class DietServiceImpl implements DietService {
         return DietConventerUtils.convert(dietEntity);
     }
 
-    public boolean deleteDiet(Long id) {
-        return false;
+    public void deleteDiet(Long id) {
+        DietEntity dietEntity = dietRepo.findById(id)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+        dietRepo.delete(dietEntity);
     }
 
     @Override

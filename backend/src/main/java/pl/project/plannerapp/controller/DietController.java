@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import pl.project.plannerapp.DTO.DietDTORequest;
@@ -54,8 +53,9 @@ public class DietController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-    @Transactional
     @DeleteMapping("/{dietId}")
-    public void delete(@PathVariable Long dietId) {
+    public ResponseEntity<Long> delete(@PathVariable Long dietId) {
+        dietService.deleteDiet(dietId);
+        return new ResponseEntity<>(dietId, HttpStatus.OK);
     }
 }
