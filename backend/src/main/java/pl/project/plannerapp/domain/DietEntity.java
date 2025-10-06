@@ -25,7 +25,8 @@ public class DietEntity {
     @Column(name = "MEAL")
     private String meal;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne // jak jest cascadetype.all to wpłynie na wszystko co powiazane (kasowanie itp); nsjlepiej usunac cascade
+    // i zadziala usuwanie samej diety bez powiazanych
     @JoinColumn(name = "LOGGING_DATA_ID", referencedColumnName = "ID")
     private LoggingDataEntity loggingDataEntity;
 }
