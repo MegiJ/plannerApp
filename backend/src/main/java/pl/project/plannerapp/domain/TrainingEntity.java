@@ -19,7 +19,7 @@ public class TrainingEntity {
     @SequenceGenerator(name = "TRAINING_ID_SEQ", sequenceName = "TRAINING_ID_SEQ", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "TRAINING_ID_SEQ")
     @Column(name = "ID")
-    private Long id;
+    private long id;
 
     @Column(name = "DATE_TRAINING")
     private Instant date;
@@ -27,7 +27,7 @@ public class TrainingEntity {
     @Column(name = "EXERCISE")
     private String exercise;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "LOGGING_DATA_ID", referencedColumnName = "ID")
     private LoggingDataEntity loggingDataEntity;
 

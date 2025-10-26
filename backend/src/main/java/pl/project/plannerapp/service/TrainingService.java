@@ -5,10 +5,12 @@ import pl.project.plannerapp.model.Training;
 import java.util.List;
 import java.util.Optional;
 
-public interface TrainingService  {
+public interface TrainingService {
     List<Training> getAllTraining();
 
     Training addExercise(Training training);
+
+    Training modifyTraining(Long trainingId, String newExercise);
 
     boolean deleteExercise(Long id);
 

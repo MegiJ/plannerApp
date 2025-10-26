@@ -1,11 +1,13 @@
 package pl.project.plannerapp.service;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 import pl.project.plannerapp.domain.LoggingDataEntity;
 import pl.project.plannerapp.domain.TrainingEntity;
+import pl.project.plannerapp.exceptions.TrainingException;
 import pl.project.plannerapp.model.Training;
 import pl.project.plannerapp.repo.LoggingDataRepo;
 import pl.project.plannerapp.repo.TrainingRepo;
@@ -15,6 +17,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+@Slf4j
 @Service
 public class TrainingServiceImpl implements TrainingService {
     private final TrainingRepo trainingRepo;
@@ -43,6 +46,18 @@ public class TrainingServiceImpl implements TrainingService {
     }
 
     @Override
+    public Training modifyTraining(Long trainingId, String newExercise) {
+        Optional<TrainingEntity> trainingEntityOptional = trainingRepo.findById(trainingId);
+        if (trainingEntityOptional.isEmpty()) {
+            log.warn("Training " + trainingId + " not found");
+            throw new TrainingException("Training not found");
+        }
+        TrainingEntity currentTraining = trainingEntityOptional.get();
+        currentTraining.setExercise(newExercise);
+        TrainingEntity trainingEntity = trainingRepo.save(currentTraining);
+        return TrainingConventerUtils.convert(trainingEntity);
+    }
+
     public boolean deleteExercise(Long id) {
         TrainingEntity trainingEntity = trainingRepo.findById(id)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
