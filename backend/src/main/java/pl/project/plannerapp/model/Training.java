@@ -8,7 +8,7 @@ import java.time.Instant;
 @Builder
 @Getter
 public class Training {
-    private Long id;
+    private long id;
     private Instant date;
     private String exercise;
     private long loggingDataId;

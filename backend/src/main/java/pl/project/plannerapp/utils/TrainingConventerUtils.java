@@ -17,15 +17,6 @@ public class TrainingConventerUtils {
                 .build();
     }
 
-    public static Training convert(TrainingDTOResposne trainingDTOResposne) {
-        return Training.builder()
-                .id(trainingDTOResposne.getId())
-                .date(trainingDTOResposne.getDate())
-                .exercise(trainingDTOResposne.getExercise())
-                .loggingDataId(trainingDTOResposne.getLoggingDataId())
-                .build();
-    }
-
     public static Training convert(TrainingDTORequest trainingDTORequest) {
         return Training.builder()
                 .date(trainingDTORequest.getDate())
