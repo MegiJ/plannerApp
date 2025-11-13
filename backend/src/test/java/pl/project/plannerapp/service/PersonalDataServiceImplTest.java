@@ -13,12 +13,14 @@ import pl.project.plannerapp.repo.PersonalDataRepo;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
 class PersonalDataServiceImplTest {
 
-    private PersonalDataServiceImpl pdsi;
+    private PersonalDataService personalDataService;
 
     @Mock
     private PersonalDataRepo personalDataRepo;
@@ -28,7 +30,7 @@ class PersonalDataServiceImplTest {
     @BeforeEach
     public void setUp() {
         MockitoAnnotations.openMocks(this);
-        pdsi = new PersonalDataServiceImpl(personalDataRepo, loggingDataRepo);
+        personalDataService = new PersonalDataServiceImpl(personalDataRepo, loggingDataRepo);
     }
 
     @Test
@@ -61,7 +63,7 @@ class PersonalDataServiceImplTest {
 
         when(personalDataRepo.findAll()).thenReturn(personalDataEntityList);
         //when
-        List<PersonalData> allPersonalData = pdsi.getAllPersonalData();
+        List<PersonalData> allPersonalData = personalDataService.getAllPersonalData();
         //then
         Assertions.assertNotNull(allPersonalData); // czy nie jest nullem
         Assertions.assertEquals(2, allPersonalData.size()); // sprawdzam czy mam 2 testy
@@ -90,18 +92,116 @@ class PersonalDataServiceImplTest {
 
     @Test
     void getById() {
+        //given
+        LoggingDataEntity loggingDataEntityId = LoggingDataEntity.builder()
+                .id(1L)
+                .build();
+
+        PersonalDataEntity personalDataEntity = PersonalDataEntity.builder()
+                .id(1L)
+                .firstname("Test")
+                .surname("Testowy")
+                .phone(111111111)
+                .email("tescik@test.pl")
+                .loggingDataEntity(loggingDataEntityId)
+                .build();
+
+        PersonalData personalDataExpected = PersonalData.builder()
+                .build();
+
+        when(personalDataRepo.findById(personalDataEntity.getId())).thenReturn(Optional.of(personalDataEntity));
+        //when
+        Optional<PersonalData> result = personalDataService.getById(personalDataEntity.getId());
+        //then
+        Assertions.assertTrue(result.isPresent());
     }
 
     @Test
-    void getBySurname() {
+    void shouldGetBySurname() {
+        //given
+        LoggingDataEntity loggingDataEntityId = LoggingDataEntity.builder()
+                .id(1L)
+                .build();
+
+        PersonalDataEntity personalDataEntity = PersonalDataEntity.builder()
+                .id(1L)
+                .firstname("Test")
+                .surname("Testowy")
+                .phone(111111111)
+                .email("tescik@test.pl")
+                .loggingDataEntity(loggingDataEntityId)
+                .build();
+
+        PersonalData personalDataExpect = PersonalData.builder()
+                .build();
+
+        when(personalDataRepo.findBySurname(personalDataExpect.getSurname())).thenReturn(Optional.of(personalDataEntity));
+
+        //when
+        List<PersonalData> personalDataBySurname = personalDataService.getBySurname(personalDataExpect.getSurname());
+        //then
+        Assertions.assertNotNull(personalDataBySurname, "Lista nie powinna być pusta");
+        Assertions.assertEquals(1, personalDataBySurname.size(), "Lista owinna zawierać 1 element");
+        Assertions.assertEquals("Test", personalDataBySurname.get(0).getFirstname());
     }
 
     @Test
-    void getByEmail() {
+    void shouldGetByEmail() {
+        //given
+        LoggingDataEntity loggingDataEntityId = LoggingDataEntity.builder()
+                .id(1L)
+                .build();
+
+        PersonalData personalDataExpect = PersonalData.builder().build();
+
+        PersonalDataEntity personalDataEntityTest = PersonalDataEntity.builder()
+                .id(1L)
+                .firstname("Test")
+                .surname("Testowy")
+                .phone(123456789)
+                .email("test@testowy.pl")
+                .loggingDataEntity(loggingDataEntityId)
+                .build();
+
+        when(personalDataRepo.findByEmail(personalDataExpect.getEmail())).thenReturn(Optional.of(personalDataEntityTest));
+        //when
+        List<PersonalData> personalDataByEmail = personalDataService.getByEmail(personalDataExpect.getEmail());
+        //then
+        Assertions.assertNotNull(personalDataByEmail, "Lista nie może być pusta");
+        Assertions.assertEquals(1, personalDataByEmail.size(), "Lista powinna zawierać 1 element");
+        Assertions.assertEquals("test@testowy.pl", personalDataByEmail.get(0).getEmail());
     }
 
     @Test
     void addPersonalData() {
+        //given
+        LoggingDataEntity loggingDataEntity = LoggingDataEntity.builder()
+                .id(1L)
+                .build();
+
+        PersonalDataEntity personalDataEntityTest = PersonalDataEntity.builder()
+                .id(1L)
+                .firstname("Test")
+                .surname("Testowy")
+                .phone(123456789)
+                .email("test@test.pl")
+                .loggingDataEntity(loggingDataEntity)
+                .build();
+
+        PersonalData personalDataToBeAdded = PersonalData.builder()
+                .firstname("Test")
+                .surname("Testowy")
+                .phone(123456789)
+                .email("test@test.pl")
+                .loggingDataId(1L)
+                .build();
+
+        when(loggingDataRepo.findById(any())).thenReturn(Optional.of(loggingDataEntity));
+        when(personalDataRepo.save(any())).thenReturn(personalDataEntityTest);
+        //when
+        PersonalData result = personalDataService.addPersonalData(personalDataToBeAdded);
+        //then
+        Assertions.assertNotNull(result.getPersonalDataId());
     }
 
     @Test

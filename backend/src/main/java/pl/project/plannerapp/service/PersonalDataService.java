@@ -10,7 +10,7 @@ public interface PersonalDataService {
 
     List<PersonalData> getBySurname(String surname);
 
-    Optional<PersonalData> getById(Long id);
+    Optional<PersonalData> getById(long id);
 
     List<PersonalData> getByEmail(String email);
 
