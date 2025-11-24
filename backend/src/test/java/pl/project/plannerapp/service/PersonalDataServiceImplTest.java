@@ -16,7 +16,8 @@ import java.util.List;
 import java.util.Optional;
 
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.when;
+import static org.mockito.ArgumentMatchers.eq;
+import static org.mockito.Mockito.*;
 
 class PersonalDataServiceImplTest {
 
@@ -206,21 +207,128 @@ class PersonalDataServiceImplTest {
 
     @Test
     void modifySurname() {
+        //given
+        PersonalDataEntity beforeUpdate = PersonalDataEntity.builder()
+                .id(1L)
+                .firstname("Test")
+                .surname("Testowy")
+                .phone(123456789)
+                .email("test@tes.pl")
+                .loggingDataEntity(LoggingDataEntity.builder().id(1L).build())
+                .build();
+
+        PersonalDataEntity personalDataEntityToBeUpdated = PersonalDataEntity.builder() // tu podajesz tylko te dane ktorych naprawde potrzebujesz; lub sprawdzasz czy sie zmienily lub nie
+                .id(1L)
+                .firstname("Test")
+                .surname("Testowyyyy")
+                .phone(123456789)
+                .email("test@tes.pl")
+                .loggingDataEntity(LoggingDataEntity.builder().id(1L).build())
+                .build();
+
+        when(personalDataRepo.findById(any())).thenReturn(Optional.of(beforeUpdate));
+        when(personalDataRepo.save(eq(personalDataEntityToBeUpdated))).thenReturn(personalDataEntityToBeUpdated);
+        //when
+        PersonalData personalData = personalDataService.modifySurname(beforeUpdate.getId(), "Testowyyyy");
+        //then
+        Assertions.assertEquals("Testowyyyy", personalData.getSurname());
     }
 
     @Test
     void modifyFirstname() {
+        //given
+        PersonalDataEntity personalDataEntityBeforeUpdate = PersonalDataEntity.builder()
+                .id(1L)
+                .firstname("Test")
+                .surname("Testowy")
+                .loggingDataEntity(LoggingDataEntity.builder().id(1L).build())
+                .build();
+
+        PersonalDataEntity personalDataEntityToBeUpdated = PersonalDataEntity.builder()
+                .id(1L)
+                .firstname("Testttt")
+                .surname("Testowy")
+                .loggingDataEntity(LoggingDataEntity.builder().id(1L).build())
+                .build();
+
+        when(personalDataRepo.findById(any())).thenReturn(Optional.of(personalDataEntityBeforeUpdate));
+        when(personalDataRepo.save(eq(personalDataEntityToBeUpdated))).thenReturn(personalDataEntityToBeUpdated);
+        //when
+        PersonalData personalData = personalDataService.modifyFirstname(personalDataEntityBeforeUpdate.getId(), "Testttt");
+        //then
+        Assertions.assertEquals("Testttt", personalData.getFirstname());
+
     }
 
     @Test
     void modifyPhone() {
+        //given
+        PersonalDataEntity personalDataEntityBeforeUpdated = PersonalDataEntity.builder()
+                .id(1L)
+                .phone(123456789)
+                .loggingDataEntity(LoggingDataEntity.builder().id(1L).build())
+                .build();
+
+        PersonalDataEntity personalDataEntityToBeUpdated = PersonalDataEntity.builder()
+                .id(1L)
+                .phone(000000000)
+                .loggingDataEntity(LoggingDataEntity.builder().id(1L).build())
+                .build();
+
+        when(personalDataRepo.findById(any())).thenReturn(Optional.of(personalDataEntityBeforeUpdated));
+        when(personalDataRepo.save(eq(personalDataEntityToBeUpdated))).thenReturn(personalDataEntityToBeUpdated);
+
+        //when
+        PersonalData personalData = personalDataService.modifyPhone(personalDataEntityBeforeUpdated.getId(), 000000000);
+
+        //then
+        Assertions.assertEquals(000000000, personalData.getPhone());
     }
 
     @Test
     void modifyEmail() {
+        //given
+        PersonalDataEntity personalDataEntityBeforeUpdated = PersonalDataEntity.builder()
+                .email("test@test.pl")
+                .loggingDataEntity(LoggingDataEntity.builder().id(1L).build())
+                .build();
+
+        PersonalDataEntity personalDataEntityToBeUpdated = PersonalDataEntity.builder()
+                .email("ttt@test.pl")
+                .loggingDataEntity(LoggingDataEntity.builder().id(1L).build())
+                .build();
+
+        List<PersonalDataEntity> personalDataEntityList = new ArrayList<>();
+        personalDataEntityList.add(personalDataEntityBeforeUpdated);
+
+        when(personalDataRepo.findById(any())).thenReturn(Optional.of(personalDataEntityBeforeUpdated));
+        when(personalDataRepo.findAll()).thenReturn(personalDataEntityList);
+        when(personalDataRepo.save(personalDataEntityBeforeUpdated)).thenReturn(personalDataEntityToBeUpdated);
+
+        //when
+        PersonalData personalData = personalDataService.modifyEmail(personalDataEntityToBeUpdated.getId(), "ttt@test.pl");
+
+        //then
+        Assertions.assertEquals("ttt@test.pl", personalData.getEmail());
     }
 
     @Test
     void delete() {
+        //given
+        Long id = 1L;
+
+        PersonalDataEntity personalDataEntityBeforeUpdated = PersonalDataEntity.builder()
+                .id(id)
+                .build();
+
+        PersonalDataEntity resultFindByIdMethods = new PersonalDataEntity();
+
+        when(personalDataRepo.findById(id)).thenReturn(Optional.of(personalDataEntityBeforeUpdated));
+
+        //when
+        personalDataService.delete(id);
+
+        //then
+        verify(personalDataRepo, times(1)).delete(personalDataEntityBeforeUpdated);
     }
 }
