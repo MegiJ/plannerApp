@@ -21,12 +21,13 @@ import static org.mockito.Mockito.*;
 
 class PersonalDataServiceImplTest {
 
-    public static final int PHONE_TWO = 111111111;
-    public static final String FIRSTNAME_ONE = "Test";
-    public static final String SURNAME_ONE = "Testowa";
-    public static final int PHONE_ONE = 123456789;
-    public static final String EMAIL_ONE = "test@test.pl";
+    public static final int PHONE_NUMBER_111 = 111111111;
+    public static final String FIRSTNAME = "Test";
+    public static final String SURNAME = "Testowa";
+    public static final int PHONE_NUMBER_123 = 123456789;
+    public static final String EMAIL = "test@test.pl";
     public static final long PERSONAL_DATA_ID = 1L;
+    public static final long PERSONAL_DATA_ID_2 = 2L;
     private PersonalDataService personalDataService;
 
     @Mock
@@ -35,6 +36,7 @@ class PersonalDataServiceImplTest {
     private LoggingDataRepo loggingDataRepo;
     private LoggingDataEntity loggingDataEntityId;
     private PersonalDataEntity personalDataEntityBeforeUpdated;
+    private PersonalDataEntity personalDataEntity1;
 
     @BeforeEach
     public void setUp() {
@@ -46,34 +48,32 @@ class PersonalDataServiceImplTest {
         personalDataEntityBeforeUpdated = PersonalDataEntity.builder()
                 .id(PERSONAL_DATA_ID)
                 .build();
+        personalDataEntity1 = PersonalDataEntity.builder()
+                .id(PERSONAL_DATA_ID)
+                .firstname(FIRSTNAME)
+                .surname(SURNAME)
+                .phone(PHONE_NUMBER_111)
+                .email(EMAIL)
+                .loggingDataEntity(loggingDataEntityId)
+                .build();
     }
 
     @Test
     void shouldGetAllPersonalData() {
         //given
-
-        LoggingDataEntity loggingDataEntityTest2 = LoggingDataEntity.builder().id(2L).build();
-
-        PersonalDataEntity personalDataEntityTest1 = PersonalDataEntity.builder()
-                .id(PERSONAL_DATA_ID)
-                .firstname(FIRSTNAME_ONE)
-                .surname(SURNAME_ONE)
-                .phone(PHONE_TWO)
-                .email(EMAIL_ONE)
-                .loggingDataEntity(loggingDataEntityId)
-                .build();
+        LoggingDataEntity loggingDataEntityTest2 = LoggingDataEntity.builder().id(PERSONAL_DATA_ID_2).build();
 
         PersonalDataEntity personalDataEntityTest2 = PersonalDataEntity.builder()
-                .id(2L)
-                .firstname("Tescik")
-                .surname("Tescikowy")
-                .phone(PHONE_TWO)
-                .email("tescik@test.pl")
+                .id(PERSONAL_DATA_ID_2)
+                .firstname(FIRSTNAME + "_2_test")
+                .surname(SURNAME + "_2_test")
+                .phone(PHONE_NUMBER_111)
+                .email(EMAIL + "_2_test")
                 .loggingDataEntity(loggingDataEntityTest2)
                 .build();
 
         List<PersonalDataEntity> personalDataEntityList = new ArrayList<>();
-        personalDataEntityList.add(personalDataEntityTest1);
+        personalDataEntityList.add(personalDataEntity1);
         personalDataEntityList.add(personalDataEntityTest2);
 
         when(personalDataRepo.findAll()).thenReturn(personalDataEntityList);
@@ -85,21 +85,21 @@ class PersonalDataServiceImplTest {
 
         Assertions.assertEquals(PERSONAL_DATA_ID, allPersonalData.get(0).getPersonalDataId());
         Assertions.assertNotNull(allPersonalData.get(0));
-        Assertions.assertEquals(FIRSTNAME_ONE, allPersonalData.get(0).getFirstname());
+        Assertions.assertEquals(FIRSTNAME, allPersonalData.get(0).getFirstname());
         Assertions.assertNotNull(allPersonalData.get(0).getFirstname());
-        Assertions.assertEquals(SURNAME_ONE, allPersonalData.get(0).getSurname());
+        Assertions.assertEquals(SURNAME, allPersonalData.get(0).getSurname());
         Assertions.assertNotNull(allPersonalData.get(0).getSurname());
-        Assertions.assertEquals(PHONE_TWO, allPersonalData.get(0).getPhone());
-        Assertions.assertEquals(EMAIL_ONE, allPersonalData.get(0).getEmail());
+        Assertions.assertEquals(PHONE_NUMBER_111, allPersonalData.get(0).getPhone());
+        Assertions.assertEquals(EMAIL, allPersonalData.get(0).getEmail());
         Assertions.assertNotNull(allPersonalData.get(0).getEmail());
         Assertions.assertEquals(loggingDataEntityId.getId(), allPersonalData.get(0).getLoggingDataId());
 
-        Assertions.assertEquals(2L, allPersonalData.get(1).getPersonalDataId());
+        Assertions.assertEquals(PERSONAL_DATA_ID_2, allPersonalData.get(1).getPersonalDataId());
         Assertions.assertEquals("Tescik", allPersonalData.get(1).getFirstname());
         Assertions.assertNotNull(allPersonalData.get(1).getFirstname());
         Assertions.assertEquals("Tescikowy", allPersonalData.get(1).getSurname());
         Assertions.assertNotNull(allPersonalData.get(1).getSurname());
-        Assertions.assertEquals(PHONE_TWO, allPersonalData.get(1).getPhone());
+        Assertions.assertEquals(PHONE_NUMBER_111, allPersonalData.get(1).getPhone());
         Assertions.assertEquals("tescik@test.pl", allPersonalData.get(1).getEmail());
         Assertions.assertNotNull(allPersonalData.get(1).getEmail());
         Assertions.assertEquals(loggingDataEntityTest2.getId(), allPersonalData.get(1).getLoggingDataId());
@@ -108,21 +108,9 @@ class PersonalDataServiceImplTest {
     @Test
     void getById() {
         //given
-        PersonalDataEntity personalDataEntity = PersonalDataEntity.builder()
-                .id(PERSONAL_DATA_ID)
-                .firstname(FIRSTNAME_ONE)
-                .surname(SURNAME_ONE)
-                .phone(PHONE_TWO)
-                .email(EMAIL_ONE)
-                .loggingDataEntity(loggingDataEntityId)
-                .build();
-
-        PersonalData personalDataExpected = PersonalData.builder()
-                .build();
-
-        when(personalDataRepo.findById(personalDataEntity.getId())).thenReturn(Optional.of(personalDataEntity));
+        when(personalDataRepo.findById(personalDataEntity1.getId())).thenReturn(Optional.of(personalDataEntity1));
         //when
-        Optional<PersonalData> result = personalDataService.getById(personalDataEntity.getId());
+        Optional<PersonalData> result = personalDataService.getById(personalDataEntity1.getId());
         //then
         Assertions.assertTrue(result.isPresent());
     }
@@ -130,26 +118,17 @@ class PersonalDataServiceImplTest {
     @Test
     void shouldGetBySurname() {
         //given
-        PersonalDataEntity personalDataEntity = PersonalDataEntity.builder()
-                .id(PERSONAL_DATA_ID)
-                .firstname(FIRSTNAME_ONE)
-                .surname(SURNAME_ONE)
-                .phone(PHONE_TWO)
-                .email(EMAIL_ONE)
-                .loggingDataEntity(loggingDataEntityId)
-                .build();
-
         PersonalData personalDataExpect = PersonalData.builder()
                 .build();
 
-        when(personalDataRepo.findBySurname(personalDataExpect.getSurname())).thenReturn(Optional.of(personalDataEntity));
+        when(personalDataRepo.findBySurname(personalDataExpect.getSurname())).thenReturn(Optional.of(personalDataEntity1));
 
         //when
         List<PersonalData> personalDataBySurname = personalDataService.getBySurname(personalDataExpect.getSurname());
         //then
         Assertions.assertNotNull(personalDataBySurname, "Lista nie powinna być pusta");
         Assertions.assertEquals(1, personalDataBySurname.size(), "Lista owinna zawierać 1 element");
-        Assertions.assertEquals(FIRSTNAME_ONE, personalDataBySurname.get(0).getFirstname());
+        Assertions.assertEquals(FIRSTNAME, personalDataBySurname.get(0).getFirstname());
     }
 
     @Test
@@ -157,48 +136,30 @@ class PersonalDataServiceImplTest {
         //given
         PersonalData personalDataExpect = PersonalData.builder().build();
 
-        PersonalDataEntity personalDataEntityTest = PersonalDataEntity.builder()
-                .id(PERSONAL_DATA_ID)
-                .firstname(FIRSTNAME_ONE)
-                .surname(SURNAME_ONE)
-                .phone(PHONE_ONE)
-                .email(EMAIL_ONE)
-                .loggingDataEntity(loggingDataEntityId)
-                .build();
-
-        when(personalDataRepo.findByEmail(personalDataExpect.getEmail())).thenReturn(Optional.of(personalDataEntityTest));
+        when(personalDataRepo.findByEmail(personalDataExpect.getEmail())).thenReturn(Optional.of(personalDataEntity1));
         //when
         List<PersonalData> personalDataByEmail = personalDataService.getByEmail(personalDataExpect.getEmail());
         //then
         Assertions.assertNotNull(personalDataByEmail, "Lista nie może być pusta");
         Assertions.assertEquals(1, personalDataByEmail.size(), "Lista powinna zawierać 1 element");
-        Assertions.assertEquals(EMAIL_ONE, personalDataByEmail.get(0).getEmail());
+        Assertions.assertEquals(EMAIL, personalDataByEmail.get(0).getEmail());
     }
 
     @Test
     void addPersonalData() {
         //given
-        PersonalDataEntity personalDataEntityTest = PersonalDataEntity.builder()
-                .id(PERSONAL_DATA_ID)
-                .firstname(FIRSTNAME_ONE)
-                .surname(SURNAME_ONE)
-                .phone(PHONE_ONE)
-                .email(EMAIL_ONE)
-                .loggingDataEntity(loggingDataEntityId)
-                .build();
-
-        PersonalData personalDataToBeAdded = PersonalData.builder()
-                .firstname(FIRSTNAME_ONE)
-                .surname(SURNAME_ONE)
-                .phone(PHONE_ONE)
-                .email(EMAIL_ONE)
+        PersonalData personalDataToBeAddedWithoutId = PersonalData.builder()
+                .firstname(FIRSTNAME)
+                .surname(SURNAME)
+                .phone(PHONE_NUMBER_123)
+                .email(EMAIL)
                 .loggingDataId(PERSONAL_DATA_ID)
                 .build();
 
         when(loggingDataRepo.findById(any())).thenReturn(Optional.of(loggingDataEntityId));
-        when(personalDataRepo.save(any())).thenReturn(personalDataEntityTest);
+        when(personalDataRepo.save(any())).thenReturn(personalDataEntity1);
         //when
-        PersonalData result = personalDataService.addPersonalData(personalDataToBeAdded);
+        PersonalData result = personalDataService.addPersonalData(personalDataToBeAddedWithoutId);
         //then
         Assertions.assertNotNull(result.getPersonalDataId());
     }
@@ -208,28 +169,28 @@ class PersonalDataServiceImplTest {
         //given
         PersonalDataEntity beforeUpdate = PersonalDataEntity.builder()
                 .id(PERSONAL_DATA_ID)
-                .firstname(FIRSTNAME_ONE)
-                .surname(SURNAME_ONE)
-                .phone(PHONE_ONE)
-                .email(EMAIL_ONE)
+                .firstname(FIRSTNAME)
+                .surname(SURNAME)
+                .phone(PHONE_NUMBER_123)
+                .email(EMAIL)
                 .loggingDataEntity(LoggingDataEntity.builder().id(PERSONAL_DATA_ID).build())
                 .build();
 
         PersonalDataEntity personalDataEntityToBeUpdated = PersonalDataEntity.builder() // tu podajesz tylko te dane ktorych naprawde potrzebujesz; lub sprawdzasz czy sie zmienily lub nie
                 .id(PERSONAL_DATA_ID)
-                .firstname(FIRSTNAME_ONE)
-                .surname("Testowyyyy")
-                .phone(PHONE_ONE)
-                .email(EMAIL_ONE)
+                .firstname(FIRSTNAME)
+                .surname(SURNAME + "_2_test")
+                .phone(PHONE_NUMBER_123)
+                .email(EMAIL)
                 .loggingDataEntity(LoggingDataEntity.builder().id(PERSONAL_DATA_ID).build())
                 .build();
 
         when(personalDataRepo.findById(any())).thenReturn(Optional.of(beforeUpdate));
         when(personalDataRepo.save(eq(personalDataEntityToBeUpdated))).thenReturn(personalDataEntityToBeUpdated);
         //when
-        PersonalData personalData = personalDataService.modifySurname(beforeUpdate.getId(), "Testowyyyy");
+        PersonalData personalData = personalDataService.modifySurname(beforeUpdate.getId(), SURNAME + "_2_test");
         //then
-        Assertions.assertEquals("Testowyyyy", personalData.getSurname());
+        Assertions.assertEquals(SURNAME + "_2_test", personalData.getSurname());
     }
 
     @Test
@@ -237,24 +198,24 @@ class PersonalDataServiceImplTest {
         //given
         PersonalDataEntity personalDataEntityBeforeUpdate = PersonalDataEntity.builder()
                 .id(PERSONAL_DATA_ID)
-                .firstname(FIRSTNAME_ONE)
-                .surname(SURNAME_ONE)
+                .firstname(FIRSTNAME)
+                .surname(SURNAME)
                 .loggingDataEntity(LoggingDataEntity.builder().id(PERSONAL_DATA_ID).build())
                 .build();
 
         PersonalDataEntity personalDataEntityToBeUpdated = PersonalDataEntity.builder()
                 .id(PERSONAL_DATA_ID)
-                .firstname("Testttt")
-                .surname(SURNAME_ONE)
+                .firstname(FIRSTNAME + "_2_test")
+                .surname(SURNAME)
                 .loggingDataEntity(LoggingDataEntity.builder().id(PERSONAL_DATA_ID).build())
                 .build();
 
         when(personalDataRepo.findById(any())).thenReturn(Optional.of(personalDataEntityBeforeUpdate));
         when(personalDataRepo.save(eq(personalDataEntityToBeUpdated))).thenReturn(personalDataEntityToBeUpdated);
         //when
-        PersonalData personalData = personalDataService.modifyFirstname(personalDataEntityBeforeUpdate.getId(), "Testttt");
+        PersonalData personalData = personalDataService.modifyFirstname(personalDataEntityBeforeUpdate.getId(), FIRSTNAME + "_2_test");
         //then
-        Assertions.assertEquals("Testttt", personalData.getFirstname());
+        Assertions.assertEquals(FIRSTNAME + "_2_test", personalData.getFirstname());
 
     }
 
@@ -263,13 +224,13 @@ class PersonalDataServiceImplTest {
         //given
         PersonalDataEntity personalDataEntityBeforeUpdated = PersonalDataEntity.builder()
                 .id(PERSONAL_DATA_ID)
-                .phone(PHONE_TWO)
+                .phone(PHONE_NUMBER_111)
                 .loggingDataEntity(LoggingDataEntity.builder().id(PERSONAL_DATA_ID).build())
                 .build();
 
         PersonalDataEntity personalDataEntityToBeUpdated = PersonalDataEntity.builder()
                 .id(PERSONAL_DATA_ID)
-                .phone(000000000)
+                .phone(PHONE_NUMBER_111 + 1)
                 .loggingDataEntity(LoggingDataEntity.builder().id(PERSONAL_DATA_ID).build())
                 .build();
 
@@ -277,17 +238,17 @@ class PersonalDataServiceImplTest {
         when(personalDataRepo.save(eq(personalDataEntityToBeUpdated))).thenReturn(personalDataEntityToBeUpdated);
 
         //when
-        PersonalData personalData = personalDataService.modifyPhone(personalDataEntityBeforeUpdated.getId(), 000000000);
+        PersonalData personalData = personalDataService.modifyPhone(personalDataEntityBeforeUpdated.getId(), PHONE_NUMBER_111 + 1);
 
         //then
-        Assertions.assertEquals(000000000, personalData.getPhone());
+        Assertions.assertEquals(PHONE_NUMBER_111 + 1, personalData.getPhone());
     }
 
     @Test
     void modifyEmail() {
         //given
         PersonalDataEntity personalDataEntityBeforeUpdated = PersonalDataEntity.builder()
-                .email(EMAIL_ONE)
+                .email(EMAIL)
                 .loggingDataEntity(LoggingDataEntity.builder().id(PERSONAL_DATA_ID).build())
                 .build();
 
