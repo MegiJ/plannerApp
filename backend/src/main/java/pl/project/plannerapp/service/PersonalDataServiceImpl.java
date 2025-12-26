@@ -39,7 +39,7 @@ public class PersonalDataServiceImpl implements PersonalDataService {
     }
 
     @Override
-    public Optional<PersonalData> getById(Long id) {
+    public Optional<PersonalData> getById(long id) {
         return personalDataRepo.findById(id)
                 .map(PersonalDataConventerUtils::convert);
     }

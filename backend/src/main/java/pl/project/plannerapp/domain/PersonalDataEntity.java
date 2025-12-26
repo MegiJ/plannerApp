@@ -3,6 +3,8 @@ package pl.project.plannerapp.domain;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.Objects;
+
 @Entity
 @Table(name = "PERSONAL_DATA")
 @AllArgsConstructor
@@ -33,4 +35,16 @@ public class PersonalDataEntity {
     @JoinColumn(name = "LOGGING_DATA_ID", referencedColumnName = "ID")
     private LoggingDataEntity loggingDataEntity;
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        PersonalDataEntity that = (PersonalDataEntity) o;
+        return id == that.id && phone == that.phone && Objects.equals(firstname, that.firstname) && Objects.equals(surname, that.surname) && Objects.equals(email, that.email) && Objects.equals(loggingDataEntity, that.loggingDataEntity);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, firstname, surname, phone, email, loggingDataEntity);
+    }
 }
